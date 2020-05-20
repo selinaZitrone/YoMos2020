@@ -1,0 +1,13 @@
+Package: YoMos2020
+Type: Package
+Title: Example of Good Scientific Programming Practice
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: Selina Baldauf <selina.baldauf@fu-berlin.de>
+Description: A package that is used as an example to demonstrate clear project strucure, unit testing, 
+  continous integration with github actions,and reproducibility directly from github using the holepunch package.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/selinaZitrone/YoMos2020
+BugReports: https://github.com/selinaZitrone/YoMos2020/issues

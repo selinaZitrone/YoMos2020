@@ -1,0 +1,63 @@
+---
+output: github_document
+bibliography: references.bib
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# YoMos2020
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+# Step 1: Create an empty R-package
+Create an Rpackage in R-Studio: File -> New Project -> New Directory
+
+To initialize the package with a git repository click the checkmark when creating the project.
+If you created the package withouth a git repository you can either use 
+
+```r
+usethis::use_git()
+```
+or you can initialize an empty git repository from the terminal
+
+```sh
+git init
+```
+Go to the DESCRIPTION file and fill in your data
+
+[Here](https://www.youtube.com/watch?v=79s3z0gIuFU&list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&index=1) you can find a good tutorial showing all the R package building basics and more.
+
+# Step 2: import your data and scripts
+If you already have data and scripts that you want to use in this package, you can import them now
+
+Organize them in a way that model, data and R scripts are in seperate folders. @Marwick2018 give a good overview on how to sturcture reserach compendiums so that it is clear and easy to access to others that want to reproduce your results.
+
+# Step 3: commit your changes
+
+In the git panel (next to build) you can first stage all file and then commit them or you can do it from the commandline:
+
+```sh
+git add *
+git commit -m "initial commit"
+```
+
+# Step 4: initialize github repository
+
+You can either do this by manually setting up a git repository and adding this package to the repository or, more conveniently you can do it using the usethis package.
+To do this step you need to have a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the [Happy Git with R book](https://happygitwithr.com/github-pat.html#github-pat).
+
+```r
+usethis::use_github()
+```
+
+# References
