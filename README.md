@@ -31,6 +31,14 @@ Go to the DESCRIPTION file and fill in your data
 you can find a good tutorial showing all the R package building basics
 and more.
 
+Step2: Add a readme
+===================
+
+This adds an rmd to the package that can be rendered to github in the
+readme section.
+
+    usethis::use_readem_rmd()
+
 Step 2: import your data and scripts
 ====================================
 
@@ -90,6 +98,16 @@ r-lib/actions) repository you can do the following:
     usethis::use_github_action("render-readme.yaml")
 
 This adds the respective file to ./github/workflows
+
+Notes
+=====
+
+If you need another package in your R-package (e.g. ggplot2) you can use
+
+    usethis::use_package("ggplot2")
+
+This will add the ggplot2 packages to the Imports field in the
+DESCRIPTION file, meaning it is importet when you load the package
 
 References
 ==========
