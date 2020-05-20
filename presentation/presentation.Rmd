@@ -1,0 +1,52 @@
+---
+title: "Clear, reproducible and robust R code"
+author: "Sebastian Hanß and Selina Baldauf"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Overview
+
+* code on github
+
+
+## Clear project structure
+
+* Mavick et al. 2018
+
+## Unit testing
+
+What is it?
+
+Why should I do it?
+
+How should I do it?
+
+## Continous integration
+
+![](images/pain_vs_time_ci.png)
+
+
+> "If it hurts, do it more often" (Martin Fowler)
+
+---
+
+### Why?
+
+* Idea of CI: integrate your code frequently
+* smaller changes are easier to handle
+* get quick and frequent feedback
+
+### How?
+
+## Github Actions
+
+## Reproducibility and Accessaiility
+
+Holepunch
+
