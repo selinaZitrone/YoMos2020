@@ -3,21 +3,55 @@ title: "Clear, reproducible and robust R code"
 author: "Sebastian Hanß and Selina Baldauf"
 date: "`r Sys.Date()`"
 output: ioslides_presentation
-
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
 ```
 
-## Overview
+## Workshop overview
 
-* code on github
+### Motivation
+
+* reproducibility
+* transparency
+* good coding practice
+
+### What will you learn?
+* clear project structure
+* good programming practice
+  + unit testing
+  + CI with github Actions
+* holepunch
+* code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
 
 
 ## Clear project structure
 
-* Mavick et al. 2018
+* follow the conventions of your research community / lab
+* clear separation of data, method and output
+* specify the computational environment
+ 
+* adapt R package stucture for your research compendia
+
+### Advantages
+
+* benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)
+* writing functions is less error prone
+* functions can be easily documented
+
+
+---
+
+<div class="columns-2">
+![Mavick et al. 2018](images/research_compendium.PNG){width=90%}
+
+* other packages generating empty project directory structures: 
+  + ProjectTemplate
+  + prodigenr
+  + workflowr
+</div>
 
 ## Unit testing
 
