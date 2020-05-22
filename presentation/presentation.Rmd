@@ -74,22 +74,36 @@ library(knitr)
 * Test-first philosophy: write the test first, then write the code to pass it
 * in R: <code>testthat</code> package (Hadley Wickham)
 
-## Continous integration
-
-![](images/pain_vs_time_ci.png)
-
+## Continous integration (CI)
 
 > "If it hurts, do it more often" (Martin Fowler)
+
+![](images/pain_vs_time_ci.png){width=30%}
+
+### Idea
+
+* shared code repository (e.g. on github)
+* integrate code frequently (every day) to the shared
+* automated builds and tests after each commit
+* code is only accepted if it builds and passes the test
+* everyone can see the results of the lates commit
 
 ---
 
 ### Why?
 
-* Idea of CI: integrate your code frequently
 * smaller changes are easier to handle
 * get quick and frequent feedback
+* early bug detection
+* constant availability of current code version
+* if you have to revert the codebase due to bugs you won't lose that much
+
+* However, can be time consuming and might be overkill for small or solo projects
 
 ### How?
+
+* Different tools to set it up
+* 
 
 ## Github Actions
 
