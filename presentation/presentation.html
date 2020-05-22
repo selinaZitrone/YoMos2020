@@ -3208,7 +3208,7 @@ slide:not(.current) .plotly.html-widget{
 <li>in R: <code>testthat</code> package (Hadley Wickham)</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Continous integration</h2></hgroup><article  id="continous-integration">
+</article></slide><slide class=""><hgroup><h2>Continous integration (CI)</h2></hgroup><article  id="continous-integration-ci">
 
 <blockquote>
 <p>&ldquo;If it hurts, do it more often&rdquo; (Martin Fowler)</p>
@@ -3239,18 +3239,39 @@ slide:not(.current) .plotly.html-widget{
 <li><p>However, can be time consuming and might be overkill for small or solo projects</p></li>
 </ul>
 
-<h3>How?</h3>
+</article></slide><slide class=""><hgroup><h2>Github Actions for CI</h2></hgroup><article  id="github-actions-for-ci">
 
 <ul>
-<li>Different tools to set it up</li>
-<li></li>
+<li>supports mac-OS, windows, linux, docker containers</li>
+<li>integration with github, so no seperate setup and authentification</li>
+<li>free for open source, academic or educational repos</li>
+<li>20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow</li>
+<li>self host to remove the per job limit</li>
+<li>very easy to setup with R using the <code>usethis</code> package</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Github Actions</h2></hgroup><article  id="github-actions">
+</article></slide><slide class=""><hgroup><h2>Reproducibility and Accessaiblity</h2></hgroup><article  id="reproducibility-and-accessaiblity">
 
-</article></slide><slide class=""><hgroup><h2>Reproducibility and Accessaiility</h2></hgroup><article  id="reproducibility-and-accessaiility">
+<p><a href='https://karthik.github.io/holepunch/' title=''>Holepunch</a></p>
 
-<p>Holepunch</p></article></slide>
+</article></slide><slide class=""><hgroup><h2>Resources</h2></hgroup><article  id="resources">
+
+<h3>Project structures</h3>
+
+<h3>Unit testing</h3>
+
+<ul>
+<li><a href='https://katherinemwood.github.io/post/testthat/' title=''>Intro to unit testing in R</a></li>
+<li>Testing with <a href='http://r-pkgs.had.co.nz/tests.html' title=''><code>testthat</code></a></li>
+</ul>
+
+<h3>CI with github actions</h3>
+
+<ul>
+<li>Jim Hester on <a href='https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/' title=''>GitHub Actions with R</a></li>
+<li><a href='https://help.github.com/en/actions/getting-started-with-github-actions' title=''>Getting started</a> with GitHub Actions</li>
+<li><a href='https://github.com/r-lib/actions' title=''>Examples</a> for Actions with R</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>

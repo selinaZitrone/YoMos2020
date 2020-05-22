@@ -100,14 +100,31 @@ library(knitr)
 
 * However, can be time consuming and might be overkill for small or solo projects
 
-### How?
+## Github Actions for CI
 
-* Different tools to set it up
-* 
+* supports mac-OS, windows, linux, docker containers
+* integration with github, so no seperate setup and authentification
+* free for open source, academic or educational repos
+* 20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow
+* self host to remove the per job limit
+* very easy to setup with R using the <code>usethis</code> package
 
-## Github Actions
-
-## Reproducibility and Accessaiility
+## Reproducibility and Accessaiblity
 
 [Holepunch](https://karthik.github.io/holepunch/)
 
+## Resources
+
+### Project structures
+
+### Unit testing
+
+* [Intro to unit testing in R](https://katherinemwood.github.io/post/testthat/)
+* Testing with [<code>testthat</code>](http://r-pkgs.had.co.nz/tests.html)
+
+
+### CI with github actions
+
+* Jim Hester on [GitHub Actions with R](https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/)
+* [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
+* [Examples](https://github.com/r-lib/actions) for Actions with R
