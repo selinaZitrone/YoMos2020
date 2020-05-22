@@ -79,7 +79,7 @@ You can then can initialize a basic test file by doing
 usethis::use_test()
 ```
 
-# Step 6: Set up Continous integration wpipeline ith github actions
+# Step 6: Set up Continous Integration (CI) pipeline with github actions
 
 Setup github actions from R
 
