@@ -53,13 +53,26 @@ library(knitr)
   + workflowr
 </div>
 
-## Unit testing
+## Unit testing {.smaller}
 
-What is it?
+* test individual units of source code to see if it is fit for use 
 
-Why should I do it?
+### Why?
 
-How should I do it?
+* Fewer bugs
+* Better code structure
+* Easier to pick up where you left
+* Robust code
+* You can rerun your tests at anytime to make sure you did not break anything
+
+### How?
+
+* Test external interfaces of functions
+* One test for each behaviour
+* Test fragile, complicated code
+* Write a test if you find a but
+* Test-first philosophy: write the test first, then write the code to pass it
+* in R: <code>testthat</code> package (Hadley Wickham)
 
 ## Continous integration
 

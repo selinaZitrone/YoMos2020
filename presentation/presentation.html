@@ -3181,13 +3181,32 @@ slide:not(.current) .plotly.html-widget{
 </ul></li>
 </ul></div>
 
-</article></slide><slide class=""><hgroup><h2>Unit testing</h2></hgroup><article  id="unit-testing">
+</article></slide><slide class=""><hgroup><h2>Unit testing</h2></hgroup><article  id="unit-testing" class="smaller">
 
-<p>What is it?</p>
+<ul>
+<li>test individual units of source code to see if it is fit for use</li>
+</ul>
 
-<p>Why should I do it?</p>
+<h3>Why?</h3>
 
-<p>How should I do it?</p>
+<ul>
+<li>Fewer bugs</li>
+<li>Better code structure</li>
+<li>Easier to pick up where you left</li>
+<li>Robust code</li>
+<li>You can rerun your tests at anytime to make sure you did not break anything</li>
+</ul>
+
+<h3>How? .{smaller}</h3>
+
+<ul>
+<li>Test external interfaces of functions</li>
+<li>One test for each behaviour</li>
+<li>Test fragile, complicated code</li>
+<li>Write a test if you find a but</li>
+<li>Test-first philosophy: write the test first, then write the code to pass it</li>
+<li>in R: <code>testthat</code> package (Hadley Wickham)</li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>Continous integration</h2></hgroup><article  id="continous-integration">
 
