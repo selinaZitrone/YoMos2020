@@ -7,6 +7,8 @@ YoMos2020
 
 [![R build
 status](https://github.com/selinaZitrone/YoMos2020/workflows/R-CMD-check/badge.svg)](https://github.com/selinaZitrone/YoMos2020/actions)
+[![Launch Rstudio
+Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/selinaZitrone/YoMos2020/master?urlpath=rstudio)
 <!-- badges: end -->
 
 Step 1: Create an empty R-package
