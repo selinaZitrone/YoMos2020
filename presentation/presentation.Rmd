@@ -74,26 +74,57 @@ library(knitr)
 * Test-first philosophy: write the test first, then write the code to pass it
 * in R: <code>testthat</code> package (Hadley Wickham)
 
-## Continous integration
-
-![](images/pain_vs_time_ci.png)
-
+## Continous integration (CI)
 
 > "If it hurts, do it more often" (Martin Fowler)
+
+![](images/pain_vs_time_ci.png){width=30%}
+
+### Idea
+
+* shared code repository (e.g. on github)
+* integrate code frequently (every day) to the shared
+* automated builds and tests after each commit
+* code is only accepted if it builds and passes the test
+* everyone can see the results of the lates commit
 
 ---
 
 ### Why?
 
-* Idea of CI: integrate your code frequently
 * smaller changes are easier to handle
 * get quick and frequent feedback
+* early bug detection
+* constant availability of current code version
+* if you have to revert the codebase due to bugs you won't lose that much
 
-### How?
+* However, can be time consuming and might be overkill for small or solo projects
 
-## Github Actions
+## Github Actions for CI
 
-## Reproducibility and Accessaiility
+* supports mac-OS, windows, linux, docker containers
+* integration with github, so no seperate setup and authentification
+* free for open source, academic or educational repos
+* 20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow
+* self host to remove the per job limit
+* very easy to setup with R using the <code>usethis</code> package
 
-Holepunch
+## Reproducibility and Accessaiblity
 
+[Holepunch](https://karthik.github.io/holepunch/)
+
+## Resources
+
+### Project structures
+
+### Unit testing
+
+* [Intro to unit testing in R](https://katherinemwood.github.io/post/testthat/)
+* Testing with [<code>testthat</code>](http://r-pkgs.had.co.nz/tests.html)
+
+
+### CI with github actions
+
+* Jim Hester on [GitHub Actions with R](https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/)
+* [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
+* [Examples](https://github.com/r-lib/actions) for Actions with R
