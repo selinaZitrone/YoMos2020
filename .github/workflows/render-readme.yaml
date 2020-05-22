@@ -9,7 +9,7 @@ name: Render README
 jobs:
   render:
     name: Render README
-    runs-on: r-base
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@v1
