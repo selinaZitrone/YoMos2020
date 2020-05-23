@@ -19,6 +19,7 @@ jobs:
         run: Rscript -e 'rmarkdown::render_site("docs")'
       - name: Commit results
         run: |
+          rm -r docs/presentation_files/
           git add docs/* || echo "no files to add"
           git commit docs/* -m 'Re-build gh-pages' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

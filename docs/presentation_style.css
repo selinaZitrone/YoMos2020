@@ -1,0 +1,29 @@
+slides > slide {
+  background: #303030;
+  background-color: #303030;
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: 4% 93.1%;
+  font-family: 'Rubik';
+  font-size: 24px;
+  color:  #e2e2e2;
+}
+
+h1,h2 {
+  font-weight: bold;
+  color:  #ce9a45;
+  font-size: 30pt;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 30px;
+  color:  #e2e2e2;
+}
+
+.title-slide hgroup h1 {
+  font-size: 50px;
+  line-height: 1.4;
+  letter-spacing: -3px;
+  color:  #ce9a45;
+}
