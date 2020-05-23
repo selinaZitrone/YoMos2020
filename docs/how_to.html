@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>How-To</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="presentation.html">Presentation</a>
+</li>
+<li>
+  <a href="how_to.html">How-To</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">How-To</h1>
+
+</div>
+
+
+<div id="yomos2020" class="section level1">
+<h1>YoMos2020</h1>
+</div>
+<div id="general-setup" class="section level1">
+<h1>General Setup</h1>
+<div id="step-1-create-an-empty-r-package" class="section level2">
+<h2>Step 1: Create an empty R-package</h2>
+<p>Create an R-package in R-Studio: File -&gt; New Project -&gt; New Directory</p>
+<p>To initialize the package with a git repository click the checkmark when creating the project. If you created the package without a git repository you can either use</p>
+<pre class="r"><code>usethis::use_git()</code></pre>
+<p>or you can initialize an empty git repository from the terminal</p>
+<pre class="sh"><code>git init</code></pre>
+<p>First, go to the DESCRIPTION file and fill in your data. E.g.</p>
+<pre><code>Package: YoMos2020
+Type: Package
+Title: Example of Good Scientific Programming Practice
+Version: 0.1.0
+Author: Selina and Sebastian
+Maintainer: Selina Baldauf &lt;selina.baldauf@fu-berlin.de&gt;
+Description: A package that is used as an example to demonstrate clear project strucure, unit testing, 
+  continous integration with github actions,and reproducibility directly from github using the holepunch package.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/selinaZitrone/YoMos2020
+BugReports: https://github.com/selinaZitrone/YoMos2020/issues
+Imports:
+    dplyr,
+    rmarkdown,
+    ggplot2
+Suggests: 
+    testthat</code></pre>
+<p><a href="https://www.youtube.com/watch?v=79s3z0gIuFU&amp;list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&amp;index=1">Here</a> you can find a good tutorial showing all the R package building basics and more.</p>
+<p>To add package dependencies to your R-package (e.g. ggplot2) you can use</p>
+<pre class="r"><code>usethis::use_package(&quot;ggplot2&quot;)</code></pre>
+<p>This will add the ggplot2 packages to the Imports field in the DESCRIPTION file, meaning it is imported when you load the package.</p>
+</div>
+<div id="step-2-add-a-readme-file" class="section level2">
+<h2>Step 2: Add a readme file</h2>
+<p>This adds an rmd to the package that can be rendered to github in the readme section.</p>
+<pre class="r"><code>usethis::use_readme_rmd() # or use_readme_md() if you want to use plain Markdown</code></pre>
+</div>
+<div id="step-2-import-your-data-and-scripts" class="section level2">
+<h2>Step 2: Import your data and scripts</h2>
+<p>If you already have data and scripts that you want to use in this package, you can import them now.</p>
+<p>Organize them in a way that model, data and R scripts are in separate folders. <span class="citation">@Marwick2018</span> give a good overview on how to structure research compendiums so that it is clear and easy to access to others that want to reproduce your results.</p>
+</div>
+</div>
+<div id="setup-git-and-github" class="section level1">
+<h1>Setup Git and GitHub</h1>
+<div id="step-1-commit-your-changes-locally" class="section level2">
+<h2>Step 1: Commit your changes locally</h2>
+<p>In the <code>Git</code> tab (next to build) you can first stage all file and then commit them or you can do it from the command line:</p>
+<pre class="sh"><code>git add *
+git commit -m &quot;initial commit&quot;</code></pre>
+</div>
+<div id="step-2-initialize-your-github-repository" class="section level2">
+<h2>Step 2: Initialize your Github repository</h2>
+<p>You can either do this by manually setting up a git repository and adding this package to the repository or, more conveniently, you can do it using the <code>usethis</code> package. To do this step you need to have a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the <a href="https://happygitwithr.com/github-pat.html#github-pat">Happy Git with R book</a>.</p>
+<pre class="r"><code>usethis::use_github()</code></pre>
+</div>
+</div>
+<div id="unit-testing" class="section level1">
+<h1>Unit testing</h1>
+<p>create the files and test folders needed by the <code>thestthat</code> package</p>
+<pre class="r"><code>usethis::use_testthat</code></pre>
+<p>You can then can initialize a basic test file by doing</p>
+<pre class="r"><code>usethis::use_test() # creates a test for the file that is currently open in RSudio</code></pre>
+</div>
+<div id="setup-a-continous-integration-ci-pipeline-with-github-actions" class="section level1">
+<h1>Setup a Continous Integration (CI) pipeline with GitHub actions</h1>
+<div id="setup-github-actions-from-r" class="section level2">
+<h2>Setup github actions from R</h2>
+<p>This creates the basic file structure needed to set up your workflow and automatically adds a R-CMD-check.yaml file</p>
+<pre class="r"><code>usethis::use_github_actions()</code></pre>
+<p>If you want to use an action that already exists (e.g. from the r-lib/actions) repository you can do the following:</p>
+<pre class="r"><code>usethis::use_github_action(&quot;render-readme.yaml&quot;)</code></pre>
+<p>This adds the respective file to ./github/workflows</p>
+</div>
+</div>
+<div id="add-rstudio-server-with-holepunch" class="section level1">
+<h1>Add RStudio server with <code>holepunch</code></h1>
+<p>There is a nice intro for holepunch: <a href="https://karthik.github.io/holepunch/articles/getting_started.html">Getting started with holepunch</a>. The code below is copied’n’pasted from the <a href="https://github.com/karthik/holepunch">holepunch repo’s readme</a>.</p>
+<pre class="r"><code>remotes::install_github(&quot;karthik/holepunch&quot;)
+
+write_dockerfile(maintainer = &quot;your_name&quot;) 
+# To write a Dockerfile. It will automatically pick the date of the last 
+# modified file, match it to that version of R and add it here. You can 
+# override this by passing r_date to some arbitrary date
+# (but one for which a R version exists).
+
+generate_badge() # This generates a badge for your readme.
+
+# ----------------------------------------------
+# At this time 🙌 push the code to GitHub 🙌
+# ----------------------------------------------
+
+# And click on the badge or use the function below to get the build 
+# ready ahead of time.
+build_binder()
+# 🤞🚀</code></pre>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
