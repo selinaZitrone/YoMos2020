@@ -1,7 +1,7 @@
-name: "my-website"
+name: "Clear, reproducible and robust R code"
 output_dir: "."
 navbar:
-  title: "My Website"
+  title: "Clear, reproducible and robust R code"
   left:
     - text: "Home"
       href: index.html
