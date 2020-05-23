@@ -1,0 +1,24 @@
+on:
+  push:
+    paths:
+      - docs/
+
+name: Render gh-pages
+
+jobs:
+  render:
+    name: Render gh-pages
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install rmarkdown
+        run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Render README
+        run: Rscript -e 'rmarkdown::render_site("docs")'
+      - name: Commit results
+        run: |
+          git add docs/* || echo "no files to add"
+          git commit docs/* -m 'Re-build gh-pages' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
