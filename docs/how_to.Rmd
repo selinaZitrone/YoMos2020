@@ -1,5 +1,9 @@
 ---
 title: "How-To"
+output: 
+  html_document:
+    includes:
+      in_header: header.html
 ---
 # YoMos2020
 

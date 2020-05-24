@@ -1,5 +1,9 @@
 ---
 title: "My Website"
+output: 
+  html_document:
+    includes:
+      in_header: header.html
 ---
 
 Hello, Website!

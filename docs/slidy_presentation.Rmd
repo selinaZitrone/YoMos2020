@@ -4,13 +4,14 @@ author: "Sebastian Hanß and Selina Baldauf"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   slidy_presentation:
-    theme: darkly
+    includes:
+      in_header: header.html
+      before_body: navbar.html
+    css: presentation_style.css
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-
 ## Workshop overview
 
 ### Motivation
@@ -46,7 +47,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ---
 
 <div class='left' style='float:left;width:48%'>
-![Mavick et al. 2018](images/research_compendium.PNG)
+![Mavick et al. 2018](images/research_compendium.PNG){width=50%}
 </div>
 
 <div class='right' style='float:right;width:48%'>
