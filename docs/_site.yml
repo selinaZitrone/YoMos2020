@@ -9,6 +9,8 @@ navbar:
       href: presentation.html
     - text: "How-To"
       href: how_to.html
+    - text: "presentation slidy"
+      href: slidy_presentation.html
 
 
 
