@@ -84,26 +84,23 @@ printMean <- function(x){
 Add an analysis folder with a Rmarkdown document to your compendium.
 The script can look like this: 
 
-```r
+<pre><code>
 ---
 title: "My analysis"
 author: "Selina Baldauf"
 date: "5/25/2020"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(finalPackage)
 ```
-
 # This is the temperature analysis
-
 ```{r}
 printMean(dummyTempData$temp)
 ```
+</pre></code>
 
-```
 ## Step 3: Unit testing
 
 create the files and test folders needed by the `thestthat` package. Also it adds the testthat package to the Suggests field in your DESCRIPTION file.
@@ -135,6 +132,8 @@ If you want to run all the tests from your package to see if they pass your can 
 devtools::test()
 ```
 in the console.
+
+## Step 4:
 
 
 ## Step 2: Add a readme file
