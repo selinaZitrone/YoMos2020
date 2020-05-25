@@ -2,6 +2,7 @@
 title: "How-To"
 output: 
   html_document:
+    toc: true
     includes:
       in_header: header.html
 ---
