@@ -92,12 +92,12 @@ date: "5/25/2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(finalPackage)
+#knitr::opts_chunk$set(echo = TRUE)
+#library(finalPackage)
 ```
 # This is the temperature analysis
 ```{r}
-printMean(dummyTempData$temp)
+#printMean(dummyTempData$temp)
 ```
 </pre></code>
 
