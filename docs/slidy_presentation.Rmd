@@ -14,12 +14,6 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 ## Workshop overview
 
-### Motivation
-
-* reproducibility
-* transparency
-* good coding practice
-
 ### What will you learn?
 * clear project structure
 * good programming practice
@@ -29,34 +23,52 @@ knitr::opts_chunk$set(echo = FALSE)
 * code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
 
 
-## Clear project structure
+# Goals
+## 🔃 Reproducible (for you and others)
+- script everything, avoid manual steps
+- explain the workflow
+- specify the computational environment
 
-* follow the conventions of your research community / lab
-* clear separation of data, method and output
-* specify the computational environment
- 
-* adapt R package stucture for your research compendia
+## 🏋 Reliable (will it work again?)
+- use automated testing
+- collaborate and share
 
-### Advantages
+## ⚙ Re-usable (don't re-invent the wheel)
+- follow the conventions of your research community / lab
+- clear separation of data, code and output
+- pick a license to allow others to use your work
+
+## 🔍 Visible (let others see and use your work)
+- "Go public" (Mr. Obvious)
+- 🔃 + 🏋 + ⚙ encourages others to trust your work
+
+# How? Use a research compendium!
+
+## 
+![](images/Marwicketal2018.png){width=100%}
+
+## 
+
+<div class="columns-2">
+![Mavick et al. 2018](images/research_compendium.PNG){width=90%}
+
+* It's an 📦 R Package!
+* packages generating similar project directory structures: 
+  + rrtools
+  + ProjectTemplate
+  + prodigenr
+  + workflowr  
+</div>
+
+## Advantages of using R Packages
 
 * benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)
 * writing functions is less error prone
 * functions can be easily documented
 
+# Hands-on: Create a research compendium
 
----
-
-<div class='left' style='float:left;width:48%'>
-![Mavick et al. 2018](images/research_compendium.PNG){width=50%}
-</div>
-
-<div class='right' style='float:right;width:48%'>
-* other packages generating empty project directory structures: 
-  + ProjectTemplate
-  + prodigenr
-  + workflowr
-</div>
-
+# Testing
 
 ## Unit testing {.smaller}
 

@@ -60,12 +60,6 @@ Sebastian Hanß and Selina Baldauf
 </div>
 <div id="workshop-overview" class="slide section level2">
 <h1>Workshop overview</h1>
-<h3 id="motivation">Motivation</h3>
-<ul>
-<li>reproducibility</li>
-<li>transparency</li>
-<li>good coding practice</li>
-</ul>
 <h3 id="what-will-you-learn">What will you learn?</h3>
 <ul>
 <li>clear project structure</li>
@@ -78,41 +72,65 @@ Sebastian Hanß and Selina Baldauf
 <li>code on github. <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
 </ul>
 </div>
-<div id="clear-project-structure" class="slide section level2">
-<h1>Clear project structure</h1>
+<div id="goals" class="title-slide slide section level1"><h1>Goals</h1></div><div id="reproducible-for-you-and-others" class="slide section level2">
+<h1>🔃 Reproducible (for you and others)</h1>
 <ul>
-<li><p>follow the conventions of your research community / lab</p></li>
-<li><p>clear separation of data, method and output</p></li>
-<li><p>specify the computational environment</p></li>
-<li><p>adapt R package stucture for your research compendia</p></li>
+<li>script everything, avoid manual steps</li>
+<li>explain the workflow</li>
+<li>specify the computational environment</li>
 </ul>
-<h3 id="advantages">Advantages</h3>
+</div><div id="reliable-will-it-work-again" class="slide section level2">
+<h1>🏋 Reliable (will it work again?)</h1>
+<ul>
+<li>use automated testing</li>
+<li>collaborate and share</li>
+</ul>
+</div><div id="re-usable-dont-re-invent-the-wheel" class="slide section level2">
+<h1>⚙ Re-usable (don’t re-invent the wheel)</h1>
+<ul>
+<li>follow the conventions of your research community / lab</li>
+<li>clear separation of data, code and output</li>
+<li>pick a license to allow others to use your work</li>
+</ul>
+</div><div id="visible-let-others-see-and-use-your-work" class="slide section level2">
+<h1>🔍 Visible (let others see and use your work)</h1>
+<ul>
+<li>“Go public” (Mr. Obvious)</li>
+<li>🔃 + 🏋 + ⚙ encourages others to trust your work</li>
+</ul>
+</div>
+<div id="how-use-a-research-compendium" class="title-slide slide section level1"><h1>How? Use a research compendium!</h1></div><div id="section" class="slide section level2">
+<h1></h1>
+<p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
+</div><div id="section-1" class="slide section level2">
+<h1></h1>
+<div class="columns-2">
+<div class="figure">
+<img src="images/research_compendium.PNG" style="width:90.0%" alt="" />
+<p class="caption">Mavick et al. 2018</p>
+</div>
+<ul>
+<li>It’s an 📦 R Package!</li>
+<li>packages generating similar project directory structures:
+<ul>
+<li>rrtools</li>
+<li>ProjectTemplate</li>
+<li>prodigenr</li>
+<li>workflowr<br />
+</li>
+</ul></li>
+</ul>
+</div>
+</div><div id="advantages-of-using-r-packages" class="slide section level2">
+<h1>Advantages of using R Packages</h1>
 <ul>
 <li>benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)</li>
 <li>writing functions is less error prone</li>
 <li>functions can be easily documented</li>
 </ul>
 </div>
-<div class="slide section level2">
-
-<div class="left" style="float:left;width:48%">
-<div class="figure">
-<img src="images/research_compendium.PNG" style="width:50.0%" alt="" />
-<p class="caption">Mavick et al. 2018</p>
-</div>
-</div>
-<div class="right" style="float:right;width:48%">
-<ul>
-<li>other packages generating empty project directory structures:
-<ul>
-<li>ProjectTemplate</li>
-<li>prodigenr</li>
-<li>workflowr</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="unit-testing" class="slide section level2 smaller">
+<div id="hands-on-create-a-research-compendium" class="title-slide slide section level1"><h1>Hands-on: Create a research compendium</h1></div>
+<div id="testing" class="title-slide slide section level1"><h1>Testing</h1></div><div id="unit-testing" class="slide section level2 smaller">
 <h1>Unit testing</h1>
 <ul>
 <li>test individual units of source code to see if it is fit for use</li>
@@ -134,8 +152,7 @@ Sebastian Hanß and Selina Baldauf
 <li>Test-first philosophy: write the test first, then write the code to pass it</li>
 <li>in R: <code>testthat</code> package (Hadley Wickham)</li>
 </ul>
-</div>
-<div id="continous-integration-ci" class="slide section level2">
+</div><div id="continous-integration-ci" class="slide section level2">
 <h1>Continous integration (CI)</h1>
 <div class="left" style="float:left;width:48%">
 <blockquote>
@@ -153,8 +170,7 @@ Sebastian Hanß and Selina Baldauf
 <li>everyone can see the results of the lates commit</li>
 </ul>
 </div>
-</div>
-<div class="slide section level2">
+</div><div class="slide section level2">
 
 <h3 id="why-1">Why?</h3>
 <ul>
@@ -165,8 +181,7 @@ Sebastian Hanß and Selina Baldauf
 <li><p>if you have to revert the codebase due to bugs you won’t lose that much</p></li>
 <li><p>However, can be time consuming and might be overkill for small or solo projects</p></li>
 </ul>
-</div>
-<div id="github-actions-for-ci" class="slide section level2">
+</div><div id="github-actions-for-ci" class="slide section level2">
 <h1>Github Actions for CI</h1>
 <ul>
 <li>supports mac-OS, windows, linux, docker containers</li>
@@ -176,12 +191,10 @@ Sebastian Hanß and Selina Baldauf
 <li>self host to remove the per job limit</li>
 <li>very easy to setup with R using the <code>usethis</code> package</li>
 </ul>
-</div>
-<div id="reproducibility-and-accessaiblity" class="slide section level2">
+</div><div id="reproducibility-and-accessaiblity" class="slide section level2">
 <h1>Reproducibility and Accessaiblity</h1>
 <p><a href="https://karthik.github.io/holepunch/">Holepunch</a></p>
-</div>
-<div id="resources" class="slide section level2">
+</div><div id="resources" class="slide section level2">
 <h1>Resources</h1>
 <h3 id="project-structures">Project structures</h3>
 <h3 id="unit-testing-1">Unit testing</h3>
