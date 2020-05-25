@@ -2,6 +2,7 @@
 title: "How-To"
 output: 
   html_document:
+    toc: true
     includes:
       in_header: header.html
 ---
@@ -197,5 +198,60 @@ build_binder()
 # 🤞🚀
 ```
 
+# Links and Further reading
+## Ropensci's reproducibility guide 
+https://ropensci.github.io/reproducibility-guide/
+## Reasearch compendia
+### *A guide to making your data analysis more reproducible* (by Karthik Ram)
+http://inundata.org/talks/rstd19/#/
+### Webinar on research compendia
+https://youtu.be/g-W6fEv7Pck
 
-# References
+
+## Git and GitHub
+### How to use git and github with R and R-Studio
+https://happygitwithr.com/
+### Howto use Git branching
+https://nvie.com/posts/a-successful-git-branching-model/
+https://guides.github.com/introduction/flow/
+
+### Github actions
+https://help.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration
+https://www.youtube.com/watch?v=F3wZTDmHCFA
+
+### CI with github actions
+
+* Jim Hester on [GitHub Actions with R](https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/)
+* [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
+* [Examples](https://github.com/r-lib/actions) for Actions with R
+
+### Jim Hester (tidy developer) on how to use R with github actions, what is the difference between github actions, Travis CI and others, how to set up different workflows:
+https://resources.rstudio.com/rstudio-conf-2020/azure-pipelines-and-github-actions-jim-hester
+
+### How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:
+https://www.r-bloggers.com/rendering-your-readme-with-github-actions/
+https://www.edwardthomson.com/blog/github_actions_advent_calendar.html
+
+## Unit testing
+
+* [Intro to unit testing in R](https://katherinemwood.github.io/post/testthat/)
+* Testing with [<code>testthat</code>](http://r-pkgs.had.co.nz/tests.html)
+
+## Holepunch package for R and Binder
+https://karthik.github.io/holepunch/
+
+
+## Scientific publications
+James, Justin. 2012. “10 Classic Mistakes That Plague Software Development Projects.” 2012. https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/.
+
+Scheller, Robert M, Brian R Sturtevant, Eric J Gustafson, Brendan C Ward, and David J Mladenoff. 2010. “Increasing the Reliability of Ecological Models Using Modern Software Engineering Techniques.” Frontiers in Ecology and the Environment 8 (5): 253–60. https://doi.org/10.1890/080141.
+
+Baxter, Susan M., Steven W. Day, Jacquelyn S. Fetrow, and Stephanie J. Reisinger. 2006. “Scientific Software Development Is Not an Oxymoron.” PLoS Computational Biology 2 (9): 0975–78. https://doi.org/10.1371/journal.pcbi.0020087.
+
+Merali, Zeeya. 2010. “Computational Science: ...Error.” Nature 467 (7317): 775–77. https://doi.org/10.1038/467775a.
+
+Passig, Kathrin, and Johannes Jander. 2013. Weniger Schlecht Programmieren. O’Reilly.
+
+Storer, Tim. 2017. “Bridging the Chasm: A Survey of Software Engineering Practice in Scientific Programming.” ACM Computing Surveys 50 (4). https://doi.org/10.1145/3084225.
+
+Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986.
