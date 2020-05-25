@@ -100,27 +100,19 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">25 May, 2020</p>
+            <p style="margin-top: 6px; margin-left: -2px;">25 Mai, 2020</p>
           </hgroup>
   </slide>
 
 <slide class=""><hgroup><h2>Workshop overview</h2></hgroup><article  id="workshop-overview">
 
-<h3>Motivation</h3>
-
-<ul>
-<li>reproducibility</li>
-<li>transparency</li>
-<li>good coding practice</li>
-</ul>
-
 <h3>What will you learn?</h3>
 
-<ul>
+<ul class = 'build'>
 <li>clear project structure</li>
 <li>good programming practice
 
-<ul>
+<ul class = 'build'>
 <li>unit testing</li>
 <li>CI with github Actions</li>
 </ul></li>
@@ -128,18 +120,64 @@ slide:not(.current) .plotly.html-widget{
 <li>code on github. <a href='https://github.com/selinaZitrone/YoMos2020' title=''>https://github.com/selinaZitrone/YoMos2020</a></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Clear project structure</h2></hgroup><article  id="clear-project-structure">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Goals</h2></hgroup><article  id="goals">
 
-<ul>
-<li><p>follow the conventions of your research community / lab</p></li>
-<li><p>clear separation of data, method and output</p></li>
-<li><p>specify the computational environment</p></li>
-<li><p>adapt R package stucture for your research compendia</p></li>
+</article></slide><slide class=""><hgroup><h2>🔃 Reproducible (for you and others)</h2></hgroup><article  id="reproducible-for-you-and-others">
+
+<ul class = 'build'>
+<li>script everything, avoid manual steps</li>
+<li>explain the workflow</li>
+<li>specify the computational environment</li>
 </ul>
 
-<h3>Advantages</h3>
+</article></slide><slide class=""><hgroup><h2>🏋 Reliable (will it work again?)</h2></hgroup><article  id="reliable-will-it-work-again">
 
-<ul>
+<ul class = 'build'>
+<li>use automated testing</li>
+<li>collaborate and share</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>⚙ Re-usable (don’t re-invent the wheel)</h2></hgroup><article  id="re-usable-dont-re-invent-the-wheel">
+
+<ul class = 'build'>
+<li>follow the conventions of your research community / lab</li>
+<li>clear separation of data, code and output</li>
+<li>pick a license to allow others to use your work</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>🔍 Visible (let others see and use your work)</h2></hgroup><article  id="visible-let-others-see-and-use-your-work">
+
+<ul class = 'build'>
+<li>&ldquo;Go public&rdquo; (Mr. Obvious)</li>
+<li>🔃 + 🏋 + ⚙ encourages others to trust your work</li>
+</ul>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>How? Use a research compendium!</h2></hgroup><article  id="how-use-a-research-compendium">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
+
+<img width="100%" src='images/Marwicketal2018.png' title=''/>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<div class="columns-2">
+<img width="90%" src='images/research_compendium.PNG' title='fig:'/><p class='caption'>Mavick et al. 2018</p>
+
+<ul class = 'build'>
+<li>It’s an 📦 R Package!</li>
+<li>packages generating similar project directory structures:
+
+<ul class = 'build'>
+<li>rrtools</li>
+<li>ProjectTemplate</li>
+<li>prodigenr</li>
+<li>workflowr<br/></li>
+</ul></li>
+</ul></div>
+
+</article></slide><slide class=""><hgroup><h2>Advantages</h2></hgroup><article  id="advantages">
+
+<ul class = 'build'>
 <li>benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)</li>
 <li>writing functions is less error prone</li>
 <li>functions can be easily documented</li>
@@ -150,10 +188,10 @@ slide:not(.current) .plotly.html-widget{
 <div class="columns-2">
 <img width="90%" src='images/research_compendium.PNG' title='fig:'/><p class='caption'>Mavick et al. 2018</p>
 
-<ul>
+<ul class = 'build'>
 <li>other packages generating empty project directory structures:
 
-<ul>
+<ul class = 'build'>
 <li>ProjectTemplate</li>
 <li>prodigenr</li>
 <li>workflowr</li>
@@ -162,13 +200,13 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>Unit testing</h2></hgroup><article  class="smaller" id="unit-testing">
 
-<ul>
+<ul class = 'build'>
 <li>test individual units of source code to see if it is fit for use</li>
 </ul>
 
 <h3>Why?</h3>
 
-<ul>
+<ul class = 'build'>
 <li>Fewer bugs</li>
 <li>Better code structure</li>
 <li>Easier to pick up where you left</li>
@@ -178,7 +216,7 @@ slide:not(.current) .plotly.html-widget{
 
 <h3>How?</h3>
 
-<ul>
+<ul class = 'build'>
 <li>Test external interfaces of functions</li>
 <li>One test for each behaviour</li>
 <li>Test fragile, complicated code</li>
@@ -197,7 +235,7 @@ slide:not(.current) .plotly.html-widget{
 
 <h3>Idea</h3>
 
-<ul>
+<ul class = 'build'>
 <li>shared code repository (e.g. on github)</li>
 <li>integrate code frequently (every day) to the shared</li>
 <li>automated builds and tests after each commit</li>
@@ -209,7 +247,7 @@ slide:not(.current) .plotly.html-widget{
 
 <h3>Why?</h3>
 
-<ul>
+<ul class = 'build'>
 <li><p>smaller changes are easier to handle</p></li>
 <li><p>get quick and frequent feedback</p></li>
 <li><p>early bug detection</p></li>
@@ -220,9 +258,9 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>Github Actions for CI</h2></hgroup><article  id="github-actions-for-ci">
 
-<ul>
+<ul class = 'build'>
 <li>supports mac-OS, windows, linux, docker containers</li>
-<li>integration with github, so no seperate setup and authentification</li>
+<li>integration with github, so no separate setup and authentication</li>
 <li>free for open source, academic or educational repos</li>
 <li>20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow</li>
 <li>self host to remove the per job limit</li>
@@ -239,14 +277,14 @@ slide:not(.current) .plotly.html-widget{
 
 <h3>Unit testing</h3>
 
-<ul>
+<ul class = 'build'>
 <li><a href='https://katherinemwood.github.io/post/testthat/' title=''>Intro to unit testing in R</a></li>
 <li>Testing with <a href='http://r-pkgs.had.co.nz/tests.html' title=''><code>testthat</code></a></li>
 </ul>
 
 <h3>CI with github actions</h3>
 
-<ul>
+<ul class = 'build'>
 <li>Jim Hester on <a href='https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/' title=''>GitHub Actions with R</a></li>
 <li><a href='https://help.github.com/en/actions/getting-started-with-github-actions' title=''>Getting started</a> with GitHub Actions</li>
 <li><a href='https://github.com/r-lib/actions' title=''>Examples</a> for Actions with R</li>
