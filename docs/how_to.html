@@ -302,38 +302,67 @@ $(document).ready(function () {
 </div>
 
 
-<div id="yomos2020" class="section level1">
-<h1>YoMos2020</h1>
-</div>
-<div id="general-setup" class="section level1">
-<h1>General Setup</h1>
 <div id="step-1-create-an-empty-r-package" class="section level2">
 <h2>Step 1: Create an empty R-package</h2>
-<p>Create an R-package in R-Studio: File -&gt; New Project -&gt; New Directory</p>
-<p>To initialize the package with a git repository click the checkmark when creating the project. If you created the package without a git repository you can either use</p>
+<p>reate a new R-project in R-Studio: File -&gt; New Package -&gt; New Directory</p>
+<p>To initialize the project with a git repository click the checkmark when creating the package. Your project is initialized with a .git folder and a .gitignore</p>
+<p>Give your package a name that is accepted as an R-package name:</p>
+<ul>
+<li>only ASCII letters, numbers and ‘.’</li>
+<li>at least two characters</li>
+<li>start with a letter</li>
+<li>not end with ‘.’</li>
+</ul>
+<p>If you accidentally created the package without a git repository you can either use</p>
 <pre class="r"><code>usethis::use_git()</code></pre>
 <p>or you can initialize an empty git repository from the terminal</p>
 <pre class="sh"><code>git init</code></pre>
-<p>First, go to the DESCRIPTION file and fill in your data. E.g.</p>
-<pre><code>Package: YoMos2020
+</div>
+<div id="step-2-create-your-research-compendium" class="section level2">
+<h2>Step 2: Create your research compendium</h2>
+<div id="fill-out-the-description-file" class="section level3">
+<h3>Fill out the DESCRIPTION file</h3>
+<p>Fill out the fields of the description file, e.g.</p>
+<pre class="r"><code>Package: finalPackage
 Type: Package
-Title: Example of Good Scientific Programming Practice
+Title: Analysis of temperature data from somewhere
 Version: 0.1.0
-Author: Selina and Sebastian
+Author: Selina Baldauf
 Maintainer: Selina Baldauf &lt;selina.baldauf@fu-berlin.de&gt;
-Description: A package that is used as an example to demonstrate clear project strucure, unit testing, 
-  continous integration with github actions,and reproducibility directly from github using the holepunch package.
+Description: Analysis of temperature data from our research project xyz presented in manuscript abc.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
-URL: https://github.com/selinaZitrone/YoMos2020
-BugReports: https://github.com/selinaZitrone/YoMos2020/issues
-Imports:
-    dplyr,
-    rmarkdown,
-    ggplot2
-Suggests: 
-    testthat</code></pre>
+LazyData: true</code></pre>
+</div>
+<div id="add-a-license" class="section level3">
+<h3>Add a license</h3>
+<p>If you want to add a specific license to your project you can use different functions from the usethis package, e.g. for the gpl-3 license you can use</p>
+<pre class="r"><code>usethis::use_gpl3_license(name = &quot;Selina Baldauf&quot;)</code></pre>
+<p>This adds LICENSE.md with your name in it to the project and automatically updates the license field in the DESCRIPTION file.</p>
+</div>
+<div id="add-data-to-your-compendium" class="section level3">
+<h3>Add data to your compendium</h3>
+<p>To add data to your compendium, you can either create a /data folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:</p>
+<pre class="r"><code># create a dummy dataset for temperature measurements
+dummyTempData &lt;- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
+usethis::use_data(dummyTempData)</code></pre>
+</div>
+<div id="add-an-analysis-script-to-your-compendium" class="section level3">
+<h3>Add an analysis script to your compendium</h3>
+<p>Add an analysis folder with a Rmarkdown document to your compendium.</p>
+</div>
+<div id="write-an-analysis-function" class="section level3">
+<h3>Write an analysis function</h3>
+<p>Write a function that you need for your analysis in the folder R/ You can group related fuctions together in the same R-script but unrelated functions get their own script.</p>
+<p>Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called myPrinterFunction.R</p>
+<pre class="r"><code># a simple printer function for the mean of a vector
+printMean &lt;- function(x){
+  print(paste0(&quot;The mean value is &quot;, mean(x, na.rm = T), &quot;!&quot;))
+}</code></pre>
+</div>
+</div>
+<div id="step-3-unit-testing" class="section level2">
+<h2>Step 3: Unit testing</h2>
 <p><a href="https://www.youtube.com/watch?v=79s3z0gIuFU&amp;list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&amp;index=1">Here</a> you can find a good tutorial showing all the R package building basics and more.</p>
 <p>To add package dependencies to your R-package (e.g. ggplot2) you can use</p>
 <pre class="r"><code>usethis::use_package(&quot;ggplot2&quot;)</code></pre>
@@ -348,7 +377,6 @@ Suggests:
 <h2>Step 2: Import your data and scripts</h2>
 <p>If you already have data and scripts that you want to use in this package, you can import them now.</p>
 <p>Organize them in a way that model, data and R scripts are in separate folders. <span class="citation">@Marwick2018</span> give a good overview on how to structure research compendiums so that it is clear and easy to access to others that want to reproduce your results.</p>
-</div>
 </div>
 <div id="setup-git-and-github" class="section level1">
 <h1>Setup Git and GitHub</h1>
