@@ -6,4 +6,4 @@ output:
       in_header: header.html
 ---
 
-Hello, Website!
+Welcome to the workshop!
