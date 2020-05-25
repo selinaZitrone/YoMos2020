@@ -65,11 +65,6 @@ To add data to your compendium, you can either create a /data folder and import 
 dummyTempData <- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
 usethis::use_data(dummyTempData)
 ```
-
-### Add an analysis script to your compendium
-
-Add an analysis folder with a Rmarkdown document to your compendium.
-
 ### Write an analysis function
 
 Write a function that you need for your analysis in the folder R/
@@ -83,17 +78,64 @@ printMean <- function(x){
   print(paste0("The mean value is ", mean(x, na.rm = T), "!"))
 }
 ```
+
+### Add an analysis script to your compendium
+
+Add an analysis folder with a Rmarkdown document to your compendium.
+The script can look like this: 
+
+```r
+---
+title: "My analysis"
+author: "Selina Baldauf"
+date: "5/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(finalPackage)
+```
+
+# This is the temperature analysis
+
+```{r}
+printMean(dummyTempData$temp)
+```
+
+```
 ## Step 3: Unit testing
 
+create the files and test folders needed by the `thestthat` package. Also it adds the testthat package to the Suggests field in your DESCRIPTION file.
 
-
-[Here](https://www.youtube.com/watch?v=79s3z0gIuFU&list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&index=1) you can find a good tutorial showing all the R package building basics and more.
-
-To add package dependencies to your R-package (e.g. ggplot2) you can use 
 ```r
-usethis::use_package("ggplot2")
+usethis::use_testthat
 ```
-This will add the ggplot2 packages to the Imports field in the DESCRIPTION file, meaning it is imported when you load the package.
+
+This creates a folder /tests which contains a /testthat folder and an R-script called testthat.R. You do not need to change anything in the testthat.R script which is called by rcmdcheck to conduct all the tests that you created in your package. The folder testthat is the place to store the R-scripts with the actual tests.
+
+You can then can initialize a basic test file for the R-script that is currently opened in R-Studio by doing
+
+```r
+usethis::use_test() # creates a test for the file that is currently open in RSudio
+```
+The testfile can be found in /tests/testthat. Testfiles have to be named test-xyz.R in order to be found.
+
+We can write a very simple test function for our printMean function that checks if it works correctly
+
+```r
+test_that("printer function works", {
+  expect_equal(printMean(c(1,2,3)), "The mean value is 2!")
+})
+```
+If you run the test without giving any errors in the console, then it means that your test was successful.
+
+If you want to run all the tests from your package to see if they pass your can run 
+```r
+devtools::test()
+```
+in the console.
+
 
 ## Step 2: Add a readme file
 This adds an rmd to the package that can be rendered to github in the readme section.
@@ -124,18 +166,6 @@ To do this step you need to have a PAT (personal access token) for github added 
 
 ```r
 usethis::use_github()
-```
-# Unit testing
-
-create the files and test folders needed by the `thestthat` package
-
-```r
-usethis::use_testthat
-```
-
-You can then can initialize a basic test file by doing
-```r
-usethis::use_test() # creates a test for the file that is currently open in RSudio
 ```
 
 # Setup a Continous Integration (CI) pipeline with GitHub actions
@@ -179,3 +209,12 @@ build_binder()
 
 
 # References
+
+[Here](https://www.youtube.com/watch?v=79s3z0gIuFU&list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&index=1) you can find a good tutorial showing all the R package building basics and more.
+
+To add package dependencies to your R-package (e.g. ggplot2) you can use 
+```r
+usethis::use_package("ggplot2")
+```
+This will add the ggplot2 packages to the Imports field in the DESCRIPTION file, meaning it is imported when you load the package.
+
