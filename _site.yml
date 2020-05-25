@@ -5,11 +5,9 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Presentation"
-      href: presentation.html
     - text: "How-To"
       href: how_to.html
-    - text: "presentation slidy"
+    - text: "Presentation"
       href: slidy_presentation.html
 
 

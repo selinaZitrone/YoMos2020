@@ -1,8 +1,0 @@
----
-title: "Report"
-author: "Someone"
-date: "5/20/2020"
-output: html_document
----
-
-Hello World!
