@@ -301,6 +301,39 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#step-1-create-an-empty-r-package">Step 1: Create an empty R-package</a></li>
+<li><a href="#step-2-create-your-research-compendium">Step 2: Create your research compendium</a><ul>
+<li><a href="#fill-out-the-description-file">Fill out the DESCRIPTION file</a></li>
+<li><a href="#add-a-license">Add a license</a></li>
+<li><a href="#add-data-to-your-compendium">Add data to your compendium</a></li>
+<li><a href="#write-an-analysis-function">Write an analysis function</a></li>
+<li><a href="#add-an-analysis-script-to-your-compendium">Add an analysis script to your compendium</a></li>
+</ul></li>
+<li><a href="#step-3-unit-testing">Step 3: Unit testing</a></li>
+<li><a href="#step-4-ci-with-github-actions">Step 4: CI with GitHub Actions</a><ul>
+<li><a href="#commit-all-your-changes">Commit all your changes</a></li>
+<li><a href="#make-your-compendium-a-github-project">Make your compendium a Github project</a></li>
+</ul></li>
+<li><a href="#add-a-readme-to-your-github-project">Add a readme to your github project</a></li>
+<li><a href="#github-actions">GitHub Actions</a></li>
+<li><a href="#add-rstudio-server-with-holepunch">Add RStudio server with <code>holepunch</code></a></li>
+<li><a href="#links-and-further-reading">Links and Further reading</a><ul>
+<li><a href="#ropenscis-reproducibility-guide">Ropensci’s reproducibility guide</a></li>
+<li><a href="#git-and-github">Git and GitHub</a><ul>
+<li><a href="#how-to-use-git-and-github-with-r-and-r-studio">How to use git and github with R and R-Studio</a></li>
+<li><a href="#github-actions-1">Github actions</a></li>
+<li><a href="#ci-with-github-actions">CI with github actions</a></li>
+<li><a href="#jim-hester-tidy-developer-on-how-to-use-r-with-github-actions-what-is-the-difference-between-github-actions-travis-ci-and-others-how-to-set-up-different-workflows">Jim Hester (tidy developer) on how to use R with github actions, what is the difference between github actions, Travis CI and others, how to set up different workflows:</a></li>
+<li><a href="#how-to-use-an-.rmd-document-as-readme-in-github-and-render-it-automatically-with-associated-figures-on-push">How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:</a></li>
+</ul></li>
+<li><a href="#unit-testing">Unit testing</a></li>
+<li><a href="#holepunch-package-for-r-and-binder">Holepunch package for R and Binder</a></li>
+<li><a href="#scientific-publications">Scientific publications</a></li>
+</ul></li>
+</ul>
+</div>
 
 <div id="step-1-create-an-empty-r-package" class="section level2">
 <h2>Step 1: Create an empty R-package</h2>
@@ -347,10 +380,6 @@ LazyData: true</code></pre>
 dummyTempData &lt;- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
 usethis::use_data(dummyTempData)</code></pre>
 </div>
-<div id="add-an-analysis-script-to-your-compendium" class="section level3">
-<h3>Add an analysis script to your compendium</h3>
-<p>Add an analysis folder with a Rmarkdown document to your compendium.</p>
-</div>
 <div id="write-an-analysis-function" class="section level3">
 <h3>Write an analysis function</h3>
 <p>Write a function that you need for your analysis in the folder R/ You can group related fuctions together in the same R-script but unrelated functions get their own script.</p>
@@ -360,55 +389,70 @@ printMean &lt;- function(x){
   print(paste0(&quot;The mean value is &quot;, mean(x, na.rm = T), &quot;!&quot;))
 }</code></pre>
 </div>
+<div id="add-an-analysis-script-to-your-compendium" class="section level3">
+<h3>Add an analysis script to your compendium</h3>
+<p>Add an analysis folder with a Rmarkdown document to your compendium. The script can look like this:</p>
+<pre><code>
+---
+title: "My analysis"
+author: "Selina Baldauf"
+date: "5/25/2020"
+output: html_document
+---
+
+# This is the temperature analysis
+
+```r
+#printMean(dummyTempData$temp)
+```
+</pre>
+<p></code></p>
+</div>
 </div>
 <div id="step-3-unit-testing" class="section level2">
 <h2>Step 3: Unit testing</h2>
-<p><a href="https://www.youtube.com/watch?v=79s3z0gIuFU&amp;list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&amp;index=1">Here</a> you can find a good tutorial showing all the R package building basics and more.</p>
-<p>To add package dependencies to your R-package (e.g. ggplot2) you can use</p>
-<pre class="r"><code>usethis::use_package(&quot;ggplot2&quot;)</code></pre>
-<p>This will add the ggplot2 packages to the Imports field in the DESCRIPTION file, meaning it is imported when you load the package.</p>
+<p>create the files and test folders needed by the thestthat package. Also it adds the testthat package to the Suggests field in your DESCRIPTION file.</p>
+<pre class="r"><code>usethis::use_testthat()</code></pre>
+<p>This creates a folder /tests which contains a /testthat folder and an R-script called testthat.R. You do not need to change anything in the testthat.R script which is called by rcmdcheck to conduct all the tests that you created in your package. The folder testthat is the place to store the R-scripts with the actual tests.</p>
+<p>You can then can initialize a basic test file for the R-script that is currently opened in R-Studio by doing</p>
+<pre class="r"><code>usethis::use_test()</code></pre>
+<p>The testfile can be found in /tests/testthat. Testfiles have to be named test-xyz.R in order to be found.</p>
+<p>We can write a very simple test function for our printMean function that checks if it works correctly</p>
+<pre class="r"><code>test_that(&quot;printer function works&quot;, {
+  expect_equal(printMean(c(1,2,3)), &quot;The mean value is 2!&quot;)
+})</code></pre>
+<p>If you run the test without giving any errors in the console, then it means that your test was successful.</p>
+<p>If you want to run all the tests from your package to see if they pass your can run</p>
+<pre class="r"><code>devtools::test()</code></pre>
 </div>
-<div id="step-2-add-a-readme-file" class="section level2">
-<h2>Step 2: Add a readme file</h2>
-<p>This adds an rmd to the package that can be rendered to github in the readme section.</p>
-<pre class="r"><code>usethis::use_readme_rmd() # or use_readme_md() if you want to use plain Markdown</code></pre>
-</div>
-<div id="step-2-import-your-data-and-scripts" class="section level2">
-<h2>Step 2: Import your data and scripts</h2>
-<p>If you already have data and scripts that you want to use in this package, you can import them now.</p>
-<p>Organize them in a way that model, data and R scripts are in separate folders. <span class="citation">@Marwick2018</span> give a good overview on how to structure research compendiums so that it is clear and easy to access to others that want to reproduce your results.</p>
-</div>
-<div id="setup-git-and-github" class="section level1">
-<h1>Setup Git and GitHub</h1>
-<div id="step-1-commit-your-changes-locally" class="section level2">
-<h2>Step 1: Commit your changes locally</h2>
+<div id="step-4-ci-with-github-actions" class="section level2">
+<h2>Step 4: CI with GitHub Actions</h2>
+<div id="commit-all-your-changes" class="section level3">
+<h3>Commit all your changes</h3>
 <p>In the <code>Git</code> tab (next to build) you can first stage all file and then commit them or you can do it from the command line:</p>
 <pre class="sh"><code>git add *
 git commit -m &quot;initial commit&quot;</code></pre>
 </div>
-<div id="step-2-initialize-your-github-repository" class="section level2">
-<h2>Step 2: Initialize your Github repository</h2>
-<p>You can either do this by manually setting up a git repository and adding this package to the repository or, more conveniently, you can do it using the <code>usethis</code> package. To do this step you need to have a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the <a href="https://happygitwithr.com/github-pat.html#github-pat">Happy Git with R book</a>.</p>
+<div id="make-your-compendium-a-github-project" class="section level3">
+<h3>Make your compendium a Github project</h3>
+<p>For this, you can conveniently use the <code>usethis</code> package:</p>
 <pre class="r"><code>usethis::use_github()</code></pre>
+<p>This will will initialize a GitHub repository of your compendium and will add the github url to the DESCRIPTION file.</p>
+<p>If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you have to have the correct local git configuration. Another possibility is to get a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the <a href="https://happygitwithr.com/github-pat.html#github-pat">Happy Git with R book</a>.</p>
 </div>
 </div>
-<div id="unit-testing" class="section level1">
-<h1>Unit testing</h1>
-<p>create the files and test folders needed by the <code>thestthat</code> package</p>
-<pre class="r"><code>usethis::use_testthat</code></pre>
-<p>You can then can initialize a basic test file by doing</p>
-<pre class="r"><code>usethis::use_test() # creates a test for the file that is currently open in RSudio</code></pre>
+<div id="add-a-readme-to-your-github-project" class="section level2">
+<h2>Add a readme to your github project</h2>
+<p>This adds a README.md to the package that will be rendered on the page of your GitHub repository in the readme section.</p>
+<pre class="r"><code>usethis::use_readme_md()</code></pre>
 </div>
-<div id="setup-a-continous-integration-ci-pipeline-with-github-actions" class="section level1">
-<h1>Setup a Continous Integration (CI) pipeline with GitHub actions</h1>
-<div id="setup-github-actions-from-r" class="section level2">
-<h2>Setup github actions from R</h2>
+<div id="github-actions" class="section level2">
+<h2>GitHub Actions</h2>
 <p>This creates the basic file structure needed to set up your workflow and automatically adds a R-CMD-check.yaml file</p>
 <pre class="r"><code>usethis::use_github_actions()</code></pre>
 <p>If you want to use an action that already exists (e.g. from the r-lib/actions) repository you can do the following:</p>
 <pre class="r"><code>usethis::use_github_action(&quot;render-readme.yaml&quot;)</code></pre>
 <p>This adds the respective file to ./github/workflows</p>
-</div>
 </div>
 <div id="add-rstudio-server-with-holepunch" class="section level1">
 <h1>Add RStudio server with <code>holepunch</code></h1>
@@ -432,8 +476,60 @@ generate_badge() # This generates a badge for your readme.
 build_binder()
 # 🤞🚀</code></pre>
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
+<div id="links-and-further-reading" class="section level1">
+<h1>Links and Further reading</h1>
+<div id="ropenscis-reproducibility-guide" class="section level2">
+<h2>Ropensci’s reproducibility guide</h2>
+<p><a href="https://ropensci.github.io/reproducibility-guide/" class="uri">https://ropensci.github.io/reproducibility-guide/</a> ## Reasearch compendia ### <em>A guide to making your data analysis more reproducible</em> (by Karthik Ram) <a href="http://inundata.org/talks/rstd19/#/" class="uri">http://inundata.org/talks/rstd19/#/</a> ### Webinar on research compendia <a href="https://youtu.be/g-W6fEv7Pck" class="uri">https://youtu.be/g-W6fEv7Pck</a></p>
+</div>
+<div id="git-and-github" class="section level2">
+<h2>Git and GitHub</h2>
+<div id="how-to-use-git-and-github-with-r-and-r-studio" class="section level3">
+<h3>How to use git and github with R and R-Studio</h3>
+<p><a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a> ### Howto use Git branching <a href="https://nvie.com/posts/a-successful-git-branching-model/" class="uri">https://nvie.com/posts/a-successful-git-branching-model/</a> <a href="https://guides.github.com/introduction/flow/" class="uri">https://guides.github.com/introduction/flow/</a></p>
+</div>
+<div id="github-actions-1" class="section level3">
+<h3>Github actions</h3>
+<p><a href="https://help.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration" class="uri">https://help.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration</a> <a href="https://www.youtube.com/watch?v=F3wZTDmHCFA" class="uri">https://www.youtube.com/watch?v=F3wZTDmHCFA</a></p>
+</div>
+<div id="ci-with-github-actions" class="section level3">
+<h3>CI with github actions</h3>
+<ul>
+<li>Jim Hester on <a href="https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/">GitHub Actions with R</a></li>
+<li><a href="https://help.github.com/en/actions/getting-started-with-github-actions">Getting started</a> with GitHub Actions</li>
+<li><a href="https://github.com/r-lib/actions">Examples</a> for Actions with R</li>
+</ul>
+</div>
+<div id="jim-hester-tidy-developer-on-how-to-use-r-with-github-actions-what-is-the-difference-between-github-actions-travis-ci-and-others-how-to-set-up-different-workflows" class="section level3">
+<h3>Jim Hester (tidy developer) on how to use R with github actions, what is the difference between github actions, Travis CI and others, how to set up different workflows:</h3>
+<p><a href="https://resources.rstudio.com/rstudio-conf-2020/azure-pipelines-and-github-actions-jim-hester" class="uri">https://resources.rstudio.com/rstudio-conf-2020/azure-pipelines-and-github-actions-jim-hester</a></p>
+</div>
+<div id="how-to-use-an-.rmd-document-as-readme-in-github-and-render-it-automatically-with-associated-figures-on-push" class="section level3">
+<h3>How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:</h3>
+<p><a href="https://www.r-bloggers.com/rendering-your-readme-with-github-actions/" class="uri">https://www.r-bloggers.com/rendering-your-readme-with-github-actions/</a> <a href="https://www.edwardthomson.com/blog/github_actions_advent_calendar.html" class="uri">https://www.edwardthomson.com/blog/github_actions_advent_calendar.html</a></p>
+</div>
+</div>
+<div id="unit-testing" class="section level2">
+<h2>Unit testing</h2>
+<ul>
+<li><a href="https://katherinemwood.github.io/post/testthat/">Intro to unit testing in R</a></li>
+<li>Testing with <a href="http://r-pkgs.had.co.nz/tests.html"><code>testthat</code></a></li>
+</ul>
+</div>
+<div id="holepunch-package-for-r-and-binder" class="section level2">
+<h2>Holepunch package for R and Binder</h2>
+<p><a href="https://karthik.github.io/holepunch/" class="uri">https://karthik.github.io/holepunch/</a></p>
+</div>
+<div id="scientific-publications" class="section level2">
+<h2>Scientific publications</h2>
+<p>James, Justin. 2012. “10 Classic Mistakes That Plague Software Development Projects.” 2012. <a href="https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/" class="uri">https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/</a>.</p>
+<p>Scheller, Robert M, Brian R Sturtevant, Eric J Gustafson, Brendan C Ward, and David J Mladenoff. 2010. “Increasing the Reliability of Ecological Models Using Modern Software Engineering Techniques.” Frontiers in Ecology and the Environment 8 (5): 253–60. <a href="https://doi.org/10.1890/080141" class="uri">https://doi.org/10.1890/080141</a>.</p>
+<p>Baxter, Susan M., Steven W. Day, Jacquelyn S. Fetrow, and Stephanie J. Reisinger. 2006. “Scientific Software Development Is Not an Oxymoron.” PLoS Computational Biology 2 (9): 0975–78. <a href="https://doi.org/10.1371/journal.pcbi.0020087" class="uri">https://doi.org/10.1371/journal.pcbi.0020087</a>.</p>
+<p>Merali, Zeeya. 2010. “Computational Science: …Error.” Nature 467 (7317): 775–77. <a href="https://doi.org/10.1038/467775a" class="uri">https://doi.org/10.1038/467775a</a>.</p>
+<p>Passig, Kathrin, and Johannes Jander. 2013. Weniger Schlecht Programmieren. O’Reilly.</p>
+<p>Storer, Tim. 2017. “Bridging the Chasm: A Survey of Software Engineering Practice in Scientific Programming.” ACM Computing Surveys 50 (4). <a href="https://doi.org/10.1145/3084225" class="uri">https://doi.org/10.1145/3084225</a>.</p>
+<p>Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” American Statistician 72 (1): 80–88. <a href="https://doi.org/10.1080/00031305.2017.1375986" class="uri">https://doi.org/10.1080/00031305.2017.1375986</a>.</p>
+</div>
 </div>
 
 
