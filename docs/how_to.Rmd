@@ -65,11 +65,6 @@ To add data to your compendium, you can either create a /data folder and import 
 dummyTempData <- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
 usethis::use_data(dummyTempData)
 ```
-
-### Add an analysis script to your compendium
-
-Add an analysis folder with a Rmarkdown document to your compendium.
-
 ### Write an analysis function
 
 Write a function that you need for your analysis in the folder R/
@@ -106,7 +101,33 @@ printMean(dummyTempData$temp)
 </pre></code>
 
 ## Step 3: Unit testing
+create the files and test folders needed by the thestthat package. Also it adds the testthat package to the Suggests field in your DESCRIPTION file.
 
+```r
+usethis::use_testthat()
+```
+This creates a folder /tests which contains a /testthat folder and an R-script called testthat.R. You do not need to change anything in the testthat.R script which is called by rcmdcheck to conduct all the tests that you created in your package. The folder testthat is the place to store the R-scripts with the actual tests.
+
+You can then can initialize a basic test file for the R-script that is currently opened in R-Studio by doing
+
+```r
+usethis::use_test()
+```
+The testfile can be found in /tests/testthat. Testfiles have to be named test-xyz.R in order to be found.
+
+We can write a very simple test function for our printMean function that checks if it works correctly
+```r
+test_that("printer function works", {
+  expect_equal(printMean(c(1,2,3)), "The mean value is 2!")
+})
+```
+If you run the test without giving any errors in the console, then it means that your test was successful.
+
+If you want to run all the tests from your package to see if they pass your can run
+
+```r
+devtools::test()
+```
 
 ## Step 2: Add a readme file
 This adds an rmd to the package that can be rendered to github in the readme section.
