@@ -5,15 +5,19 @@ output:
     includes:
       in_header: header.html
 ---
-# YoMos2020
-
-# General Setup
-
 ## Step 1: Create an empty R-package
-Create an R-package in R-Studio: File -> New Project -> New Directory
+reate a new R-project in R-Studio: File -> New Package -> New Directory
 
-To initialize the package with a git repository click the checkmark when creating the project.
-If you created the package without a git repository you can either use 
+To initialize the project with a git repository click the checkmark when creating the package. Your project is initialized with a .git folder and a .gitignore
+
+Give your package a name that is accepted as an R-package name:
+
+- only ASCII letters, numbers and '.'
+- at least two characters
+- start with a letter
+- not end with '.'
+
+If you accidentally created the package without a git repository you can either use 
 
 ```r
 usethis::use_git()
@@ -24,28 +28,64 @@ or you can initialize an empty git repository from the terminal
 git init
 ```
 
-First, go to the DESCRIPTION file and fill in your data. E.g.
-```
-Package: YoMos2020
+## Step 2: Create your research compendium
+
+### Fill out the DESCRIPTION  file
+
+Fill out the fields of the description file, e.g.
+
+```r
+Package: finalPackage
 Type: Package
-Title: Example of Good Scientific Programming Practice
+Title: Analysis of temperature data from somewhere
 Version: 0.1.0
-Author: Selina and Sebastian
+Author: Selina Baldauf
 Maintainer: Selina Baldauf <selina.baldauf@fu-berlin.de>
-Description: A package that is used as an example to demonstrate clear project strucure, unit testing, 
-  continous integration with github actions,and reproducibility directly from github using the holepunch package.
+Description: Analysis of temperature data from our research project xyz presented in manuscript abc.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/selinaZitrone/YoMos2020
-BugReports: https://github.com/selinaZitrone/YoMos2020/issues
-Imports:
-    dplyr,
-    rmarkdown,
-    ggplot2
-Suggests: 
-    testthat
 ```
+
+### Add a license
+If you want to add a specific license to your project you can use different functions from the usethis package, e.g. for the gpl-3 license you can use
+
+```r
+usethis::use_gpl3_license(name = "Selina Baldauf")
+```
+
+This adds LICENSE.md with your name in it to the project and automatically updates the license field in the DESCRIPTION file.
+
+### Add data to your compendium
+
+To add data to your compendium, you can either create a /data folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:
+
+```r
+# create a dummy dataset for temperature measurements
+dummyTempData <- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
+usethis::use_data(dummyTempData)
+```
+
+### Add an analysis script to your compendium
+
+Add an analysis folder with a Rmarkdown document to your compendium.
+
+### Write an analysis function
+
+Write a function that you need for your analysis in the folder R/
+You can group related fuctions together in the same R-script but unrelated functions get their own script.
+
+Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called myPrinterFunction.R
+
+```r
+# a simple printer function for the mean of a vector
+printMean <- function(x){
+  print(paste0("The mean value is ", mean(x, na.rm = T), "!"))
+}
+```
+## Step 3: Unit testing
+
+
 
 [Here](https://www.youtube.com/watch?v=79s3z0gIuFU&list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM&index=1) you can find a good tutorial showing all the R package building basics and more.
 
