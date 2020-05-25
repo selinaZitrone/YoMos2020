@@ -128,21 +128,9 @@ If you want to run all the tests from your package to see if they pass your can 
 ```r
 devtools::test()
 ```
+## Step 4: CI with GitHub Actions
 
-## Step 2: Add a readme file
-This adds an rmd to the package that can be rendered to github in the readme section.
-```r
-usethis::use_readme_rmd() # or use_readme_md() if you want to use plain Markdown
-```
-
-## Step 2: Import your data and scripts
-If you already have data and scripts that you want to use in this package, you can import them now.
-
-Organize them in a way that model, data and R scripts are in separate folders. @Marwick2018 give a good overview on how to structure research compendiums so that it is clear and easy to access to others that want to reproduce your results.
-
-# Setup Git and GitHub
-
-## Step 1: Commit your changes locally
+### Commit all your changes
 
 In the `Git` tab (next to build) you can first stage all file and then commit them or you can do it from the command line:
 
@@ -150,33 +138,31 @@ In the `Git` tab (next to build) you can first stage all file and then commit th
 git add *
 git commit -m "initial commit"
 ```
+### Make your compendium a Github project
 
-## Step 2: Initialize your Github repository
-
-You can either do this by manually setting up a git repository and adding this package to the repository or, more conveniently, you can do it using the `usethis` package.
-To do this step you need to have a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the [Happy Git with R book](https://happygitwithr.com/github-pat.html#github-pat).
+For this, you can conveniently use the `usethis` package:
 
 ```r
 usethis::use_github()
 ```
-# Unit testing
+This will will initialize a GitHub repository of your compendium and will add the github url to the DESCRIPTION file. 
 
-create the files and test folders needed by the `thestthat` package
+If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you have to have the correct local git configuration.
+Another possibility is to get a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the [Happy Git with R book](https://happygitwithr.com/github-pat.html#github-pat).
+
+
+## Add a readme to your github project
+
+This adds a README.md to the package that will be rendered on the page of your GitHub repository in the readme section.
 
 ```r
-usethis::use_testthat
+usethis::use_readme_md()
 ```
 
-You can then can initialize a basic test file by doing
-```r
-usethis::use_test() # creates a test for the file that is currently open in RSudio
-```
-
-# Setup a Continous Integration (CI) pipeline with GitHub actions
-
-## Setup github actions from R
+## GitHub Actions
 
 This creates the basic file structure needed to set up your workflow and automatically adds a R-CMD-check.yaml file
+
 ```r
 usethis::use_github_actions()
 ```
