@@ -16,8 +16,6 @@ Before you start the how-to, please check that you have the following things set
 - add a PAT (personal access token) for GitHub to your .Renviron file.
   + find a good step by step guide [here](https://happygitwithr.com/github-pat.html#github-pat).
 
-Probably you will get a few errors when first setting up your package with git and GitHub. But don't worry, the error messages from the `usethis` package are quite informative so you can fix the issues quickly and get everything running.
-
 ## Step 1: Create an empty R-package
 Create a new R-package in R-Studio: 
 - File -> New Package -> New Directory
