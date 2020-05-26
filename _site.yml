@@ -10,7 +10,7 @@ navbar:
     - text: "Presentation"
       href: slidy_presentation.html
     - icon: fa-github
-    - href: https://github.com/selinaZitrone/YoMos2020
+      href: https://github.com/selinaZitrone/YoMos2020
 
 
 
