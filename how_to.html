@@ -319,8 +319,13 @@ $(document).ready(function () {
 <li><a href="#add-rstudio-server-with-holepunch">Add RStudio server with <code>holepunch</code></a></li>
 <li><a href="#links-and-further-reading">Links and Further reading</a><ul>
 <li><a href="#ropenscis-reproducibility-guide">Ropensci’s reproducibility guide</a></li>
+<li><a href="#reasearch-compendia">Reasearch compendia</a><ul>
+<li><a href="#a-guide-to-making-your-data-analysis-more-reproducible-by-karthik-ram"><em>A guide to making your data analysis more reproducible</em> (by Karthik Ram)</a></li>
+<li><a href="#webinar-on-research-compendia">Webinar on research compendia</a></li>
+</ul></li>
 <li><a href="#git-and-github">Git and GitHub</a><ul>
 <li><a href="#how-to-use-git-and-github-with-r-and-r-studio">How to use git and github with R and R-Studio</a></li>
+<li><a href="#howto-use-git-branching">Howto use Git branching</a></li>
 <li><a href="#github-actions">Github actions</a></li>
 <li><a href="#ci-with-github-actions">CI with github actions</a></li>
 <li><a href="#jim-hester-tidy-developer-on-how-to-use-r-with-github-actions-what-is-the-difference-between-github-actions-travis-ci-and-others-how-to-set-up-different-workflows">Jim Hester (tidy developer) on how to use R with github actions, what is the difference between github actions, Travis CI and others, how to set up different workflows:</a></li>
@@ -348,7 +353,10 @@ $(document).ready(function () {
 </div>
 <div id="step-1-create-an-empty-r-package" class="section level2">
 <h2>Step 1: Create an empty R-package</h2>
-<p>Create a new R-package in R-Studio: - File -&gt; New Package -&gt; New Directory</p>
+<p>Create a new R-package in R-Studio:</p>
+<ul>
+<li>File -&gt; New Package -&gt; New Directory</li>
+</ul>
 <p>Give your package a name that is accepted as an R-package name:</p>
 <ul>
 <li>only ASCII letters, numbers and ‘.’</li>
@@ -361,9 +369,9 @@ $(document).ready(function () {
 <pre class="r"><code>usethis::use_git()</code></pre>
 <p>or you can initialize an empty git repository from the terminal</p>
 <pre class="sh"><code>git init</code></pre>
-<p>During the entire package building process you can frequentyl check your package by hitting the “Check” button in the “Build” panel or by calling</p>
+<p>During the entire package building process you can frequentyl check your package by hitting the <code>Check</code> button in the <code>Build</code> panel or by calling</p>
 <pre class="r"><code>rcmdcheck::rcmdcheck()</code></pre>
-<p>Also, you can hit the “Install and Restart” button in the “Build” panel to see if your packages installs and loads correctly.</p>
+<p>Also, you can hit the <code>Install and Restart</code> button in the <code>Build</code> panel to see if your packages installs and loads correctly.</p>
 </div>
 <div id="step-2-create-your-research-compendium" class="section level2">
 <h2>Step 2: Create your research compendium</h2>
@@ -389,7 +397,7 @@ LazyData: true</code></pre>
 </div>
 <div id="add-data-to-your-compendium" class="section level3">
 <h3>Add data to your compendium</h3>
-<p>To add data to your compendium, you can either create a /data folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:</p>
+<p>To add data to your compendium, you can either create a <code>/data</code> folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:</p>
 <pre class="r"><code># create a dummy dataset for temperature measurements
 dummyTempData &lt;- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
 usethis::use_data(dummyTempData)</code></pre>
@@ -428,7 +436,7 @@ output: html_document
 <h2>Step 3: Version control with git and GitHub</h2>
 <div id="commit-all-your-changes" class="section level3">
 <h3>Commit all your changes</h3>
-<p>In the “Git” tab (next to “Build”) you can first stage all created files and then commit them or you can do it in the terminal:</p>
+<p>In the <code>Git</code> tab (next to <code>Build</code>) you can first stage all created files and then commit them or you can do it in the terminal:</p>
 <pre class="sh"><code>git add *
 git commit -m &quot;initial commit&quot;</code></pre>
 </div>
@@ -464,7 +472,7 @@ git commit -m &quot;initial commit&quot;</code></pre>
 </div>
 <div id="step-5-ci-with-github-actions" class="section level2">
 <h2>Step 5: CI with GitHub Actions</h2>
-<p>Before we start, it’s time to commit all the changes to our package. Use the “Git” panel or run</p>
+<p>Before we start, it’s time to commit all the changes to our package. Use the <code>Git</code>panel or run</p>
 <pre class="sh"><code>git add *
 git commit -m &quot;added unit tests for printMean function&quot;</code></pre>
 <p>Then create the basic file structure needed to set up your actions workflow by calling</p>
@@ -472,7 +480,7 @@ git commit -m &quot;added unit tests for printMean function&quot;</code></pre>
 <p>This creates a <code>.github</code> folder, in which you find a <code>.gitignore</code> file and a <code>/workflows</code> folder. In this folder you can store all your GitHub actions in <code>.yaml</code> file format. The <code>use_github_actions()</code> function automatically added a first GitHub action called <code>R-CMD-check.yaml</code>. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package.</p>
 <p>If you want add other actions that already are available (e.g. from the GitHub repository <a href="https://github.com/r-lib/actions">r-lib/actions</a>) you can do the following:</p>
 <pre class="r"><code>usethis::use_github_action(&quot;render-readme.yaml&quot;)</code></pre>
-<p>This adds the respective yaml-file to ./github/workflows. Of course you can also write your own actions and simply add them to the /workflows folder.</p>
+<p>This adds the respective yaml-file to <code>./github/workflows</code>. Of course you can also write your own actions and simply add them to the /workflows folder.</p>
 </div>
 <div id="add-rstudio-server-with-holepunch" class="section level1">
 <h1>Add RStudio server with <code>holepunch</code></h1>
@@ -500,13 +508,28 @@ build_binder()
 <h1>Links and Further reading</h1>
 <div id="ropenscis-reproducibility-guide" class="section level2">
 <h2>Ropensci’s reproducibility guide</h2>
-<p><a href="https://ropensci.github.io/reproducibility-guide/" class="uri">https://ropensci.github.io/reproducibility-guide/</a> ## Reasearch compendia ### <em>A guide to making your data analysis more reproducible</em> (by Karthik Ram) <a href="http://inundata.org/talks/rstd19/#/" class="uri">http://inundata.org/talks/rstd19/#/</a> ### Webinar on research compendia <a href="https://youtu.be/g-W6fEv7Pck" class="uri">https://youtu.be/g-W6fEv7Pck</a></p>
+<p><a href="https://ropensci.github.io/reproducibility-guide/" class="uri">https://ropensci.github.io/reproducibility-guide/</a></p>
+</div>
+<div id="reasearch-compendia" class="section level2">
+<h2>Reasearch compendia</h2>
+<div id="a-guide-to-making-your-data-analysis-more-reproducible-by-karthik-ram" class="section level3">
+<h3><em>A guide to making your data analysis more reproducible</em> (by Karthik Ram)</h3>
+<p><a href="http://inundata.org/talks/rstd19/#/" class="uri">http://inundata.org/talks/rstd19/#/</a></p>
+</div>
+<div id="webinar-on-research-compendia" class="section level3">
+<h3>Webinar on research compendia</h3>
+<p><a href="https://youtu.be/g-W6fEv7Pck" class="uri">https://youtu.be/g-W6fEv7Pck</a></p>
+</div>
 </div>
 <div id="git-and-github" class="section level2">
 <h2>Git and GitHub</h2>
 <div id="how-to-use-git-and-github-with-r-and-r-studio" class="section level3">
 <h3>How to use git and github with R and R-Studio</h3>
-<p><a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a> ### Howto use Git branching <a href="https://nvie.com/posts/a-successful-git-branching-model/" class="uri">https://nvie.com/posts/a-successful-git-branching-model/</a> <a href="https://guides.github.com/introduction/flow/" class="uri">https://guides.github.com/introduction/flow/</a></p>
+<p><a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a></p>
+</div>
+<div id="howto-use-git-branching" class="section level3">
+<h3>Howto use Git branching</h3>
+<p><a href="https://nvie.com/posts/a-successful-git-branching-model/" class="uri">https://nvie.com/posts/a-successful-git-branching-model/</a> <a href="https://guides.github.com/introduction/flow/" class="uri">https://guides.github.com/introduction/flow/</a></p>
 </div>
 <div id="github-actions" class="section level3">
 <h3>Github actions</h3>
