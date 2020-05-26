@@ -13,6 +13,8 @@ Before you start the how-to, please check that you have the following things set
 - [GitHub Account](https://github.com/join)
 - download and install [git](https://git-scm.com/downloads) on your machine
 - install the following R-packages (if you don't have them already): `devtools, usethis, testthat`
+- add a PAT (personal access token) for GitHub to your .Renviron file.
+  + find a good step by step guide [here](https://happygitwithr.com/github-pat.html#github-pat).
 
 Probably you will get a few errors when first setting up your package with git and GitHub. But don't worry, the error messages from the `usethis` package are quite informative so you can fix the issues quickly and get everything running.
 
@@ -39,6 +41,12 @@ or you can initialize an empty git repository from the terminal
 ```sh
 git init
 ```
+During the entire package building process you can frequentyl check your package by hitting the "Check" button in the "Build" panel or by calling
+
+```r
+rcmdcheck::rcmdcheck()
+```
+Also, you can hit the "Install and Restart" button in the "Build" panel to see if your packages installs and loads correctly.
 
 ## Step 2: Create your research compendium
 
@@ -150,7 +158,7 @@ devtools::test()
 
 ### Commit all your changes
 
-In the `Git` tab (next to build) you can first stage all file and then commit them or you can do it from the command line:
+In the "Git" tab (next to "Build") you can first stage all created files and then commit them or you can do it in the terminal:
 
 ```sh
 git add *
@@ -163,33 +171,37 @@ For this, you can conveniently use the `usethis` package:
 ```r
 usethis::use_github()
 ```
-This will will initialize a GitHub repository of your compendium and will add the github url to the DESCRIPTION file. 
+This will initialize a new GitHub repository from your compendium and will add the GitHub url to the DESCRIPTION file. 
 
-If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you have to have the correct local git configuration.
-Another possibility is to get a PAT (personal access token) for github added to your .Renviron file. You can find a step by step guide on how to do this in the [Happy Git with R book](https://happygitwithr.com/github-pat.html#github-pat).
-
+If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you need to setup some things first. But the `usethis` package will help you through it with its error messages.
+Make sure that you have a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file.
 
 ## Add a readme to your github project
 
-This adds a README.md to the package that will be rendered on the page of your GitHub repository in the readme section.
+Add a README.md to the package that will be rendered on the webpage of your GitHub repository in the readme section by calling
 
 ```r
 usethis::use_readme_md()
 ```
+You can also do this on the GitHub webpage of your repository.
 
 ## GitHub Actions
 
-This creates the basic file structure needed to set up your workflow and automatically adds a R-CMD-check.yaml file
+Create the basic file structure needed to set up your workflow by calling
 
 ```r
 usethis::use_github_actions()
 ```
-If you want to use an action that already exists (e.g. from the r-lib/actions) repository you can do the following:
+
+This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `use_github_actions()` function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package. 
+
+If you want add other actions that already are available (e.g. from the GitHub repository [r-lib/actions](https://github.com/r-lib/actions)) you can do the following:
 
 ```r
 usethis::use_github_action("render-readme.yaml")
 ```
-This adds the respective file to ./github/workflows
+This adds the respective yaml-file to ./github/workflows.
+Of course you can also write your own actions and simply add them to the /workflows folder.
 
 # Add RStudio server with `holepunch`
 There is a nice intro for holepunch: [Getting started with holepunch](https://karthik.github.io/holepunch/articles/getting_started.html).
