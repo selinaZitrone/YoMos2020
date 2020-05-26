@@ -17,3 +17,5 @@ Imports:
     ggplot2
 Suggests: 
     testthat
+Depends: 
+    R (>= 2.10)
