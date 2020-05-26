@@ -300,6 +300,7 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
+<li><a href="#before-we-start">Before we start</a></li>
 <li><a href="#step-1-create-an-empty-r-package">Step 1: Create an empty R-package</a></li>
 <li><a href="#step-2-create-your-research-compendium">Step 2: Create your research compendium</a><ul>
 <li><a href="#fill-out-the-description-file">Fill out the DESCRIPTION file</a></li>
@@ -332,10 +333,20 @@ $(document).ready(function () {
 </ul>
 </div>
 
+<div id="before-we-start" class="section level2">
+<h2>Before we start</h2>
+<p>Before you start the how-to, please check that you have the following things set up and running:</p>
+<ul>
+<li>GitHub Account</li>
+<li>git installes on your machine</li>
+<li>install the following R-packages (if you don’t have them already): <code>devtools, usethis, testthat</code></li>
+</ul>
+<p>Probably you will get a few errors when first setting up your package with git and GitHub. But don’t worry, the error messages from the <code>usethis</code> package are quite informative so you can fix the issues quickly and get everything running.</p>
+</div>
 <div id="step-1-create-an-empty-r-package" class="section level2">
 <h2>Step 1: Create an empty R-package</h2>
-<p>reate a new R-project in R-Studio: File -&gt; New Package -&gt; New Directory</p>
-<p>To initialize the project with a git repository click the checkmark when creating the package. Your project is initialized with a .git folder and a .gitignore</p>
+<p>Create a new R-packages in R-Studio: - File -&gt; New Package -&gt; New Directory</p>
+<p>Make sure to check the git checkmark to initialize the package with a git repository and a .gitignore file.</p>
 <p>Give your package a name that is accepted as an R-package name:</p>
 <ul>
 <li>only ASCII letters, numbers and ‘.’</li>
