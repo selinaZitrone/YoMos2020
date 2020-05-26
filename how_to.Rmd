@@ -18,6 +18,7 @@ Before you start the how-to, please check that you have the following things set
 
 ## Step 1: Create an empty R-package
 Create a new R-package in R-Studio: 
+
 - File -> New Package -> New Directory
 
 Give your package a name that is accepted as an R-package name:
@@ -39,12 +40,12 @@ or you can initialize an empty git repository from the terminal
 ```sh
 git init
 ```
-During the entire package building process you can frequentyl check your package by hitting the "Check" button in the "Build" panel or by calling
+During the entire package building process you can frequentyl check your package by hitting the `Check` button in the `Build` panel or by calling
 
 ```r
 rcmdcheck::rcmdcheck()
 ```
-Also, you can hit the "Install and Restart" button in the "Build" panel to see if your packages installs and loads correctly.
+Also, you can hit the `Install and Restart` button in the `Build` panel to see if your packages installs and loads correctly.
 
 ## Step 2: Create your research compendium
 
@@ -76,7 +77,7 @@ This adds LICENSE.md with your name in it to the project and automatically updat
 
 ### Add data to your compendium
 
-To add data to your compendium, you can either create a /data folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:
+To add data to your compendium, you can either create a `/data` folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:
 
 ```r
 # create a dummy dataset for temperature measurements
@@ -124,7 +125,7 @@ output: html_document
 
 ### Commit all your changes
 
-In the "Git" tab (next to "Build") you can first stage all created files and then commit them or you can do it in the terminal:
+In the `Git` tab (next to `Build`) you can first stage all created files and then commit them or you can do it in the terminal:
 
 ```sh
 git add *
@@ -186,7 +187,7 @@ devtools::test()
 ```
 ## Step 5: CI with GitHub Actions
 
-Before we start, it's time to commit all the changes to our package. Use the "Git" panel or run
+Before we start, it's time to commit all the changes to our package. Use the `Git`panel or run
 
 ```sh
 git add *
@@ -206,7 +207,7 @@ If you want add other actions that already are available (e.g. from the GitHub r
 ```r
 usethis::use_github_action("render-readme.yaml")
 ```
-This adds the respective yaml-file to ./github/workflows.
+This adds the respective yaml-file to `./github/workflows`.
 Of course you can also write your own actions and simply add them to the /workflows folder.
 
 # Add RStudio server with `holepunch`
@@ -236,16 +237,21 @@ build_binder()
 # Links and Further reading
 ## Ropensci's reproducibility guide 
 https://ropensci.github.io/reproducibility-guide/
+
 ## Reasearch compendia
+
 ### *A guide to making your data analysis more reproducible* (by Karthik Ram)
 http://inundata.org/talks/rstd19/#/
+
 ### Webinar on research compendia
 https://youtu.be/g-W6fEv7Pck
 
 
 ## Git and GitHub
+
 ### How to use git and github with R and R-Studio
 https://happygitwithr.com/
+
 ### Howto use Git branching
 https://nvie.com/posts/a-successful-git-branching-model/
 https://guides.github.com/introduction/flow/
