@@ -420,18 +420,18 @@ output: html_document
 </div>
 <div id="step-3-unit-testing" class="section level2">
 <h2>Step 3: Unit testing</h2>
-<p>create the files and test folders needed by the thestthat package. Also it adds the testthat package to the Suggests field in your DESCRIPTION file.</p>
+<p>First, create the infrastructure needed by the <code>thestthat</code> package.</p>
 <pre class="r"><code>usethis::use_testthat()</code></pre>
-<p>This creates a folder /tests which contains a /testthat folder and an R-script called testthat.R. You do not need to change anything in the testthat.R script which is called by rcmdcheck to conduct all the tests that you created in your package. The folder testthat is the place to store the R-scripts with the actual tests.</p>
-<p>You can then can initialize a basic test file for the R-script that is currently opened in R-Studio by doing</p>
-<pre class="r"><code>usethis::use_test()</code></pre>
-<p>The testfile can be found in /tests/testthat. Testfiles have to be named test-xyz.R in order to be found.</p>
+<p>This creates a <code>/tests</code> folder which contains a <code>/testthat</code> folder and an R-script called <code>testthat.R</code>. You do not need to change anything in the testthat.R script. This is called e.g. by <code>rcmdcheck::rcmdcheck()</code> to run all the tests you created in your package. The <code>/testthat</code> folder is the place to store the R-scripts with the actual tests. Also, the <code>testthat</code> package ist now added to the Suggests field in your DESCRIPTION file.</p>
+<p>Now we can add a test script that tests our simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling</p>
+<pre class="r"><code>usethis::use_test() # creates a basic test file for the currently opened R-Script</code></pre>
+<p>The testfile can be found in <code>/tests/testthat</code>. Testfiles have to be named test-xyz.R in order to be found (<code>usethis::use_test()</code> does the naming for you - so you don’t have to worry about it).</p>
 <p>We can write a very simple test function for our printMean function that checks if it works correctly</p>
 <pre class="r"><code>test_that(&quot;printer function works&quot;, {
   expect_equal(printMean(c(1,2,3)), &quot;The mean value is 2!&quot;)
 })</code></pre>
-<p>If you run the test without giving any errors in the console, then it means that your test was successful.</p>
-<p>If you want to run all the tests from your package to see if they pass your can run</p>
+<p>If you run the test and you don’t get any errors in the console, then it means that your test was successful. If not you will get a helpful error message telling you what went wrong.</p>
+<p>If you want to run all the tests from your package at once to see if they pass your can run</p>
 <pre class="r"><code>devtools::test()</code></pre>
 </div>
 <div id="step-4-ci-with-github-actions" class="section level2">
