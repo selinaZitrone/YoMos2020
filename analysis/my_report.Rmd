@@ -1,8 +1,14 @@
 ---
-title: "Report"
-author: "Someone"
-date: "5/20/2020"
+title: "My analysis"
+author: "Selina Baldauf"
+date: "5/25/2020"
 output: html_document
 ---
-
-Hello World!
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(YoMos2020)
+```
+# This is the temperature analysis
+```{r}
+printMean(dummyTempData$temp)
+```
