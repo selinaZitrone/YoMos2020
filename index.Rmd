@@ -1,9 +1,10 @@
 ---
-title: "My Website"
+title: "Welcome to the Workshop!"
 output: 
   html_document:
     includes:
       in_header: header.html
 ---
 
-Welcome to the workshop!
+If you want to try setting up your own research compendium you can follow the instructions in the How-To.
+If you have questions, difficulties setting up the project or if some parts of the How-To are not explained enough, you can join our [Discord channel](https://discord.gg/x4BraXk) and ask there.

@@ -49,9 +49,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 
 
-<div class="columns-2">
+<div class='left' style='float:left;width:48%'>
 ![Mavick et al. 2018](images/research_compendium.PNG){width=90%}
 
+</div>
+
+<div class='right' style='float:rigth;width:48%'>
 * It's an 📦 R Package!
 * packages generating similar project directory structures: 
   + rrtools
@@ -79,8 +82,7 @@ knitr::opts_chunk$set(echo = FALSE)
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
 
- 
-# Tesing
+ # Testing
 
 ## Unit testing {.smaller}
 
