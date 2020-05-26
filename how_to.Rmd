@@ -120,7 +120,39 @@ output: html_document
 ```
 </pre></code>
 
-## Step 3: Unit testing
+## Step 3: Version control with git and GitHub
+
+### Commit all your changes
+
+In the "Git" tab (next to "Build") you can first stage all created files and then commit them or you can do it in the terminal:
+
+```sh
+git add *
+git commit -m "initial commit"
+```
+
+### Make your compendium a Github project
+
+For this, you can conveniently use the `usethis` package:
+
+```r
+usethis::use_github()
+```
+This will initialize a new GitHub repository from your compendium and will add the GitHub url to the DESCRIPTION file. 
+
+If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you need to setup some things first. But the `usethis` package will help you through it with its error messages.
+Make sure that you have a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file.
+
+## Add a readme to your github project
+
+Add a README.md to the package that will be rendered on the webpage of your GitHub repository in the readme section by calling
+
+```r
+usethis::use_readme_md()
+```
+You can also do this on the GitHub webpage of your repository.
+
+## Step 4: Unit testing
 
 First, create the infrastructure needed by the `thestthat` package.
 
@@ -152,40 +184,16 @@ If you want to run all the tests from your package at once to see if they pass y
 ```r
 devtools::test()
 ```
-## Step 4: CI with GitHub Actions
+## Step 5: CI with GitHub Actions
 
-### Commit all your changes
-
-In the "Git" tab (next to "Build") you can first stage all created files and then commit them or you can do it in the terminal:
+Before we start, it's time to commit all the changes to our package. Use the "Git" panel or run
 
 ```sh
 git add *
-git commit -m "initial commit"
+git commit -m "added unit tests for printMean function"
 ```
-### Make your compendium a Github project
 
-For this, you can conveniently use the `usethis` package:
-
-```r
-usethis::use_github()
-```
-This will initialize a new GitHub repository from your compendium and will add the GitHub url to the DESCRIPTION file. 
-
-If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you need to setup some things first. But the `usethis` package will help you through it with its error messages.
-Make sure that you have a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file.
-
-## Add a readme to your github project
-
-Add a README.md to the package that will be rendered on the webpage of your GitHub repository in the readme section by calling
-
-```r
-usethis::use_readme_md()
-```
-You can also do this on the GitHub webpage of your repository.
-
-## GitHub Actions
-
-Create the basic file structure needed to set up your workflow by calling
+Then create the basic file structure needed to set up your actions workflow by calling
 
 ```r
 usethis::use_github_actions()
