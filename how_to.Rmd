@@ -6,10 +6,21 @@ output:
     includes:
       in_header: header.html
 ---
-## Step 1: Create an empty R-package
-reate a new R-project in R-Studio: File -> New Package -> New Directory
+## Before we start
 
-To initialize the project with a git repository click the checkmark when creating the package. Your project is initialized with a .git folder and a .gitignore
+Before you start the how-to, please check that you have the following things set up and running:
+
+- GitHub Account
+- git installes on your machine
+- install the following R-packages (if you don't have them already): `devtools, usethis, testthat`
+
+Probably you will get a few errors when first setting up your package with git and GitHub. But don't worry, the error messages from the `usethis` package are quite informative so you can fix the issues quickly and get everything running.
+
+## Step 1: Create an empty R-package
+Create a new R-packages in R-Studio: 
+- File -> New Package -> New Directory
+
+Make sure to check the git checkmark to initialize the package with a git repository and a .gitignore file.
 
 Give your package a name that is accepted as an R-package name:
 
