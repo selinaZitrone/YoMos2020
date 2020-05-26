@@ -309,19 +309,19 @@ $(document).ready(function () {
 <li><a href="#write-an-analysis-function">Write an analysis function</a></li>
 <li><a href="#add-an-analysis-script-to-your-compendium">Add an analysis script to your compendium</a></li>
 </ul></li>
-<li><a href="#step-3-unit-testing">Step 3: Unit testing</a></li>
-<li><a href="#step-4-ci-with-github-actions">Step 4: CI with GitHub Actions</a><ul>
+<li><a href="#step-3-version-control-with-git-and-github">Step 3: Version control with git and GitHub</a><ul>
 <li><a href="#commit-all-your-changes">Commit all your changes</a></li>
 <li><a href="#make-your-compendium-a-github-project">Make your compendium a Github project</a></li>
 </ul></li>
 <li><a href="#add-a-readme-to-your-github-project">Add a readme to your github project</a></li>
-<li><a href="#github-actions">GitHub Actions</a></li>
+<li><a href="#step-4-unit-testing">Step 4: Unit testing</a></li>
+<li><a href="#step-5-ci-with-github-actions">Step 5: CI with GitHub Actions</a></li>
 <li><a href="#add-rstudio-server-with-holepunch">Add RStudio server with <code>holepunch</code></a></li>
 <li><a href="#links-and-further-reading">Links and Further reading</a><ul>
 <li><a href="#ropenscis-reproducibility-guide">Ropensci’s reproducibility guide</a></li>
 <li><a href="#git-and-github">Git and GitHub</a><ul>
 <li><a href="#how-to-use-git-and-github-with-r-and-r-studio">How to use git and github with R and R-Studio</a></li>
-<li><a href="#github-actions-1">Github actions</a></li>
+<li><a href="#github-actions">Github actions</a></li>
 <li><a href="#ci-with-github-actions">CI with github actions</a></li>
 <li><a href="#jim-hester-tidy-developer-on-how-to-use-r-with-github-actions-what-is-the-difference-between-github-actions-travis-ci-and-others-how-to-set-up-different-workflows">Jim Hester (tidy developer) on how to use R with github actions, what is the difference between github actions, Travis CI and others, how to set up different workflows:</a></li>
 <li><a href="#how-to-use-an-.rmd-document-as-readme-in-github-and-render-it-automatically-with-associated-figures-on-push">How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:</a></li>
@@ -424,24 +424,8 @@ output: html_document
 <p></code></p>
 </div>
 </div>
-<div id="step-3-unit-testing" class="section level2">
-<h2>Step 3: Unit testing</h2>
-<p>First, create the infrastructure needed by the <code>thestthat</code> package.</p>
-<pre class="r"><code>usethis::use_testthat()</code></pre>
-<p>This creates a <code>/tests</code> folder which contains a <code>/testthat</code> folder and an R-script called <code>testthat.R</code>. You do not need to change anything in the testthat.R script. This is called e.g. by <code>rcmdcheck::rcmdcheck()</code> to run all the tests you created in your package. The <code>/testthat</code> folder is the place to store the R-scripts with the actual tests. Also, the <code>testthat</code> package ist now added to the Suggests field in your DESCRIPTION file.</p>
-<p>Now we can add a test script that tests our simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling</p>
-<pre class="r"><code>usethis::use_test() # creates a basic test file for the currently opened R-Script</code></pre>
-<p>The testfile can be found in <code>/tests/testthat</code>. Testfiles have to be named test-xyz.R in order to be found (<code>usethis::use_test()</code> does the naming for you - so you don’t have to worry about it).</p>
-<p>We can write a very simple test function for our printMean function that checks if it works correctly</p>
-<pre class="r"><code>test_that(&quot;printer function works&quot;, {
-  expect_equal(printMean(c(1,2,3)), &quot;The mean value is 2!&quot;)
-})</code></pre>
-<p>If you run the test and you don’t get any errors in the console, then it means that your test was successful. If not you will get a helpful error message telling you what went wrong.</p>
-<p>If you want to run all the tests from your package at once to see if they pass your can run</p>
-<pre class="r"><code>devtools::test()</code></pre>
-</div>
-<div id="step-4-ci-with-github-actions" class="section level2">
-<h2>Step 4: CI with GitHub Actions</h2>
+<div id="step-3-version-control-with-git-and-github" class="section level2">
+<h2>Step 3: Version control with git and GitHub</h2>
 <div id="commit-all-your-changes" class="section level3">
 <h3>Commit all your changes</h3>
 <p>In the “Git” tab (next to “Build”) you can first stage all created files and then commit them or you can do it in the terminal:</p>
@@ -462,9 +446,28 @@ git commit -m &quot;initial commit&quot;</code></pre>
 <pre class="r"><code>usethis::use_readme_md()</code></pre>
 <p>You can also do this on the GitHub webpage of your repository.</p>
 </div>
-<div id="github-actions" class="section level2">
-<h2>GitHub Actions</h2>
-<p>Create the basic file structure needed to set up your workflow by calling</p>
+<div id="step-4-unit-testing" class="section level2">
+<h2>Step 4: Unit testing</h2>
+<p>First, create the infrastructure needed by the <code>thestthat</code> package.</p>
+<pre class="r"><code>usethis::use_testthat()</code></pre>
+<p>This creates a <code>/tests</code> folder which contains a <code>/testthat</code> folder and an R-script called <code>testthat.R</code>. You do not need to change anything in the testthat.R script. This is called e.g. by <code>rcmdcheck::rcmdcheck()</code> to run all the tests you created in your package. The <code>/testthat</code> folder is the place to store the R-scripts with the actual tests. Also, the <code>testthat</code> package ist now added to the Suggests field in your DESCRIPTION file.</p>
+<p>Now we can add a test script that tests our simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling</p>
+<pre class="r"><code>usethis::use_test() # creates a basic test file for the currently opened R-Script</code></pre>
+<p>The testfile can be found in <code>/tests/testthat</code>. Testfiles have to be named test-xyz.R in order to be found (<code>usethis::use_test()</code> does the naming for you - so you don’t have to worry about it).</p>
+<p>We can write a very simple test function for our printMean function that checks if it works correctly</p>
+<pre class="r"><code>test_that(&quot;printer function works&quot;, {
+  expect_equal(printMean(c(1,2,3)), &quot;The mean value is 2!&quot;)
+})</code></pre>
+<p>If you run the test and you don’t get any errors in the console, then it means that your test was successful. If not you will get a helpful error message telling you what went wrong.</p>
+<p>If you want to run all the tests from your package at once to see if they pass your can run</p>
+<pre class="r"><code>devtools::test()</code></pre>
+</div>
+<div id="step-5-ci-with-github-actions" class="section level2">
+<h2>Step 5: CI with GitHub Actions</h2>
+<p>Before we start, it’s time to commit all the changes to our package. Use the “Git” panel or run</p>
+<pre class="sh"><code>git add *
+git commit -m &quot;added unit tests for printMean function&quot;</code></pre>
+<p>Then create the basic file structure needed to set up your actions workflow by calling</p>
 <pre class="r"><code>usethis::use_github_actions()</code></pre>
 <p>This creates a <code>.github</code> folder, in which you find a <code>.gitignore</code> file and a <code>/workflows</code> folder. In this folder you can store all your GitHub actions in <code>.yaml</code> file format. The <code>use_github_actions()</code> function automatically added a first GitHub action called <code>R-CMD-check.yaml</code>. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package.</p>
 <p>If you want add other actions that already are available (e.g. from the GitHub repository <a href="https://github.com/r-lib/actions">r-lib/actions</a>) you can do the following:</p>
@@ -505,7 +508,7 @@ build_binder()
 <h3>How to use git and github with R and R-Studio</h3>
 <p><a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a> ### Howto use Git branching <a href="https://nvie.com/posts/a-successful-git-branching-model/" class="uri">https://nvie.com/posts/a-successful-git-branching-model/</a> <a href="https://guides.github.com/introduction/flow/" class="uri">https://guides.github.com/introduction/flow/</a></p>
 </div>
-<div id="github-actions-1" class="section level3">
+<div id="github-actions" class="section level3">
 <h3>Github actions</h3>
 <p><a href="https://help.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration" class="uri">https://help.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration</a> <a href="https://www.youtube.com/watch?v=F3wZTDmHCFA" class="uri">https://www.youtube.com/watch?v=F3wZTDmHCFA</a></p>
 </div>
