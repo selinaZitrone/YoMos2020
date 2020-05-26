@@ -337,16 +337,15 @@ $(document).ready(function () {
 <h2>Before we start</h2>
 <p>Before you start the how-to, please check that you have the following things set up and running:</p>
 <ul>
-<li>GitHub Account</li>
-<li>git installes on your machine</li>
+<li><a href="https://github.com/join">GitHub Account</a></li>
+<li>download and install <a href="https://git-scm.com/downloads">git</a> on your machine</li>
 <li>install the following R-packages (if you don’t have them already): <code>devtools, usethis, testthat</code></li>
 </ul>
 <p>Probably you will get a few errors when first setting up your package with git and GitHub. But don’t worry, the error messages from the <code>usethis</code> package are quite informative so you can fix the issues quickly and get everything running.</p>
 </div>
 <div id="step-1-create-an-empty-r-package" class="section level2">
 <h2>Step 1: Create an empty R-package</h2>
-<p>Create a new R-packages in R-Studio: - File -&gt; New Package -&gt; New Directory</p>
-<p>Make sure to check the git checkmark to initialize the package with a git repository and a .gitignore file.</p>
+<p>Create a new R-package in R-Studio: - File -&gt; New Package -&gt; New Directory</p>
 <p>Give your package a name that is accepted as an R-package name:</p>
 <ul>
 <li>only ASCII letters, numbers and ‘.’</li>
@@ -354,6 +353,7 @@ $(document).ready(function () {
 <li>start with a letter</li>
 <li>not end with ‘.’</li>
 </ul>
+<p>Make sure to check the git checkmark to initialize the package with a git repository and a .gitignore file.</p>
 <p>If you accidentally created the package without a git repository you can either use</p>
 <pre class="r"><code>usethis::use_git()</code></pre>
 <p>or you can initialize an empty git repository from the terminal</p>
@@ -364,7 +364,7 @@ $(document).ready(function () {
 <div id="fill-out-the-description-file" class="section level3">
 <h3>Fill out the DESCRIPTION file</h3>
 <p>Fill out the fields of the description file, e.g.</p>
-<pre class="r"><code>Package: finalPackage
+<pre class="r"><code>Package: YoMos2020
 Type: Package
 Title: Analysis of temperature data from somewhere
 Version: 0.1.0
@@ -377,7 +377,7 @@ LazyData: true</code></pre>
 </div>
 <div id="add-a-license" class="section level3">
 <h3>Add a license</h3>
-<p>If you want to add a specific license to your project you can use different functions from the usethis package, e.g. for the gpl-3 license you can use</p>
+<p>If you want to add a specific license to your project you can use different functions from the <code>usethis</code> package, e.g. for the GNU General Public License 3 (gpl-3) license you can use</p>
 <pre class="r"><code>usethis::use_gpl3_license(name = &quot;Selina Baldauf&quot;)</code></pre>
 <p>This adds LICENSE.md with your name in it to the project and automatically updates the license field in the DESCRIPTION file.</p>
 </div>
@@ -387,10 +387,11 @@ LazyData: true</code></pre>
 <pre class="r"><code># create a dummy dataset for temperature measurements
 dummyTempData &lt;- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
 usethis::use_data(dummyTempData)</code></pre>
+<p>This will automatically include a <code>/data</code> folder in your package and add the data as <code>.Rda</code> to your package.</p>
 </div>
 <div id="write-an-analysis-function" class="section level3">
 <h3>Write an analysis function</h3>
-<p>Write a function that you need for your analysis in the folder R/ You can group related fuctions together in the same R-script but unrelated functions get their own script.</p>
+<p>Save all the functions you need for your analysis in the <code>R/</code> folder. You can group related fuctions together in the same R-script but unrelated functions shout get their own script.</p>
 <p>Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called myPrinterFunction.R</p>
 <pre class="r"><code># a simple printer function for the mean of a vector
 printMean &lt;- function(x){
@@ -399,7 +400,7 @@ printMean &lt;- function(x){
 </div>
 <div id="add-an-analysis-script-to-your-compendium" class="section level3">
 <h3>Add an analysis script to your compendium</h3>
-<p>Add an analysis folder with a Rmarkdown document to your compendium. The script can look like this:</p>
+<p>Add an <code>/analysis</code> folder with an Rmarkdown document to your compendium. The script can look like this:</p>
 <pre><code>
 ---
 title: "My analysis"
