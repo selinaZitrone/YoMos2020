@@ -68,7 +68,19 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Hands-on: Create a research compendium
 
-# Testing
+# Git as a distributed version control system (VCS)
+
+* complete and long-term history of every file in your project
+  + go back to specific versions of your project
+* collaborate in teams
+  + branching and merging
+  + tracability: each change is commented and can be traced back a developer
+* host your repository on remote server (GitHub, Bitbucket, GitLab, ...)
+  + open-source collaborative development
+  + visibility: get new collaborators, feedback, bug reports
+
+ 
+# Tesing
 
 ## Unit testing {.smaller}
 
