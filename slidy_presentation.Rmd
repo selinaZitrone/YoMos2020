@@ -12,9 +12,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-## Workshop overview
-
-### What will you learn?
+# Workshop overview
+## What will you learn?
 * clear project structure
 * good programming practice
   + unit testing
@@ -44,25 +43,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # How? Use a research compendium!
 
-##
+![](images/Marwicketal2018.png){width=100%}
 
-!---(images/Marwicketal2018.png){width=100%}
+---
 
-##
+![Mavick et al. 2018](images/research_compendium.PNG){width=30%}
 
-<---v class='left' style='float:left;width:48%'>
-![Mavick et al. 2018](images/research_compendium.PNG){width=90%}
-
-</div>
-
-<div class='right' style='float:rigth;width:48%'>
 * It's an 📦 R Package!
 * packages generating similar project directory structures: 
   + rrtools
   + ProjectTemplate
   + prodigenr
   + workflowr  
-</div>
+  
+---
 
 ## Advantages of using R Packages
 
@@ -82,9 +76,10 @@ knitr::opts_chunk$set(echo = FALSE)
 * host your repository on remote server (GitHub, Bitbucket, GitLab, ...)
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
+  
+# Hands-on: initialize a rempository on GithHub from R-Studio
 
 # Testing
-
 ## Unit testing {.smaller}
 
 * test individual units of source code to see if it is fit for use 
@@ -107,15 +102,11 @@ knitr::opts_chunk$set(echo = FALSE)
 * in R: <code>testthat</code> package (Hadley Wickham)
 
 
-## Continous integration (CI)
+# Continous integration (CI)
 
-<div class='left' style='float:left;width:48%'>
 > "If it hurts, do it more often" (Martin Fowler)
 
 ![](images/pain_vs_time_ci.png)
-</div>
-
-<div class='right' style='float:right;width:48%'>
 
 ### Idea
 
@@ -124,9 +115,9 @@ knitr::opts_chunk$set(echo = FALSE)
 * automated builds and tests after each commit
 * code is only accepted if it builds and passes the test
 * everyone can see the results of the lates commit
-</div>
 
 ---
+
 ### Why?
 
 * smaller changes are easier to handle
@@ -137,8 +128,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * However, can be time consuming and might be overkill for small or solo projects
 
----
-## Github Actions for CI
+# Github Actions for CI
 
 * supports mac-OS, windows, linux, docker containers
 * integration with github, so no seperate setup and authentification
@@ -147,6 +137,6 @@ knitr::opts_chunk$set(echo = FALSE)
 * self host to remove the per job limit
 * very easy to setup with R using the <code>usethis</code> package
 
-## Reproducibility and Accessaiblity
+# Reproducibility and Accessaiblity
 
 [Holepunch](https://karthik.github.io/holepunch/)
