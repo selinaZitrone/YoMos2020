@@ -5,41 +5,27 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   slidy_presentation:
     includes:
-      in_header: header.html
-      before_body: navbar.html
+      # in_header: header.html
+      # before_body: navbar.html
     css: presentation_style.css
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 # Workshop overview
-## What will you learn?
-* clear project structure
-* good programming practice
-  + unit testing
-  + CI with github Actions
-* holepunch
-* code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
+## Three main topics
 
+> - research compendia
+> - version control (Git)
+> - automated testing (CI with GitHub actions)
+> - (holepunch)
+> - code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
 
-# Goals
-## 🔃 Reproducible (for you and others)
-- script everything, avoid manual steps
-- explain the workflow
-- specify the computational environment
-
-## 🏋 Reliable (will it work again?)
-- use automated testing
-- collaborate and share
-
-## ⚙ Re-usable (don't re-invent the wheel)
-- follow the conventions of your research community / lab
-- clear separation of data, code and output
-- pick a license to allow others to use your work
-
-## 🔍 Visible (let others see and use your work)
-- "Go public" (Mr. Obvious)
-- 🔃 + 🏋 + ⚙ encourages others to trust your work
+# Motivations for a better project organization and workflow
+> - Reproduciblity 🔃 (for you and others)
+> - Reliablity 🏋 (will it work again?)
+> - Re-usablity ⚙ (don't re-invent the wheel)
+> - Visiblity 🔍 (let others see and use your work)
 
 # How? Use a research compendium!
 
