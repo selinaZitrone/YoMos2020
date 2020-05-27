@@ -61,46 +61,31 @@ Sebastian Hanß and Selina Baldauf
 </div>
 <div id="workshop-overview" class="slide section level1">
 <h1>Workshop overview</h1>
-<h2 id="what-will-you-learn">What will you learn?</h2>
-<ul>
-<li>clear project structure</li>
-<li>good programming practice
-<ul>
-<li>unit testing</li>
-<li>CI with github Actions</li>
-</ul></li>
-<li>holepunch</li>
+<h2 id="three-main-topics">Three main topics</h2>
+<ul class="incremental">
+<li>research compendia</li>
+<li>version control (Git)</li>
+<li>automated testing (CI with GitHub actions)</li>
+<li>(holepunch)</li>
 <li>code on github. <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
 </ul>
 </div>
-<div id="goals" class="slide section level1">
-<h1>Goals</h1>
-<h2 id="reproducible-for-you-and-others">🔃 Reproducible (for you and others)</h2>
-<ul>
-<li>script everything, avoid manual steps</li>
-<li>explain the workflow</li>
-<li>specify the computational environment</li>
-</ul>
-<h2 id="reliable-will-it-work-again">🏋 Reliable (will it work again?)</h2>
-<ul>
-<li>use automated testing</li>
-<li>collaborate and share</li>
-</ul>
-<h2 id="re-usable-dont-re-invent-the-wheel">⚙ Re-usable (don’t re-invent the wheel)</h2>
-<ul>
-<li>follow the conventions of your research community / lab</li>
-<li>clear separation of data, code and output</li>
-<li>pick a license to allow others to use your work</li>
-</ul>
-<h2 id="visible-let-others-see-and-use-your-work">🔍 Visible (let others see and use your work)</h2>
-<ul>
-<li>“Go public” (Mr. Obvious)</li>
-<li>🔃 + 🏋 + ⚙ encourages others to trust your work</li>
+<div id="motivations-for-a-better-project-organization-and-workflow" class="slide section level1">
+<h1>Motivations for a better project organization and workflow</h1>
+<ul class="incremental">
+<li>Reproduciblity 🔃 (for you and others)</li>
+<li>Reliablity 🏋 (will it work again?)</li>
+<li>Re-usablity ⚙ (don’t re-invent the wheel)</li>
+<li>Visiblity 🔍 (let others see and use your work)</li>
 </ul>
 </div>
 <div id="how-use-a-research-compendium" class="slide section level1">
 <h1>How? Use a research compendium!</h1>
 <p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
+</div>
+<div id="what-is-a-research-compendium" class="slide section level1">
+<h1>What <em>is</em> a research compendium?</h1>
+<p><a href="https://the-turing-way.netlify.app/research_compendia/research_compendia.html">Excursion to the TTW website</a></p>
 </div>
 <div class="slide section level1">
 
@@ -124,12 +109,15 @@ Sebastian Hanß and Selina Baldauf
 <h2 id="advantages-of-using-r-packages">Advantages of using R Packages</h2>
 <ul>
 <li>benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)</li>
-<li>writing functions is less error prone</li>
 <li>functions can be easily documented</li>
 </ul>
 </div>
 <div id="hands-on-create-a-research-compendium" class="slide section level1">
 <h1>Hands-on: Create a research compendium</h1>
+</div>
+<div id="version-control" class="slide section level1">
+<h1>Version control</h1>
+<p><img src="images/final.jpg" style="width:50.0%" /></p>
 </div>
 <div id="git-as-a-distributed-version-control-system-vcs" class="slide section level1">
 <h1>Git as a distributed version control system (VCS)</h1>
@@ -153,29 +141,33 @@ Sebastian Hanß and Selina Baldauf
 <div id="hands-on-initialize-a-rempository-on-githhub-from-r-studio" class="slide section level1">
 <h1>Hands-on: initialize a rempository on GithHub from R-Studio</h1>
 </div>
-<div id="testing" class="slide section level1">
-<h1>Testing</h1>
-<h2 id="unit-testing" class="smaller">Unit testing</h2>
-<ul>
-<li>test individual units of source code to see if it is fit for use</li>
+<div id="automated-testing" class="slide section level1">
+<h1>Automated testing</h1>
+<h2 id="what">What?</h2>
+<ul class="incremental">
+<li><em>unit tests</em> functions that run a small amount of code: “units”</li>
+<li>input: defined and fixed</li>
+<li>compares output with an expected output</li>
+<li>returns true/false</li>
 </ul>
-<h3 id="why">Why?</h3>
-<ul>
-<li>Fewer bugs</li>
-<li>Better code structure</li>
-<li>Easier to pick up where you left</li>
-<li>Robust code</li>
-<li>You can rerun your tests at anytime to make sure you did not break anything</li>
+</div>
+<div id="automated-testing-1" class="slide section level1">
+<h1>Automated testing</h1>
+<h2 id="why">Why?</h2>
+<ul class="incremental">
+<li>fewer bugs</li>
+<li>better code (needs to be <em>testable</em>)</li>
+<li>confidence and trust</li>
 </ul>
 <h3 id="how">How?</h3>
-<ul>
-<li>Test external interfaces of functions</li>
-<li>One test for each behaviour</li>
-<li>Test fragile, complicated code</li>
-<li>Write a test if you find a but</li>
-<li>Test-first philosophy: write the test first, then write the code to pass it</li>
-<li>in R: <code>testthat</code> package (Hadley Wickham)</li>
+<ul class="incremental">
+<li>write tests either before or after implementing your code</li>
+<li>when you found a bug: before fixing, write a test that would have detected it</li>
+<li>use a test framework, e.g. in R: <code>testthat</code> package (Hadley Wickham)</li>
 </ul>
+</div>
+<div id="hands-on-unit-tests" class="slide section level1">
+<h1>Hands-on: Unit tests</h1>
 </div>
 <div id="continous-integration-ci" class="slide section level1">
 <h1>Continous integration (CI)</h1>
@@ -183,37 +175,31 @@ Sebastian Hanß and Selina Baldauf
 <p>“If it hurts, do it more often” (Martin Fowler)</p>
 </blockquote>
 <p><img src="images/pain_vs_time_ci.png" /></p>
-<h3 id="idea">Idea</h3>
-<ul>
-<li>shared code repository (e.g. on github)</li>
-<li>integrate code frequently (every day) to the shared</li>
-<li>automated builds and tests after each commit</li>
-<li>code is only accepted if it builds and passes the test</li>
-<li>everyone can see the results of the lates commit</li>
-</ul>
 </div>
-<div class="slide section level1">
-
-<h3 id="why-1">Why?</h3>
-<ul>
-<li><p>smaller changes are easier to handle</p></li>
-<li><p>get quick and frequent feedback</p></li>
-<li><p>early bug detection</p></li>
-<li><p>constant availability of current code version</p></li>
-<li><p>if you have to revert the codebase due to bugs you won’t lose that much</p></li>
-<li><p>However, can be time consuming and might be overkill for small or solo projects</p></li>
+<div id="continous-integration-ci-1" class="slide section level1">
+<h1>Continous integration (CI)</h1>
+<h2 id="idea">Idea</h2>
+<ul class="incremental">
+<li>shared code repository (e.g. on github)</li>
+<li>push code frequently (every day)</li>
+<li>automated builds and tests after each commit</li>
+<li>immediate feedback if something doesn’t work anymore</li>
+<li>however, can be time consuming and might be overkill for small or solo projects</li>
 </ul>
 </div>
 <div id="github-actions-for-ci" class="slide section level1">
 <h1>Github Actions for CI</h1>
-<ul>
+<ul class="incremental">
 <li>supports mac-OS, windows, linux, docker containers</li>
-<li>integration with github, so no seperate setup and authentification</li>
+<li>integration with github, so no separate setup and authentication</li>
 <li>free for open source, academic or educational repos</li>
 <li>20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow</li>
 <li>self host to remove the per job limit</li>
 <li>very easy to setup with R using the <code>usethis</code> package</li>
 </ul>
+</div>
+<div id="hands-on-github-actions-for-ci" class="slide section level1">
+<h1>Hands-on: Github Actions for CI</h1>
 </div>
 <div id="reproducibility-and-accessaiblity" class="slide section level1">
 <h1>Reproducibility and Accessaiblity</h1>
