@@ -45,11 +45,12 @@ knitr::opts_chunk$set(echo = FALSE)
 # How? Use a research compendium!
 
 ## 
-![](images/Marwicketal2018.png){width=100%}
+![#
+images/Marwicketal2018.png){width=100%}
 
 ## 
 
-<div class='left' style='float:left;width:48%'>
+<#v class='left' style='float:left;width:48%'>
 ![Mavick et al. 2018](images/research_compendium.PNG){width=90%}
 
 </div>
