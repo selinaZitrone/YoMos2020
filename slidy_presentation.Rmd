@@ -44,13 +44,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # How? Use a research compendium!
 
-## 
-![#
-images/Marwicketal2018.png){width=100%}
+##
 
-## 
+!---(images/Marwicketal2018.png){width=100%}
 
-<#v class='left' style='float:left;width:48%'>
+##
+
+<---v class='left' style='float:left;width:48%'>
 ![Mavick et al. 2018](images/research_compendium.PNG){width=90%}
 
 </div>
@@ -78,7 +78,7 @@ images/Marwicketal2018.png){width=100%}
   + go back to specific versions of your project
 * collaborate in teams
   + branching and merging
-  + tracability: each change is commented and can be traced back a developer
+  + tracability: each change is commented and can be traced back to a developer
 * host your repository on remote server (GitHub, Bitbucket, GitLab, ...)
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
@@ -125,8 +125,8 @@ images/Marwicketal2018.png){width=100%}
 * code is only accepted if it builds and passes the test
 * everyone can see the results of the lates commit
 </div>
----
 
+---
 ### Why?
 
 * smaller changes are easier to handle
@@ -137,6 +137,7 @@ images/Marwicketal2018.png){width=100%}
 
 * However, can be time consuming and might be overkill for small or solo projects
 
+---
 ## Github Actions for CI
 
 * supports mac-OS, windows, linux, docker containers
@@ -149,19 +150,3 @@ images/Marwicketal2018.png){width=100%}
 ## Reproducibility and Accessaiblity
 
 [Holepunch](https://karthik.github.io/holepunch/)
-
-## Resources
-
-### Project structures
-
-### Unit testing
-
-* [Intro to unit testing in R](https://katherinemwood.github.io/post/testthat/)
-* Testing with [<code>testthat</code>](http://r-pkgs.had.co.nz/tests.html)
-
-
-### CI with github actions
-
-* Jim Hester on [GitHub Actions with R](https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/)
-* [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
-* [Examples](https://github.com/r-lib/actions) for Actions with R
