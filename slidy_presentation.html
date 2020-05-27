@@ -59,10 +59,9 @@ Sebastian Hanß and Selina Baldauf
   </p>
   <p class="date">27 May, 2020</p>
 </div>
-<div class="slide section level1">
-
-<h2 id="workshop-overview">Workshop overview</h2>
-<h3 id="what-will-you-learn">What will you learn?</h3>
+<div id="workshop-overview" class="slide section level1">
+<h1>Workshop overview</h1>
+<h2 id="what-will-you-learn">What will you learn?</h2>
 <ul>
 <li>clear project structure</li>
 <li>good programming practice
@@ -101,12 +100,14 @@ Sebastian Hanß and Selina Baldauf
 </div>
 <div id="how-use-a-research-compendium" class="slide section level1">
 <h1>How? Use a research compendium!</h1>
-<h2 id="section"></h2>
-<p>!—(images/Marwicketal2018.png){width=100%}</p>
-<h2 id="section-1"></h2>
-<p>&lt;—v class=‘left’ style=‘float:left;width:48%’&gt; <img src="images/research_compendium.PNG" style="width:90.0%" alt="Mavick et al. 2018" /></p>
+<p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
 </div>
-<div class="right" style="float:rigth;width:48%">
+<div class="slide section level1">
+
+<div class="figure">
+<img src="images/research_compendium.PNG" style="width:30.0%" alt="" />
+<p class="caption">Mavick et al. 2018</p>
+</div>
 <ul>
 <li>It’s an 📦 R Package!</li>
 <li>packages generating similar project directory structures:
@@ -114,11 +115,12 @@ Sebastian Hanß and Selina Baldauf
 <li>rrtools</li>
 <li>ProjectTemplate</li>
 <li>prodigenr</li>
-<li>workflowr<br />
-</li>
+<li>workflowr</li>
 </ul></li>
 </ul>
 </div>
+<div class="slide section level1">
+
 <h2 id="advantages-of-using-r-packages">Advantages of using R Packages</h2>
 <ul>
 <li>benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)</li>
@@ -148,6 +150,9 @@ Sebastian Hanß and Selina Baldauf
 </ul></li>
 </ul>
 </div>
+<div id="hands-on-initialize-a-rempository-on-githhub-from-r-studio" class="slide section level1">
+<h1>Hands-on: initialize a rempository on GithHub from R-Studio</h1>
+</div>
 <div id="testing" class="slide section level1">
 <h1>Testing</h1>
 <h2 id="unit-testing" class="smaller">Unit testing</h2>
@@ -171,14 +176,13 @@ Sebastian Hanß and Selina Baldauf
 <li>Test-first philosophy: write the test first, then write the code to pass it</li>
 <li>in R: <code>testthat</code> package (Hadley Wickham)</li>
 </ul>
-<h2 id="continous-integration-ci">Continous integration (CI)</h2>
-<div class="left" style="float:left;width:48%">
+</div>
+<div id="continous-integration-ci" class="slide section level1">
+<h1>Continous integration (CI)</h1>
 <blockquote>
 <p>“If it hurts, do it more often” (Martin Fowler)</p>
 </blockquote>
 <p><img src="images/pain_vs_time_ci.png" /></p>
-</div>
-<div class="right" style="float:right;width:48%">
 <h3 id="idea">Idea</h3>
 <ul>
 <li>shared code repository (e.g. on github)</li>
@@ -188,7 +192,20 @@ Sebastian Hanß and Selina Baldauf
 <li>everyone can see the results of the lates commit</li>
 </ul>
 </div>
-<h2 id="github-actions-for-ci">Github Actions for CI</h2>
+<div class="slide section level1">
+
+<h3 id="why-1">Why?</h3>
+<ul>
+<li><p>smaller changes are easier to handle</p></li>
+<li><p>get quick and frequent feedback</p></li>
+<li><p>early bug detection</p></li>
+<li><p>constant availability of current code version</p></li>
+<li><p>if you have to revert the codebase due to bugs you won’t lose that much</p></li>
+<li><p>However, can be time consuming and might be overkill for small or solo projects</p></li>
+</ul>
+</div>
+<div id="github-actions-for-ci" class="slide section level1">
+<h1>Github Actions for CI</h1>
 <ul>
 <li>supports mac-OS, windows, linux, docker containers</li>
 <li>integration with github, so no seperate setup and authentification</li>
@@ -197,7 +214,9 @@ Sebastian Hanß and Selina Baldauf
 <li>self host to remove the per job limit</li>
 <li>very easy to setup with R using the <code>usethis</code> package</li>
 </ul>
-<h2 id="reproducibility-and-accessaiblity">Reproducibility and Accessaiblity</h2>
+</div>
+<div id="reproducibility-and-accessaiblity" class="slide section level1">
+<h1>Reproducibility and Accessaiblity</h1>
 <p><a href="https://karthik.github.io/holepunch/">Holepunch</a></p>
 </div>
 
