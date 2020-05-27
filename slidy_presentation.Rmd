@@ -5,8 +5,8 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   slidy_presentation:
     includes:
-      # in_header: header.html
-      # before_body: navbar.html
+      in_header: header.html
+      before_body: navbar.html
     css: presentation_style.css
 ---
 ```{r setup, include=FALSE}
@@ -31,6 +31,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ![](images/Marwicketal2018.png){width=100%}
 
+# What *is* a research compendium?
+[Excursion to the TTW website](https://the-turing-way.netlify.app/research_compendia/research_compendia.html)
+
 ---
 
 ![Mavick et al. 2018](images/research_compendium.PNG){width=30%}
@@ -47,10 +50,13 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Advantages of using R Packages
 
 * benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)
-* writing functions is less error prone
 * functions can be easily documented
 
 # Hands-on: Create a research compendium
+
+# Version control
+
+![](images/final.jpg){width=50%}
 
 # Git as a distributed version control system (VCS)
 
@@ -65,28 +71,27 @@ knitr::opts_chunk$set(echo = FALSE)
   
 # Hands-on: initialize a rempository on GithHub from R-Studio
 
-# Testing
-## Unit testing {.smaller}
+# Automated testing
+## What?
+> - *unit tests* functions that run a small amount of code: "units"
+> - input: defined and fixed
+> - compares output with an expected output
+> - returns true/false
 
-* test individual units of source code to see if it is fit for use 
+# Automated testing
+## Why?
 
-### Why?
-
-* Fewer bugs
-* Better code structure
-* Easier to pick up where you left
-* Robust code
-* You can rerun your tests at anytime to make sure you did not break anything
+> - fewer bugs
+> - better code (needs to be *testable*)
+> - confidence and trust
 
 ### How?
 
-* Test external interfaces of functions
-* One test for each behaviour
-* Test fragile, complicated code
-* Write a test if you find a but
-* Test-first philosophy: write the test first, then write the code to pass it
-* in R: <code>testthat</code> package (Hadley Wickham)
+> - write tests either before or after implementing your code
+> - when you found a bug: before fixing, write a test that would have detected it
+> - use a test framework, e.g. in R: <code>testthat</code> package (Hadley Wickham)
 
+# Hands-on: Unit tests
 
 # Continous integration (CI)
 
@@ -94,34 +99,25 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ![](images/pain_vs_time_ci.png)
 
-### Idea
+# Continous integration (CI)
+## Idea
 
-* shared code repository (e.g. on github)
-* integrate code frequently (every day) to the shared
-* automated builds and tests after each commit
-* code is only accepted if it builds and passes the test
-* everyone can see the results of the lates commit
-
----
-
-### Why?
-
-* smaller changes are easier to handle
-* get quick and frequent feedback
-* early bug detection
-* constant availability of current code version
-* if you have to revert the codebase due to bugs you won't lose that much
-
-* However, can be time consuming and might be overkill for small or solo projects
+> - shared code repository (e.g. on github)
+> - push code frequently (every day)
+> - automated builds and tests after each commit
+> - immediate feedback if something doesn't work anymore
+> - however, can be time consuming and might be overkill for small or solo projects
 
 # Github Actions for CI
 
-* supports mac-OS, windows, linux, docker containers
-* integration with github, so no seperate setup and authentification
-* free for open source, academic or educational repos
-* 20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow
-* self host to remove the per job limit
-* very easy to setup with R using the <code>usethis</code> package
+> - supports mac-OS, windows, linux, docker containers
+> - integration with github, so no separate setup and authentication
+> - free for open source, academic or educational repos
+> - 20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow
+> - self host to remove the per job limit
+> - very easy to setup with R using the <code>usethis</code> package
+
+# Hands-on: Github Actions for CI
 
 # Reproducibility and Accessaiblity
 
