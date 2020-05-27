@@ -82,7 +82,7 @@ knitr::opts_chunk$set(echo = FALSE)
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
 
- # Testing
+# Testing
 
 ## Unit testing {.smaller}
 
@@ -105,8 +105,8 @@ knitr::opts_chunk$set(echo = FALSE)
 * Test-first philosophy: write the test first, then write the code to pass it
 * in R: <code>testthat</code> package (Hadley Wickham)
 
-## Continous integration (CI)
 
+## Continous integration (CI)
 
 <div class='left' style='float:left;width:48%'>
 > "If it hurts, do it more often" (Martin Fowler)
