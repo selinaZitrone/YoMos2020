@@ -234,18 +234,24 @@ build_binder()
 # 🤞🚀
 ```
 
-# Links and Further reading
+# Links and further reading
+
+### *The Turing Way* a very useful guide to reproducible data science
+https://the-turing-way.netlify.app/introduction/introduction.html
+
 ## Ropensci's reproducibility guide 
 https://ropensci.github.io/reproducibility-guide/
 
 ## Reasearch compendia
 
-### *A guide to making your data analysis more reproducible* (by Karthik Ram)
-http://inundata.org/talks/rstd19/#/
+### *A guide to making your data analysis more reproducible* (nice talk and more by Karthik Ram)
+https://github.com/karthik/rstudio2019
 
-### Webinar on research compendia
-https://youtu.be/g-W6fEv7Pck
+### *The Turing Way* guide's section on reseach compendia 
+https://the-turing-way.netlify.app/research_compendia/research_compendia.html
 
+### Ressources collection on research compendia
+https://research-compendium.science/
 
 ## Git and GitHub
 
@@ -266,9 +272,6 @@ https://www.youtube.com/watch?v=F3wZTDmHCFA
 * [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
 * [Examples](https://github.com/r-lib/actions) for Actions with R
 
-### Jim Hester (tidy developer) on how to use R with github actions, what is the difference between github actions, Travis CI and others, how to set up different workflows:
-https://resources.rstudio.com/rstudio-conf-2020/azure-pipelines-and-github-actions-jim-hester
-
 ### How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:
 https://www.r-bloggers.com/rendering-your-readme-with-github-actions/
 https://www.edwardthomson.com/blog/github_actions_advent_calendar.html
@@ -278,7 +281,7 @@ https://www.edwardthomson.com/blog/github_actions_advent_calendar.html
 * [Intro to unit testing in R](https://katherinemwood.github.io/post/testthat/)
 * Testing with [<code>testthat</code>](http://r-pkgs.had.co.nz/tests.html)
 
-## Holepunch package for R and Binder
+## Holepunch package for R and Binder (adds a live, on-demand RStudio server to your R project on GitHub/GitLab)
 https://karthik.github.io/holepunch/
 
 
