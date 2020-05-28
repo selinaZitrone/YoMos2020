@@ -20,6 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 > - automated testing (CI with GitHub actions)
 > - (holepunch)
 > - code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
+> - slides on [git@github.com:selinaZitrone/YoMos2020.git](git@github.com:selinaZitrone/YoMos2020.git)
 
 # Motivations for a better project organization and workflow
 > - Reproduciblity 🔃 (for you and others)
