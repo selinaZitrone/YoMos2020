@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 > - automated testing (CI with GitHub actions)
 > - (holepunch)
 > - code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
-> - slides on [git@github.com:selinaZitrone/YoMos2020.git](git@github.com:selinaZitrone/YoMos2020.git)
+> - slides on [https://selinazitrone.github.io/YoMos2020/index.html](https://selinazitrone.github.io/YoMos2020/index.html)
 
 # Motivations for a better project organization and workflow
 > - Reproduciblity 🔃 (for you and others)
@@ -70,7 +70,7 @@ knitr::opts_chunk$set(echo = FALSE)
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
   
-# Hands-on: initialize a rempository on GithHub from R-Studio
+# Hands-on: initialize a repository on GithHub from R-Studio
 
 # Automated testing
 ## What?
@@ -120,6 +120,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Hands-on: Github Actions for CI
 
-# Reproducibility and Accessaiblity
+# Reproducibility and Accessability
 
 [Holepunch](https://karthik.github.io/holepunch/)
