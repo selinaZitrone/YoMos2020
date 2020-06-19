@@ -6,7 +6,7 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(YoMos2020)
+devtools::load_all(".")
 ```
 # This is the temperature analysis
 ```{r}
