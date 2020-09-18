@@ -1,0 +1,16 @@
+name: "Clear, reproducible and robust R code"
+output_dir: "."
+navbar:
+  title: "Clear, reproducible and robust R code"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "How-To"
+      href: how_to.html
+    - text: "Presentation"
+      href: slidy_presentation.html
+    - icon: fa-github
+      href: https://github.com/selinaZitrone/YoMos2020
+
+
+
