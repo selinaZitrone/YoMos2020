@@ -1,7 +1,8 @@
 ---
+title: "Hello World"
 output: html_document
 ---
 
 This is a Test document
 This is a new line in the test document
-This is another new line in the test document
+This is another new line in the test document.
