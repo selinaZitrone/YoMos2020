@@ -20,3 +20,8 @@ jobs:
       - name: Commit results
         run: |
           git status
+          git add docs/presentation_files/test.html
+          git commit -m "Render test.html"
+          git push origin render_gh_pages:gh_pages
+          git status
+
