@@ -16,7 +16,7 @@ jobs:
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Render site
-        run: Rscript -e 'rmarkdown::render_site()'
+        run: Rscript -e 'rmarkdown::render("docs/presentation_files/test.Rmd")'
       - name: Commit results
         run: |
           git status
