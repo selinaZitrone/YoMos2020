@@ -3,3 +3,4 @@ output: html_document
 ---
 
 This is a Test document
+This is a new line in the test document
