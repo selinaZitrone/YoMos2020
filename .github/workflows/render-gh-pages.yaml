@@ -21,13 +21,19 @@ jobs:
         run: Rscript -e 'rmarkdown::render_site("docs/")'
       - name: Commit results
         run: |
+          # commit rendered files to master
           git add . || echo "no files to add"
           git commit -m "Re-build gh-pages on master"
+          # checkout gh-pages branch and delete old rendered files
           git checkout gh-pages
           rm -r *
+          # get new rendered files from master
           git checkout master _site
+          # move everything from subdirectory to root dir
           mv _site/* .
+          # remove the empty subdirectory
           rm -r _site
-          git add .
+          # commit and push the new rendered files to gh-pages
+          git add . || echo "no files to add"
           git commit -m "Re-build gh-pages"
           git push origin gh-pages
