@@ -23,10 +23,11 @@ jobs:
         run: |
           git add . || echo "no files to add"
           git commit -m "Re-build gh-pages on master"
-          git checkout gh_pages
+          git checkout gh-pages
+          rm -r *
           git checkout master _site
           mv _site/* .
           rm -r _site
           git add .
           git commit -m "Re-build gh-pages"
-          git push origin gh_pages
+          git push origin gh-pages
