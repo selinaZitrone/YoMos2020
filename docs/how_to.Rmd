@@ -332,7 +332,8 @@ https://karthik.github.io/holepunch/
 
 
 ## Scientific publications
-James, Justin. 2012. “10 Classic Mistakes That Plague Software Development Projects.” 2012. https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/.
+Jame
+s, Justin. 2012. “10 Classic Mistakes That Plague Software Development Projects.” 2012. https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/.
 
 Scheller, Robert M, Brian R Sturtevant, Eric J Gustafson, Brendan C Ward, and David J Mladenoff. 2010. “Increasing the Reliability of Ecological Models Using Modern Software Engineering Techniques.” Frontiers in Ecology and the Environment 8 (5): 253–60. https://doi.org/10.1890/080141.
 
