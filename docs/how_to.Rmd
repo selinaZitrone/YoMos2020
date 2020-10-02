@@ -250,7 +250,7 @@ usethis::use_github_actions()
 
 This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `use_github_actions()` function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package. 
 
-If you want add other actions that already are available (e.g. from the GitHub repository [r-lib/actions](https://github.com/r-lib/actions)) you can do the following:
+If you want to add other actions that already are available (e.g. from the GitHub repository [r-lib/actions](https://github.com/r-lib/actions)) you can do the following:
 
 ```r
 usethis::use_github_action("render-readme.yaml")
