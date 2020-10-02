@@ -75,7 +75,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Automated testing
 ## What?
-> - *unit tests* functions that run a small amount of code: "units"
+> - 
+*unit tests* functions that run a small amount of code: "units"
 > - input: defined and fixed
 > - compares output with an expected output
 > - returns true/false
