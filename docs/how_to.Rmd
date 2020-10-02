@@ -123,6 +123,7 @@ output: html_document
 </pre></code>
 
 ### Document your function and data with roxygen
+
 You can document your functions and data using the package [`roxygen2`](https://roxygen2.r-lib.org/articles/roxygen2.html). It that allows you to describe your functions in the same place where you define them. Roxygen2 will then automatically generate `.Rd` files in the `/man` folder, update the `NAMESPACE` if you import or export functions and update the `DESCRIPTION` file.
 
 To use roxygen2 to create the documentation of your research compendium, you first need to configure the build tools.
