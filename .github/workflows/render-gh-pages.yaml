@@ -21,9 +21,9 @@ jobs:
         run: Rscript -e 'rmarkdown::render_site("docs/")'
       - name: Commit results
         run: |
-          # commit rendered files to master
+          # commit rendered files to render_gh_pages
           git add . || echo "no files to add"
-          git commit -m "Re-build gh-pages on master"
+          git commit -m "Re-build gh-pages on render_gh_pages"
           # checkout gh-pages branch and delete old rendered files
           git checkout gh-pages-test
           # Check if the directory is empty, if not delete everything
@@ -33,8 +33,8 @@ jobs:
             echo "Delete old files"
             rm -r *
           fi
-          # get new rendered files from master
-          git checkout master _site
+          # get new rendered files from render_gh_pages
+          git checkout render_gh_pages _site
           # move everything from subdirectory to root dir
           mv _site/* .
           # remove the empty subdirectory
