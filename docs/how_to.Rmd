@@ -17,6 +17,7 @@ Before you start the how-to, please check that you have the following things set
   + find a good step by step guide [here](https://happygitwithr.com/github-pat.html#github-pat).
 
 ## Step 1: Create an empty R-package
+
 Create a new R-package in R-Studio: 
 
 - File -> New Package -> New Directory
