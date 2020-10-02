@@ -26,7 +26,13 @@ jobs:
           git commit -m "Re-build gh-pages on master"
           # checkout gh-pages branch and delete old rendered files
           git checkout gh-pages-test
-          rm -r *
+          # Check if the directory is empty, if not delete everything
+          if [ -n "$(ls)"]; then
+            echo "Empty directory, nothing to remove"
+          else
+            echo "Delete old files"
+            rm -r *
+          fi
           # get new rendered files from master
           git checkout master _site
           # move everything from subdirectory to root dir
