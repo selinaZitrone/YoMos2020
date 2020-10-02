@@ -529,7 +529,7 @@ git commit -m &quot;added unit tests for printMean function&quot;</code></pre>
 <p>Then create the basic file structure needed to set up your actions workflow by calling</p>
 <pre class="r"><code>usethis::use_github_actions()</code></pre>
 <p>This creates a <code>.github</code> folder, in which you find a <code>.gitignore</code> file and a <code>/workflows</code> folder. In this folder you can store all your GitHub actions in <code>.yaml</code> file format. The <code>use_github_actions()</code> function automatically added a first GitHub action called <code>R-CMD-check.yaml</code>. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package.</p>
-<p>If you want add other actions that already are available (e.g. from the GitHub repository <a href="https://github.com/r-lib/actions">r-lib/actions</a>) you can do the following:</p>
+<p>If you want to add other actions that already are available (e.g. from the GitHub repository <a href="https://github.com/r-lib/actions">r-lib/actions</a>) you can do the following:</p>
 <pre class="r"><code>usethis::use_github_action(&quot;render-readme.yaml&quot;)</code></pre>
 <p>This adds the respective yaml-file to <code>./github/workflows</code>. Of course you can also write your own actions and simply add them to the /workflows folder.</p>
 </div>
