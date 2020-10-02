@@ -13,6 +13,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 # Workshop overview
+
 ## Three main topics
 
 > - research compendia
