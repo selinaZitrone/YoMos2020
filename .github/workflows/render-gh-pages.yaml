@@ -35,20 +35,13 @@ jobs:
             echo "Delete old files"
             rm -r *
           fi
-          echo "Directory after Deleting"
-          ls
           # get new rendered files from render_gh_pages
           git checkout render_gh_pages docs/_site
-          echo "Directory after checkout"
-          ls
           # move everything from subdirectory to root dir
           mv docs/_site/* .
-          echo "directory after move"
-          ls
           # remove the empty subdirectory
           rm -r docs/_site
           # commit and push the new rendered files to gh-pages
-          git status
           git add . || echo "no files to add"
           git commit -m "Re-build gh-pages"
           git push origin gh-pages-test
