@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Sebastian Hanß and Selina Baldauf" />
+  <title>Clear, reproducible and robust R code</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+              </style>
+  <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+  <link href="site_libs/slidy-2/styles/slidy.css" rel="stylesheet" />
+  <script src="site_libs/slidy-2/scripts/slidy.js"></script>
+  <script src="site_libs/slidy_shiny-1/slidy_shiny.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="presentation_style.css" />
+</head>
+<body>
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Clear, reproducible and robust R code</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="how_to.html">How-To</a>
+</li>
+<li>
+  <a href="slidy_presentation.html">Presentation</a>
+</li>
+<li>
+  <a href="https://github.com/selinaZitrone/YoMos2020">
+    <span class="fa fa-github"></span>
+
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<div class="slide titlepage">
+  <h1 class="title">Clear, reproducible and robust R code</h1>
+  <p class="author">
+Sebastian Hanß and Selina Baldauf
+  </p>
+  <p class="date">02 October, 2020</p>
+</div>
+<div id="workshop-overview" class="slide section level1">
+<h1>Workshop overview</h1>
+<h2 id="three-main-topics">Three main topics</h2>
+<ul class="incremental">
+<li>research compendia</li>
+<li>version control (Git)</li>
+<li>automated testing (CI with GitHub actions)</li>
+<li>(holepunch)</li>
+<li>code on github. <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
+<li>slides on <a href="https://selinazitrone.github.io/YoMos2020/index.html">https://selinazitrone.github.io/YoMos2020/index.html</a></li>
+</ul>
+</div>
+<div id="motivations-for-a-better-project-organization-and-workflow" class="slide section level1">
+<h1>Motivations for a better project organization and workflow</h1>
+<ul class="incremental">
+<li>Reproduciblity 🔃 (for you and others)</li>
+<li>Reliablity 🏋 (will it work again?)</li>
+<li>Re-usablity ⚙ (don’t re-invent the wheel)</li>
+<li>Visiblity 🔍 (let others see and use your work)</li>
+</ul>
+</div>
+<div id="how-use-a-research-compendium" class="slide section level1">
+<h1>How? Use a research compendium!</h1>
+<p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
+</div>
+<div id="what-is-a-research-compendium" class="slide section level1">
+<h1>What <em>is</em> a research compendium?</h1>
+<p><a href="https://the-turing-way.netlify.app/research_compendia/research_compendia.html">Excursion to the TTW website</a></p>
+</div>
+<div class="slide section level1">
+
+<div class="figure">
+<img src="images/research_compendium.PNG" style="width:30.0%" alt="" />
+<p class="caption">Mavick et al. 2018</p>
+</div>
+<ul>
+<li>It’s an 📦 R Package!</li>
+<li>packages generating similar project directory structures:
+<ul>
+<li>rrtools</li>
+<li>ProjectTemplate</li>
+<li>prodigenr</li>
+<li>workflowr</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<h2 id="advantages-of-using-r-packages">Advantages of using R Packages</h2>
+<ul>
+<li>benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)</li>
+<li>functions can be easily documented</li>
+</ul>
+</div>
+<div id="hands-on-create-a-research-compendium" class="slide section level1">
+<h1>Hands-on: Create a research compendium</h1>
+</div>
+<div id="version-control" class="slide section level1">
+<h1>Version control</h1>
+<p><img src="images/final.jpg" style="width:50.0%" /></p>
+</div>
+<div id="git-as-a-distributed-version-control-system-vcs" class="slide section level1">
+<h1>Git as a distributed version control system (VCS)</h1>
+<ul>
+<li>complete and long-term history of every file in your project
+<ul>
+<li>go back to specific versions of your project</li>
+</ul></li>
+<li>collaborate in teams
+<ul>
+<li>branching and merging</li>
+<li>tracability: each change is commented and can be traced back to a developer</li>
+</ul></li>
+<li>host your repository on remote server (GitHub, Bitbucket, GitLab, …)
+<ul>
+<li>open-source collaborative development</li>
+<li>visibility: get new collaborators, feedback, bug reports</li>
+</ul></li>
+</ul>
+</div>
+<div id="hands-on-initialize-a-repository-on-githhub-from-r-studio" class="slide section level1">
+<h1>Hands-on: initialize a repository on GithHub from R-Studio</h1>
+</div>
+<div id="automated-testing" class="slide section level1">
+<h1>Automated testing</h1>
+<h2 id="what">What?</h2>
+<ul class="incremental">
+<li><em>unit tests</em> functions that run a small amount of code: “units”</li>
+<li>input: defined and fixed</li>
+<li>compares output with an expected output</li>
+<li>returns true/false</li>
+</ul>
+</div>
+<div id="automated-testing-1" class="slide section level1">
+<h1>Automated testing</h1>
+<h2 id="why">Why?</h2>
+<ul class="incremental">
+<li>fewer bugs</li>
+<li>better code (needs to be <em>testable</em>)</li>
+<li>confidence and trust</li>
+</ul>
+<h3 id="how">How?</h3>
+<ul class="incremental">
+<li>write tests either before or after implementing your code</li>
+<li>when you found a bug: before fixing, write a test that would have detected it</li>
+<li>use a test framework, e.g. in R: <code>testthat</code> package (Hadley Wickham)</li>
+</ul>
+</div>
+<div id="hands-on-unit-tests" class="slide section level1">
+<h1>Hands-on: Unit tests</h1>
+</div>
+<div id="continous-integration-ci" class="slide section level1">
+<h1>Continous integration (CI)</h1>
+<blockquote>
+<p>“If it hurts, do it more often” (Martin Fowler)</p>
+</blockquote>
+<p><img src="images/pain_vs_time_ci.png" /></p>
+</div>
+<div id="continous-integration-ci-1" class="slide section level1">
+<h1>Continous integration (CI)</h1>
+<h2 id="idea">Idea</h2>
+<ul class="incremental">
+<li>shared code repository (e.g. on github)</li>
+<li>push code frequently (every day)</li>
+<li>automated builds and tests after each commit</li>
+<li>immediate feedback if something doesn’t work anymore</li>
+<li>however, can be time consuming and might be overkill for small or solo projects</li>
+</ul>
+</div>
+<div id="github-actions-for-ci" class="slide section level1">
+<h1>Github Actions for CI</h1>
+<ul class="incremental">
+<li>supports mac-OS, windows, linux, docker containers</li>
+<li>integration with github, so no separate setup and authentication</li>
+<li>free for open source, academic or educational repos</li>
+<li>20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow</li>
+<li>self host to remove the per job limit</li>
+<li>very easy to setup with R using the <code>usethis</code> package</li>
+</ul>
+</div>
+<div id="hands-on-github-actions-for-ci" class="slide section level1">
+<h1>Hands-on: Github Actions for CI</h1>
+</div>
+<div id="reproducibility-and-accessability" class="slide section level1">
+<h1>Reproducibility and Accessability</h1>
+<p><a href="https://karthik.github.io/holepunch/">Holepunch</a></p>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>
