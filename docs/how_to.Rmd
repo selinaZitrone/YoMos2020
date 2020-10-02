@@ -90,7 +90,7 @@ This will automatically include a `/data` folder in your package and add the dat
 ### Write an analysis function
 
 Save all the functions you need for your analysis in the `R/` folder.
-You can group related fuctions together in the same R-script but unrelated functions shout get their own script.
+You can group related functions together in the same R-script but unrelated functions shout get their own script.
 
 Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called myPrinterFunction.R
 
