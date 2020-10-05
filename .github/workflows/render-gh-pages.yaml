@@ -1,26 +1,48 @@
 on:
   push:
+    paths:
+      - docs/*
     branches:
-      - gh-pages
+      - render_gh_pages
 
 name: Render gh-pages
 
 jobs:
   render:
     name: Render gh-pages
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Render site
-        run: Rscript -e 'rmarkdown::render_site()'
+        run: Rscript -e 'rmarkdown::render_site("docs/")'
       - name: Commit results
         run: |
-          git checkout gh-pages
-          rm -r docs/presentation_files/
-          git add docs/* || echo "no files to add"
-          git commit docs/* -m 'Re-build gh-pages' || echo "No changes to commit"
-          git push origin gh-pages || echo "No changes to commit"
+          # commit rendered files to render_gh_pages
+          git add . || echo "no files to add"
+          git commit -m "Re-build gh-pages on render_gh_pages"
+          # checkout gh-pages branch and delete old rendered files
+          git checkout gh-pages-test
+          # Check if the directory is empty, if not delete everything
+          if [ -n "$(ls)"]; then
+            echo "Empty directory, nothing to remove"
+          else
+            echo "Delete old files"
+            rm -r *
+          fi
+          # get new rendered files from render_gh_pages
+          git checkout render_gh_pages docs/_site
+          # move everything from subdirectory to root dir
+          mv docs/_site/* .
+          # remove the empty subdirectory
+          rm -r docs/_site
+          # commit and push the new rendered files to gh-pages
+          git add . || echo "no files to add"
+          git commit -m "Re-build gh-pages"
+          git push origin gh-pages-test

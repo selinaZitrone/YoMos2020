@@ -1,0 +1,349 @@
+---
+title: "How-To"
+output: 
+  html_document:
+    toc: true
+    includes:
+      in_header: header.html
+---
+## Before we start
+
+Before you start the how-to, please check that you have the following things set up and running:
+
+- [GitHub Account](https://github.com/join)
+- download and install [git](https://git-scm.com/downloads) on your machine
+- install the following R-packages (if you don't have them already): `devtools, usethis, testthat`
+- add a PAT (personal access token) for GitHub to your .Renviron file.
+  + find a good step by step guide [here](https://happygitwithr.com/github-pat.html#github-pat).
+
+## Step 1: Create an empty R-package
+
+Create a new R-package in R-Studio: 
+
+- File -> New Package -> New Directory
+
+Give your package a name that is accepted as an R-package name:
+
+- only ASCII letters, numbers and '.'
+- at least two characters
+- start with a letter
+- not end with '.'
+
+Make sure to check the git checkmark to initialize the package with a git repository and a .gitignore file.
+
+If you accidentally created the package without a git repository you can either use 
+
+```r
+usethis::use_git()
+```
+or you can initialize an empty git repository from the terminal
+
+```sh
+git init
+```
+During the entire package building process you can frequentyl check your package by hitting the `Check` button in the `Build` panel or by calling
+
+```r
+rcmdcheck::rcmdcheck()
+```
+Also, you can hit the `Install and Restart` button in the `Build` panel to see if your packages installs and loads correctly.
+
+## Step 2: Create your research compendium
+
+### Fill out the DESCRIPTION  file
+
+Fill out the fields of the description file, e.g.
+
+```r
+Package: YoMos2020
+Type: Package
+Title: Analysis of temperature data from somewhere
+Version: 0.1.0
+Author: Selina Baldauf
+Maintainer: Selina Baldauf <selina.baldauf@fu-berlin.de>
+Description: Analysis of temperature data from our research project xyz presented in manuscript abc.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+```
+
+### Add a license
+
+If you want to add a specific license to your project you can use different functions from the `usethis` package, e.g. for the GNU General Public License 3 (gpl-3) license you can use
+
+```r
+usethis::use_gpl3_license(name = "Selina Baldauf")
+```
+This adds LICENSE.md with your name in it to the project and automatically updates the license field in the DESCRIPTION file.
+
+### Add data to your compendium
+
+To add data to your compendium, you can either create a `/data` folder and import data (e.g. as csv) or, if you want your data in .Rda format (practical because it gets automatically loaded with your package) you can do the following:
+
+```r
+# create a dummy dataset for temperature measurements
+dummyTempData <- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
+usethis::use_data(dummyTempData)
+```
+This will automatically include a `/data` folder in your package and add the data as `.Rda` to your package.
+
+### Write an analysis function
+
+Save all the functions you need for your analysis in the `R/` folder.
+You can group related functions together in the same R-script but unrelated functions shout get their own script.
+
+Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called myPrinterFunction.R
+
+```r
+# a simple printer function for the mean of a vector
+printMean <- function(x){
+  print(paste0("The mean value is ", mean(x, na.rm = T), "!"))
+}
+```
+### Add an analysis script to your compendium
+
+Add an `/analysis` folder with an Rmarkdown document to your compendium.
+The script can look like this: 
+
+<pre><code>
+---
+title: "My analysis"
+author: "Selina Baldauf"
+date: "5/25/2020"
+output: html_document
+---
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+#library(finalPackage)
+```
+# This is the temperature analysis
+```{r}
+#printMean(dummyTempData$temp)
+```
+</pre></code>
+
+### Document your function and data with roxygen
+
+You can document your functions and data using the package [`roxygen2`](https://roxygen2.r-lib.org/articles/roxygen2.html). It that allows you to describe your functions in the same place where you define them. Roxygen2 will then automatically generate `.Rd` files in the `/man` folder, update the `NAMESPACE` if you import or export functions and update the `DESCRIPTION` file.
+
+To use roxygen2 to create the documentation of your research compendium, you first need to configure the build tools.
+In order to do this navigate to `Build` -> `Configure Build Tools` and hit the checkmark at `Generate documentation with Roxygen`. Click `Configure` and make sure all the checkmarks are checked so that roxygen generates all help files and the documentation is rebuild everytime your install and restart the package ().
+
+Note: in order for roxygen to generate your documentation files, you first need to delete any old files which were not generated by roxygen because by default roxygen-generated files cannot overwrite non-roxygen-generated files. If you forget to do this, you will get a warning when your rebuild or check your package, so be careful to read the warnings if there are any.
+
+To create a documentation for our simple `printMean` function, navigate to the respective R-script containing the function and add a roxygen skeleton. You can do this either by nagivating to `Code` -> `Insert Roxygen Skeleton` or by using the respective keyboard shortcut.
+
+Now you can fill out the skeleton by adding all the information about the function that you want to appear in the help file for that function using tags. E.g. your roxygen description could look like the following:
+
+```{r eval=F}
+#' @title Print mean values in a sentence
+#' @description This function calculates the mean of its input and prints it into a sentence. The function
+#' is called in the analysis.Rmd file
+#' @export
+#' @param x A vector of numeric values of which to calculate the mean
+#' 
+#' @return The output of \code{\link{print}} after calculating the \code{\link{mean}} and pasting it
+#' into a sentence
+#'
+#' @examples
+#' printMean(c(1,2,3))
+#'
+```
+
+If you now rebuild your package, you will find an automatically generated read only file `printMean.Rd` in the `/man` folder of your research compendium. If you now call `?printMean` (after installing and restarting the package) you open the help file of your function just like with any other R-function. 
+
+To document the datasets in your compendium open up a new R-script and describe your data set before specifying the name of your dataset as a string. The description file for our data can look like the following:
+
+```{r eval = F}
+#' @title Temperature data from place X
+#' @description Temperature measurements (2m height) measured on March 21st, 2009 at place x
+#' @format A \code{data.frame} with 2 columns, which are:
+#' \describe{
+#' \item{id}{id of the sensor}
+#' \item{temp}{temperature in °C}
+#'}
+"dummyTempData"
+```
+
+Save this R-Script in the `/R` folder and roxygen will automatically generate a `dummyTempData.Rd` file when you rebuild the package. Now you can check the help page of your data by calling `?dummyTempData`.
+
+Please see [here](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html) for a quick reference on the most common tags that you can use in your roxygen skeleton to describe data or functions.
+
+## Step 3: Version control with git and GitHub
+
+### Commit all your changes
+
+In the `Git` tab (next to `Build`) you can first stage all created files and then commit them or you can do it in the terminal:
+
+```sh
+git add *
+git commit -m "initial commit"
+```
+
+### Make your compendium a Github project
+
+For this, you can conveniently use the `usethis` package:
+
+```r
+usethis::use_github()
+```
+This will initialize a new GitHub repository from your compendium and will add the GitHub url to the DESCRIPTION file. 
+
+If you do this for the first time it is possible that you run into some issues setting up the remote repository on GitHub because you need to setup some things first. But the `usethis` package will help you through it with its error messages.
+Make sure that you have a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file.
+
+## Add a readme to your github project
+
+Add a README.md to the package that will be rendered on the webpage of your GitHub repository in the readme section by calling
+
+```r
+usethis::use_readme_md()
+```
+You can also do this on the GitHub webpage of your repository.
+
+## Step 4: Unit testing
+
+First, create the infrastructure needed by the `thestthat` package.
+
+```r
+usethis::use_testthat()
+```
+
+This creates a `/tests` folder which contains a `/testthat` folder and an R-script called `testthat.R`. You do not need to change anything in the testthat.R script. This is called e.g. by `rcmdcheck::rcmdcheck()` to run all the tests you created in your package. The `/testthat` folder is the place to store the R-scripts with the actual tests. 
+Also, the `testthat` package ist now added to the Suggests field in your DESCRIPTION file.
+
+Now we can add a test script that tests our simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling
+
+```r
+usethis::use_test() # creates a basic test file for the currently opened R-Script
+```
+The testfile can be found in `/tests/testthat`. Testfiles have to be named test-xyz.R in order to be found (`usethis::use_test()` does the naming for you - so you don't have to worry about it).
+
+We can write a very simple test function for our printMean function that checks if it works correctly
+
+```r
+test_that("printer function works", {
+  expect_equal(printMean(c(1,2,3)), "The mean value is 2!")
+})
+```
+If you run the test and you don't get any errors in the console, then it means that your test was successful. If not you will get a helpful error message telling you what went wrong. 
+
+If you want to run all the tests from your package at once to see if they pass your can run
+
+```r
+devtools::test()
+```
+## Step 5: CI with GitHub Actions
+
+Before we start, it's time to commit all the changes to our package. Use the `Git`panel or run
+
+```sh
+git add *
+git commit -m "added unit tests for printMean function"
+```
+
+Then create the basic file structure needed to set up your actions workflow by calling
+
+```r
+usethis::use_github_actions()
+```
+
+This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `use_github_actions()` function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package. 
+
+If you want to add other actions that already are available (e.g. from the GitHub repository [r-lib/actions](https://github.com/r-lib/actions)) you can do the following:
+
+```r
+usethis::use_github_action("render-readme.yaml")
+```
+This adds the respective yaml-file to `./github/workflows`.
+Of course you can also write your own actions and simply add them to the /workflows folder.
+
+# Add RStudio server with `holepunch`
+There is a nice intro for holepunch: [Getting started with holepunch](https://karthik.github.io/holepunch/articles/getting_started.html).
+The code below is copied'n'pasted from the [holepunch repo's readme](https://github.com/karthik/holepunch).
+```r
+remotes::install_github("karthik/holepunch")
+
+write_dockerfile(maintainer = "your_name") 
+# To write a Dockerfile. It will automatically pick the date of the last 
+# modified file, match it to that version of R and add it here. You can 
+# override this by passing r_date to some arbitrary date
+# (but one for which a R version exists).
+
+generate_badge() # This generates a badge for your readme.
+
+# ----------------------------------------------
+# At this time 🙌 push the code to GitHub 🙌
+# ----------------------------------------------
+
+# And click on the badge or use the function below to get the build 
+# ready ahead of time.
+build_binder()
+# 🤞🚀
+```
+
+# Links and further reading
+
+### *The Turing Way* a very useful guide to reproducible data science
+https://the-turing-way.netlify.app/introduction/introduction.html
+
+## Ropensci's reproducibility guide 
+https://ropensci.github.io/reproducibility-guide/
+
+## Reasearch compendia
+
+### *A guide to making your data analysis more reproducible* (nice talk and more by Karthik Ram)
+https://github.com/karthik/rstudio2019
+
+### *The Turing Way* guide's section on reseach compendia 
+https://the-turing-way.netlify.app/research_compendia/research_compendia.html
+
+### Ressources collection on research compendia
+https://research-compendium.science/
+
+## Git and GitHub
+
+### How to use git and github with R and R-Studio
+https://happygitwithr.com/
+
+### Howto use Git branching
+https://nvie.com/posts/a-successful-git-branching-model/
+https://guides.github.com/introduction/flow/
+
+### Github actions
+https://help.github.com/en/actions/building-and-testing-code-with-continuous-integration/about-continuous-integration
+https://www.youtube.com/watch?v=F3wZTDmHCFA
+
+### CI with github actions
+
+* Jim Hester on [GitHub Actions with R](https://rstudio.com/resources/rstudioconf-2020/azure-pipelines-and-github-actions/)
+* [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
+* [Examples](https://github.com/r-lib/actions) for Actions with R
+
+### How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:
+https://www.r-bloggers.com/rendering-your-readme-with-github-actions/
+https://www.edwardthomson.com/blog/github_actions_advent_calendar.html
+
+## Unit testing
+
+* [Intro to unit testing in R](https://katherinemwood.github.io/post/testthat/)
+* Testing with [<code>testthat</code>](http://r-pkgs.had.co.nz/tests.html)
+
+## Holepunch package for R and Binder (adds a live, on-demand RStudio server to your R project on GitHub/GitLab)
+https://karthik.github.io/holepunch/
+
+
+## Scientific publications
+James, Justin. 2012. “10 Classic Mistakes That Plague Software Development Projects.” 2012. https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/.
+
+Scheller, Robert M, Brian R Sturtevant, Eric J Gustafson, Brendan C Ward, and David J Mladenoff. 2010. “Increasing the Reliability of Ecological Models Using Modern Software Engineering Techniques.” Frontiers in Ecology and the Environment 8 (5): 253–60. https://doi.org/10.1890/080141.
+
+Baxter, Susan M., Steven W. Day, Jacquelyn S. Fetrow, and Stephanie J. Reisinger. 2006. “Scientific Software Development Is Not an Oxymoron.” PLoS Computational Biology 2 (9): 0975–78. https://doi.org/10.1371/journal.pcbi.0020087.
+
+Merali, Zeeya. 2010. “Computational Science: ...Error.” Nature 467 (7317): 775–77. https://doi.org/10.1038/467775a.
+
+Passig, Kathrin, and Johannes Jander. 2013. Weniger Schlecht Programmieren. O’Reilly.
+
+Storer, Tim. 2017. “Bridging the Chasm: A Survey of Software Engineering Practice in Scientific Programming.” ACM Computing Surveys 50 (4). https://doi.org/10.1145/3084225.
+
+Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986.
