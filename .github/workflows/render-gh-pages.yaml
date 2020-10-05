@@ -2,8 +2,6 @@ on:
   push:
     paths:
       - docs/*
-    branches:
-      - render_gh_pages
 
 name: Render gh-pages
 
@@ -26,9 +24,9 @@ jobs:
         run: |
           # commit rendered files to render_gh_pages
           git add . || echo "no files to add"
-          git commit -m "Re-build gh-pages on render_gh_pages"
+          git commit -m "Re-build gh-pages on master"
           # checkout gh-pages branch and delete old rendered files
-          git checkout gh-pages-test
+          git checkout gh-pages
           # Check if the directory is empty, if not delete everything
           if [ -n "$(ls)"]; then
             echo "Empty directory, nothing to remove"
@@ -37,7 +35,7 @@ jobs:
             rm -r *
           fi
           # get new rendered files from render_gh_pages
-          git checkout render_gh_pages docs/_site
+          git checkout master docs/_site
           # move everything from subdirectory to root dir
           mv docs/_site/* .
           # remove the empty subdirectory
@@ -45,4 +43,4 @@ jobs:
           # commit and push the new rendered files to gh-pages
           git add . || echo "no files to add"
           git commit -m "Re-build gh-pages"
-          git push origin gh-pages-test
+          git push origin gh-pages
