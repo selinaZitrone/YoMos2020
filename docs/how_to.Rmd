@@ -62,7 +62,7 @@ During the entire package building process the `devtools` package is your friend
   + you have to do this once inthe beginning, afterwards `devtools::check()`{.R} will also build the documentation for you
 - install and load the package and restart R with Ctrl/Cmd + Shift + B
 
-## Step 2: Create your research compendium
+## Step 2: Create a research compendium
 
 ### Fill out the DESCRIPTION  file
 
@@ -100,7 +100,7 @@ usethis::use_gpl3_license()
 ```
 This adds LICENSE.md with your name (or the name(s) specified in the DESCRIPTION file) in it to the project and automatically updates the license field in `DESCRIPTION`.
 
-### Add data to your compendium
+### Add data
 
 A common place for datasets that you want to make available in your research compendium is the `/data` folder. The convention of R packages is that you should only story `.RData` files in there. 
 Everything that is not in `.RData` format can go in the `/data-raw` folder.
@@ -116,46 +116,7 @@ dummyTempData <- data.frame(id = 1:10, temp=rnorm(10, mean = 15, sd = 2))
 usethis::use_data(dummyTempData, overwrite = TRUE)
 ```
 
-#### Include large external data
-
-If you use an R package as a research compendium, you might also want to share large datasets along with it. The problem is, that you cannot manage those large files anymore by tracking them with git and commiting directly to GitHub.
-However, GitHub allows you to attach up to 2 GB of files to each release of your project. The [`piggyback`](https://docs.ropensci.org/piggyback/articles/intro.html) package takes advantage of this and allows you to create GitHub releases, upload and download large datasets associated with your compendium.
-
-First, we simulate a large datafile by creating a dataset in our `data-raw` folder (if you have really large file you would not save them as .txt but rather compress them first).
-
-```r
-largeDataSet <- data.frame(id = 1:1e6, temp = rnorm(1e6,15,2))
-write.table(largeDataSet, "data-raw/largeDataSet.txt")
-```
-
-To use the `piggyback` package, you first need to install it on your machine with `install.packages("piggyback")`{.R}.
-To upload our dataset, we first need to create a new release on GitHub. The first release has to be created on GitHub, by clicking on `Create a new release`, giving it a Tag (e.g. v0.0.1) and a title. You will see that the release contains your source code as zip and as a tarball (.tar.gz).
-
-With piggyback you can always list your existing releases by running
-
-```r
-piggyback::pb_list()
-```
-To piggyback your dataset to your package, you simply have to run
-
-```r
-piggyback::pb_upload("data-raw/largeDataSet.txt")
-```
-Now you can find it attached to your latest release.
-
-If you want to use the large dataset in your package for the analysis or to generate the report, you can write a function to download the data using `piggyback::pb_download`{.R}. Just create a new file `loadData.R` in your `/R` directory and add the following function.
-
-```r
-loadData <- function(){
-  piggyback::pb_download(repo = "selinaZitrone/YoMos2020")
-}
-```
-
-If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a `/data-raw` folder. Now the data can be accessed by all the package functions. Have a look at `?piggyback::pb_download`{.R} to see which parameters you can specify. You don't have to download all the assets and you can also chose which version of the release should be used for the download.
-
-You can also create new releases directly from `piggiback` and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the [piggyback documentation](https://docs.ropensci.org/piggyback/articles/intro.html).
-
-### Write an analysis function
+### Add an analysis function
 
 Save all the functions you need for your analysis in the `R/` folder. You can group related functions together in the same R-script but unrelated functions should go in separate scripts.
 Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called printMean.R. To create the script, you can conveniently use `usethis::use_r("printMean")`{.R} which will create, save and open the script for you. 
@@ -167,29 +128,8 @@ printMean <- function(x){
   print(paste0("The mean value is ", mean(x, na.rm = T), "!"))
 }
 ```
-### Add an analysis script to your compendium
 
-Add an `/analysis` folder with an rmarkdown document `report.Rmd` to your compendium.
-Depending on the type of report you want to share you have to edit the yaml header of your report. It can e.g. look something like this: 
-
-<!-- <pre><code> -->
-<!-- --- -->
-<!-- title: "Temperature Analyis" -->
-<!-- author: "Selina Baldauf" -->
-<!-- date: "`r format(Sys.time(), '%d %B, %Y')`" -->
-<!-- output: html_document -->
-<!-- --- -->
-<!-- ```{r setup, include=FALSE} -->
-<!-- #knitr::opts_chunk$set(echo = TRUE) -->
-<!-- #library(YoMos2020) -->
-<!-- ``` -->
-<!-- # This is the temperature analysis -->
-<!-- ```{r} -->
-<!-- #printMean(dummyTempData$temp) -->
-<!-- ``` -->
-<!-- </pre></code> -->
-
-### Document your function and data with roxygen
+### Document function and data with roxygen2
 
 You can document your functions and data using the package [`roxygen2`](https://roxygen2.r-lib.org/articles/roxygen2.html). This allows you to describe your functions in the same place where you define them. Roxygen2 will automatically generate `.Rd` files in the `/man` folder, update the `NAMESPACE` if you import or export functions and update the `DESCRIPTION` file.
 The basic workflow is:
@@ -236,9 +176,29 @@ If you now run `devtools::document()`{.R} or rebuild your package, you will find
 
 Please also have a look at the [conventions and guidelines](https://r-pkgs.org/man.html#roxygen-comments) on roxygen2-documentation the quick reference of the [most common tags](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html).
 
+### Add an analysis script
+
+Add an `/analysis` folder with an rmarkdown document `report.Rmd` to your compendium.
+Depending on the type of report you want to share you have to edit the yaml header of your report. It can e.g. look something like this: 
+
+<!-- --- -->
+<!-- title: "Temperature Analyis" -->
+<!-- author: "Selina Baldauf" -->
+<!-- date: "`r format(Sys.time(), '%d %B, %Y')`" -->
+<!-- output: html_document -->
+<!-- --- -->
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set(echo = TRUE) -->
+<!-- library(YoMos2020) -->
+<!-- ``` -->
+<!-- # This is the temperature analysis -->
+<!-- ```{r} -->
+<!-- printMean(dummyTempData$temp) -->
+<!-- ``` -->
+
 ## Step 3: Version control with git and GitHub
 
-### Commit all your changes
+### Commit all changes
 
 In the `Git` tab (next to `Build`) you can first stage all created files and then commit them or you can do it in the terminal:
 
@@ -247,7 +207,7 @@ git add .
 git commit -m "First package version"
 ```
 
-### Make your compendium a Github repository
+### Make the compendium a GitHub repository
 
 For this, you can conveniently use the `usethis` package:
 
@@ -259,7 +219,7 @@ This will initialize a new GitHub repository from your compendium and will add t
 If you do this for the first time it is possible that you run into some issues because you might not have set up everything correctly, yet. But the `usethis` package will help you through all the steps with its error messages.
 One thing you definitely need for this step to work is a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file. Check if you have one or create one with `usethis::browse_github_token()`{.R}.
 
-## Add a readme to your github project
+### Add a readme to your github project
 
 Add a README.md to your package that will be rendered on the webpage of your GitHub repository.
 
@@ -268,6 +228,45 @@ usethis::use_readme_md()
 ```
 In there, you can describe your package and add some information on how to download it and how to get started with the package.
 You can also do this on the GitHub webpage of your repository.
+
+## Brief digression: Include large external data sets with `piggyback`
+
+If you use an R package as a research compendium, you might also want to share large datasets along with it. The problem is, that you cannot manage those large files anymore by tracking them with git and commiting directly to GitHub.
+However, GitHub allows you to attach up to 2 GB of files to each release of your project. The [`piggyback`](https://docs.ropensci.org/piggyback/articles/intro.html) package takes advantage of this and allows you to create GitHub releases, upload and download large datasets associated with your compendium.
+
+First, we simulate a large datafile by creating a dataset in our `data-raw` folder (if you have really large file you would not save them as .txt but rather compress them first).
+
+```r
+largeDataSet <- data.frame(id = 1:1e6, temp = rnorm(1e6,15,2))
+write.table(largeDataSet, "data-raw/largeDataSet.txt")
+```
+
+To use the `piggyback` package, you first need to install it on your machine with `install.packages("piggyback")`{.R}.
+To upload our dataset, we first need to create a new release on GitHub. The first release has to be created on GitHub, by clicking on `Create a new release`, giving it a Tag (e.g. v0.0.1) and a title. You will see that the release contains your source code as zip and as a tarball (.tar.gz).
+
+With piggyback you can always list your existing releases by running
+
+```r
+piggyback::pb_list()
+```
+To piggyback your dataset to your package, you simply have to run
+
+```r
+piggyback::pb_upload("data-raw/largeDataSet.txt")
+```
+Now you can find it attached to your latest release.
+
+If you want to use the large dataset in your package for the analysis or to generate the report, you can write a function to download the data using `piggyback::pb_download`{.R}. Just create a new file `loadData.R` in your `/R` directory and add the following function.
+
+```r
+loadData <- function(){
+  piggyback::pb_download(repo = "selinaZitrone/YoMos2020")
+}
+```
+
+If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a `/data-raw` folder. Now the data can be accessed by all the package functions. Have a look at `?piggyback::pb_download`{.R} to see which parameters you can specify. You don't have to download all the assets and you can also chose which version of the release should be used for the download.
+
+You can also create new releases directly from `piggiback` and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the [piggyback documentation](https://docs.ropensci.org/piggyback/articles/intro.html).
 
 ## Step 4: Unit testing
 
@@ -278,12 +277,12 @@ usethis::use_testthat()
 ```
 
 This creates a `/tests` folder which contains a `/testthat` folder and an R-script called `testthat.R`. You do not need to change anything in the testthat.R script. This is called e.g. by `rcmdcheck::rcmdcheck()`{.R} to run all the tests you created in your package. The `/testthat` folder is the place to store the R-scripts with the actual tests. 
-Also, the `testthat` package ist now added to the Suggests field in your DESCRIPTION file.
+Also, the `testthat` package ist now added to the Suggests field in `DESCRIPTION`.
 
-Now we can add a test script that tests our simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling
+Now you can add a test script that tests your simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling
 
 ```r
-usethis::use_test() # creates a basic test file for the currently opened R-Script
+usethis::use_test()
 ```
 The testfile can be found in `/tests/testthat`. Testfiles have to be named test-xyz.R in order to be found (`usethis::use_test()`{.R} does the naming for you - so you don't have to worry about it).
 
@@ -303,20 +302,20 @@ devtools::test()
 ```
 ## Step 5: CI with GitHub Actions
 
-Before we start, it's time to commit all the changes to our package. Use the `Git`panel or run
+Before we start, it's time to commit all the changes to our package. Use the `Git` panel or run
 
 ```sh
-git add *
-git commit -m "added unit tests for printMean function"
+git add .
+git commit -m "Add unit tests for printMean function"
 ```
 
-Then create the basic file structure needed to set up your actions workflow by calling
+Then create the basic file structure needed to set up a workflow by calling
 
 ```r
 usethis::use_github_actions()
 ```
 
-This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `usethis::use_github_actions()`{.R} function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package. 
+This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `usethis::use_github_actions()`{.R} function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make sure that new code does not break the package. 
 
 If you want to add other actions that already are available (e.g. from the GitHub repository [r-lib/actions](https://github.com/r-lib/actions)) you can do the following:
 
@@ -327,8 +326,10 @@ This adds the respective yaml-file to `./github/workflows`.
 Of course you can also write your own actions and simply add them to the /workflows folder.
 
 # Add RStudio server with `holepunch`
+
 There is a nice intro for holepunch: [Getting started with holepunch](https://karthik.github.io/holepunch/articles/getting_started.html).
 The code below is copied'n'pasted from the [holepunch repo's readme](https://github.com/karthik/holepunch).
+
 ```r
 remotes::install_github("karthik/holepunch")
 
@@ -350,13 +351,17 @@ build_binder()
 # 🤞🚀
 ```
 
+[*Be carful here: Since October 2020, GitHub has renamed its default branch for repositories from master to main. If you have a repository with main instead of master as default branch, holepunch will throw an error when trying to connect Binder to your GitHub repository. If this happens make sure that your replace `master` with `main` in the `.binder/Dockerfile` URL and in the URL used in the Readme badge*]
+
 # Some more tips
 
 - You can use `devtools::spell_check()`{.R} to test your entire package for spelling errors. This is very useful if you have reports or other text intensive files in there. By default, the spell check will be for American English. However, you can change the langauage by adding a `Language` field to your `DESCRIPTION` file.
 
-- If you want to write a new function and generate the corresponding R script in the `/R` directory, you can conveniently call `usethis::use_r("functionName")`{.R}is will create a file `functionName.R` ind the `/R` directory and open it for you. 
+- If you want to write a new function and generate the corresponding R script in the `/R` directory, you can conveniently call `usethis::use_r("functionName")`{.R}. This will create a file `functionName.R` ind the `/R` directory and open it for you. 
 
-# Links and further reading
+# Li- Use the [`goodpractice`](https://github.com/MangoTheCat/goodpractice) package to further test your package for parts which can be improved. Running `goodpractice::gp()`.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your `NAMESPACE`, ...
+
+nks and further reading
 
 ### *The Turing Way* a very useful guide to reproducible data science
 https://the-turing-way.netlify.app/introduction/introduction.html
@@ -399,7 +404,8 @@ https://www.youtube.com/watch?v=F3wZTDmHCFA
 * [Getting started](https://help.github.com/en/actions/getting-started-with-github-actions) with GitHub Actions
 * [Examples](https://github.com/r-lib/actions) for Actions with R
 
-### How to use an .Rmd document as Readme in github and render it automatically with associated figures on push:
+### How to use an .Rmd document as Readme in github and render it automatically
+
 https://www.r-bloggers.com/rendering-your-readme-with-github-actions/
 https://www.edwardthomson.com/blog/github_actions_advent_calendar.html
 
