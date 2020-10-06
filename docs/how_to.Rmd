@@ -7,6 +7,10 @@ output:
       in_header: header.html
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 ## Before we start
 
 Before you start the how-to, please check that you have the following things set up and running:
