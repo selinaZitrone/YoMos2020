@@ -4,15 +4,18 @@
 \name{dummyTempData}
 \alias{dummyTempData}
 \title{Temperature data from place X}
-\format{A \code{data.frame} with 2 columns, which are:
+\format{
+A \code{data.frame} with 2 columns, which are:
 \describe{
 \item{id}{id of the sensor}
 \item{temp}{temperature in °C}
-}}
+}
+}
 \usage{
 dummyTempData
 }
 \description{
-Temperature measurements (2m height) measured on March 21st, 2009 at place x
+Temperature measurements (2m height)
+    measured on March 21st, 2009 at place x
 }
 \keyword{datasets}
