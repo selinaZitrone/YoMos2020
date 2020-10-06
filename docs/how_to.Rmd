@@ -21,7 +21,7 @@ Before you start the how-to, please check that you have the following things set
 - install the following R-packages (if you don't have them already): `devtools, usethis, testthat`
 - add a PAT (personal access token) for GitHub to your .Renviron file.
   + find a good step by step guide [here](https://happygitwithr.com/github-pat.html#github-pat)
-  + or run `usethis::browse_github_token()`{.R} in the console for a step by step guide
+  + or run `usethis::browse_github_token()` in the console for a step by step guide
 
 ## Step 1: Create an empty R-package
 
@@ -40,13 +40,13 @@ Give your package a name that is accepted as an R-package name:
 
 Make sure to check the `Create a git repository` checkmark to initialize the package with a git repository and a .gitignore file.
 
-If you accidentally created the package without a git repository you can either use `usethis::use_git()`{.R} or you can initialize an empty git repository from the terminal `git init`.
+If you accidentally created the package without a git repository you can either use `usethis::use_git()` or you can initialize an empty git repository from the terminal `git init`.
 
-### Option 2: Using `usethis::create_package()`{.R}
+### Option 2: Using `usethis::create_package()`
 
-Another possibility is to create a package by running `usethis::create_package("path/to/package/packageName")`{.R}. If you leave all the other function parameters at their default value, this command will create a new directory (if it doesn't already exist) and initialize an R package in that directory. Compared to the GUI method, this R package by default is already configured to using the `roxygen2` package for package documentation (see later) and will not have any dummy files in it.
+Another possibility is to create a package by running `usethis::create_package("path/to/package/packageName")`. If you leave all the other function parameters at their default value, this command will create a new directory (if it doesn't already exist) and initialize an R package in that directory. Compared to the GUI method, this R package by default is already configured to using the `roxygen2` package for package documentation (see later) and will not have any dummy files in it.
 
-However, with this method you have to seperately initialize a git repository by running `usethis::use_git()`{.R} or `git init` from the terminal.
+However, with this method you have to seperately initialize a git repository by running `usethis::use_git()` or `git init` from the terminal.
 
 ### During package development
 
@@ -54,12 +54,12 @@ Checkout the options that you have in the `Build` tab in RStudio. You can do eve
 
 During the entire package building process the `devtools` package is your friend and you can (and should)
 
-- frequentyl check your package by hitting the `Check` button in the `Build` panel or by calling `devtools::check()`{.R} (Keyboard shortcut Ctrl/Cmd + Shift + E)
-- test your functions after running `devtools::load_all()`{.R} 
+- frequentyl check your package by hitting the `Check` button in the `Build` panel or by calling `devtools::check()` (Keyboard shortcut Ctrl/Cmd + Shift + E)
+- test your functions after running `devtools::load_all()` 
   + this simulates installing and loading the package
   + much better than testing your functions in your current environment
-- build the documentation with `devtools::document()`{.R} (Ctrl/Cmd + Shift + D)
-  + you have to do this once inthe beginning, afterwards `devtools::check()`{.R} will also build the documentation for you
+- build the documentation with `devtools::document()` (Ctrl/Cmd + Shift + D)
+  + you have to do this once inthe beginning, afterwards `devtools::check()` will also build the documentation for you
 - install and load the package and restart R with Ctrl/Cmd + Shift + B
 
 ## Step 2: Create your research compendium
@@ -107,7 +107,7 @@ Everything that is not in `.RData` format can go in the `/data-raw` folder.
 
 #### Create a dataset with R
 
-First create a `/data-raw` folder by calling `usethis::use_data_raw()`{.R}. This will also create a `DATASET.R` file in which you can create your data and then add it to the `/data` folder as an `.RData` file. By default these files are compressed using `bzip2` but you can also chose other compressions by changing the `compress` parameter of the function.
+First create a `/data-raw` folder by calling `usethis::use_data_raw()`. This will also create a `DATASET.R` file in which you can create your data and then add it to the `/data` folder as an `.RData` file. By default these files are compressed using `bzip2` but you can also chose other compressions by changing the `compress` parameter of the function.
 Just put the following lines in the `DATASET.R` file and run them:
 
 ```r
@@ -128,7 +128,7 @@ largeDataSet <- data.frame(id = 1:1e6, temp = rnorm(1e6,15,2))
 write.table(largeDataSet, "data-raw/largeDataSet.txt")
 ```
 
-To use the `piggyback` package, you first need to install it on your machine with `install.packages("piggyback")`{.R}.
+To use the `piggyback` package, you first need to install it on your machine with `install.packages("piggyback")`.
 To upload our dataset, we first need to create a new release on GitHub. The first release has to be created on GitHub, by clicking on `Create a new release`, giving it a Tag (e.g. v0.0.1) and a title. You will see that the release contains your source code as zip and as a tarball (.tar.gz).
 
 With piggyback you can always list your existing releases by running
@@ -143,7 +143,7 @@ piggyback::pb_upload("data-raw/largeDataSet.txt")
 ```
 Now you can find it attached to your latest release.
 
-If you want to use the large dataset in your package for the analysis or to generate the report, you can write a function to download the data using `piggyback::pb_download()`{.R}. Just create a new file `loadData.R` in your `/R` directory and add the following function.
+If you want to use the large dataset in your package for the analysis or to generate the report, you can write a function to download the data using `piggyback::pb_download()`. Just create a new file `loadData.R` in your `/R` directory and add the following function.
 
 ```r
 loadData <- function(){
@@ -151,14 +151,14 @@ loadData <- function(){
 }
 ```
 
-If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a `/data-raw` folder. Now the data can be accessed by all the package functions. Have a look at `?piggyback::pb_download`{.R} to see which parameters you can specify. You don't have to download all the assets and you can also chose which version of the release should be used for the download.
+If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a `/data-raw` folder. Now the data can be accessed by all the package functions. Have a look at `?piggyback::pb_download` to see which parameters you can specify. You don't have to download all the assets and you can also chose which version of the release should be used for the download.
 
 You can also create new releases directly from `piggiback` and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the [piggyback documentation](https://docs.ropensci.org/piggyback/articles/intro.html).
 
 ### Write an analysis function
 
 Save all the functions you need for your analysis in the `R/` folder. You can group related functions together in the same R-script but unrelated functions should go in separate scripts.
-Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called printMean.R. To create the script, you can conveniently use `r usethis::use_r("printMean")`{.R} which will create, save and open the script for you. 
+Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called printMean.R. To create the script, you can conveniently use `r usethis::use_r("printMean")` which will create, save and open the script for you. 
 Add the following simple function:
 
 ```r
@@ -196,9 +196,9 @@ The basic workflow is:
 
 - insert a roxygen skeleton above your function 
   + either via the RStudio GUI `Code| Insert Roxygen Skeleton` or with the keyboard shortcut `Ctrl + Alt + Shift + R` (on Windows)
-- call `devtools::document()`{.R} to generate the documentation in the `/man` folder and update the `NAMESPACE`
+- call `devtools::document()` to generate the documentation in the `/man` folder and update the `NAMESPACE`
 
-[*If you created your package via the GUI and not with `usethis::create_package()`{.R} you need to configure the build tools to use roxygen2. In order to do this navigate to `Build` -> `Configure Build Tools` and hit the checkmark at `Generate documentation with Roxygen`. Click `Configure` and make sure all the checkmarks are checked so that roxygen generates all help files and the documentation is rebuild everytime your install and restart the package. Before this works correctly, you have to delete all alld documenation files that were not generated by roxygen.If you forget to do this, you will get a warning when your rebuild or check your package, so be careful to read the warnings if there are any. *]
+[*If you created your package via the GUI and not with `usethis::create_package()` you need to configure the build tools to use roxygen2. In order to do this navigate to `Build` -> `Configure Build Tools` and hit the checkmark at `Generate documentation with Roxygen`. Click `Configure` and make sure all the checkmarks are checked so that roxygen generates all help files and the documentation is rebuild everytime your install and restart the package. Before this works correctly, you have to delete all alld documenation files that were not generated by roxygen.If you forget to do this, you will get a warning when your rebuild or check your package, so be careful to read the warnings if there are any. *]
 
 To create a documentation for our simple `printMean` function, navigate to the respective R script and add a roxygen skeleton.
 
@@ -219,7 +219,7 @@ Now you can fill out the skeleton by adding all the information about the functi
 #'
 ```
 
-To document datasets in your compendium open up a new R script with the name of your dataset in the `/R` directory (in our case `dummyTempData.R`) (remember `usethis::use_r("dummyTempData")`{.R}?) and describe your data set before specifying the name of your dataset as a string. As a bare minimum this could look like the following:
+To document datasets in your compendium open up a new R script with the name of your dataset in the `/R` directory (in our case `dummyTempData.R`) (remember `usethis::use_r("dummyTempData")`?) and describe your data set before specifying the name of your dataset as a string. As a bare minimum this could look like the following:
 
 ```{r eval = F}
 #' @title Temperature data from place X
@@ -232,7 +232,7 @@ To document datasets in your compendium open up a new R script with the name of 
 "dummyTempData"
 ```
 
-If you now run `devtools::document()`{.R} or rebuild your package, you will find an automatically generated read only file `printMean.Rd` and `dummyTempData.Rd` in the `/man` folder of your research compendium. If you call `?printMean`{.R} or `?dummyTempData`{.R} (after installing and restarting) you open the help file just like with any other R function you know. 
+If you now run `devtools::document()` or rebuild your package, you will find an automatically generated read only file `printMean.Rd` and `dummyTempData.Rd` in the `/man` folder of your research compendium. If you call `?printMean` or `?dummyTempData` (after installing and restarting) you open the help file just like with any other R function you know. 
 
 Please also have a look at the [conventions and guidelines](https://r-pkgs.org/man.html#roxygen-comments) on roxygen2-documentation the quick reference of the [most common tags](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html).
 
@@ -257,7 +257,7 @@ usethis::use_github()
 This will initialize a new GitHub repository from your compendium and will add the url to `DESCRIPTION`. 
 
 If you do this for the first time it is possible that you run into some issues because you might not have set up everything correctly, yet. But the `usethis` package will help you through all the steps with its error messages.
-One thing you definitely need for this step to work is a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file. Check if you have one or create one with `usethis::browse_github_token()`{.R}.
+One thing you definitely need for this step to work is a [PAT (personal acces token)](https://happygitwithr.com/github-pat.html#github-pat) for GitHub added to your .Renviron file. Check if you have one or create one with `usethis::browse_github_token()`.
 
 ## Add a readme to your github project
 
@@ -277,7 +277,7 @@ First, create the infrastructure needed by the `thestthat` package.
 usethis::use_testthat()
 ```
 
-This creates a `/tests` folder which contains a `/testthat` folder and an R-script called `testthat.R`. You do not need to change anything in the testthat.R script. This is called e.g. by `rcmdcheck::rcmdcheck()`{.R} to run all the tests you created in your package. The `/testthat` folder is the place to store the R-scripts with the actual tests. 
+This creates a `/tests` folder which contains a `/testthat` folder and an R-script called `testthat.R`. You do not need to change anything in the testthat.R script. This is called e.g. by `rcmdcheck::rcmdcheck()` to run all the tests you created in your package. The `/testthat` folder is the place to store the R-scripts with the actual tests. 
 Also, the `testthat` package ist now added to the Suggests field in your DESCRIPTION file.
 
 Now we can add a test script that tests our simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling
@@ -285,7 +285,7 @@ Now we can add a test script that tests our simple printer function. To create a
 ```r
 usethis::use_test() # creates a basic test file for the currently opened R-Script
 ```
-The testfile can be found in `/tests/testthat`. Testfiles have to be named test-xyz.R in order to be found (`usethis::use_test()`{.R} does the naming for you - so you don't have to worry about it).
+The testfile can be found in `/tests/testthat`. Testfiles have to be named test-xyz.R in order to be found (`usethis::use_test()` does the naming for you - so you don't have to worry about it).
 
 We can write a very simple test function for our printMean function that checks if it works correctly
 
@@ -316,7 +316,7 @@ Then create the basic file structure needed to set up your actions workflow by c
 usethis::use_github_actions()
 ```
 
-This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `usethis::use_github_actions()`{.R} function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package. 
+This creates a `.github` folder, in which you find a `.gitignore` file and a `/workflows` folder. In this folder you can store all your GitHub actions in `.yaml` file format. The `usethis::use_github_actions()` function automatically added a first GitHub action called `R-CMD-check.yaml`. This action is triggered on every push or pull request on the master branch and checks your package to make that the commited code does not break the package. 
 
 If you want to add other actions that already are available (e.g. from the GitHub repository [r-lib/actions](https://github.com/r-lib/actions)) you can do the following:
 
@@ -352,9 +352,9 @@ build_binder()
 
 # Some more tips
 
-- You can use `devtools::spell_check()`{.R} to test your entire package for spelling errors. This is very useful if you have reports or other text intensive files in there. By default, the spell check will be for American English. However, you can change the langauage by adding a `Language` field to your `DESCRIPTION` file.
+- You can use `devtools::spell_check()` to test your entire package for spelling errors. This is very useful if you have reports or other text intensive files in there. By default, the spell check will be for American English. However, you can change the langauage by adding a `Language` field to your `DESCRIPTION` file.
 
-- If you want to write a new function and generate the corresponding R script in the `/R` directory, you can conveniently call `usethis::use_r("functionName")`{.R}. This will create a file `functionName.R` ind the `/R` directory and open it for you. 
+- If you want to write a new function and generate the corresponding R script in the `/R` directory, you can conveniently call `usethis::use_r("functionName")`. This will create a file `functionName.R` ind the `/R` directory and open it for you. 
 
 # Links and further reading
 
