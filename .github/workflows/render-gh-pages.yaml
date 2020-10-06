@@ -4,19 +4,14 @@ on:
       - master
         paths:
           - docs/*
-  pull_request:
-    branches:
-      - master
-        path:
-          -docs/*
 
-name: Render gh-pages
+name: Render docs and commit to gh-pages
 
 jobs:
   render:
     name: Render gh-pages
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    if: "!contains(github.event.head_commit.message, 'ci skip render')"
     steps:
       - uses: actions/checkout@v2
         with:
