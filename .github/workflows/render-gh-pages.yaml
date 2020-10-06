@@ -1,7 +1,14 @@
 on:
   push:
-    paths:
-      - docs/*
+    branches:
+      - master
+        paths:
+          - docs/*
+  pull_request:
+    branches:
+      - master
+        path:
+          -docs/*
 
 name: Render gh-pages
 

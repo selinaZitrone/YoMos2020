@@ -1,0 +1,22 @@
+on:
+  pull_request:
+      path:
+        -docs/*
+
+name: Render Docs with Rmarkdown
+
+jobs:
+  render:
+    name: Render docs
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip render')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install rmarkdown
+        run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Render site
+        run: Rscript -e 'rmarkdown::render_site("docs/")'
