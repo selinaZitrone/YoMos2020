@@ -27,7 +27,8 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           # commit rendered files to master
-          git commit -m "Re-build gh-pages on master" -a || echo "Nothing to commit"
+          git add . || echo "Nothing to add"
+          git commit -m "Re-build gh-pages on master" || echo "Nothing to commit"
           # checkout gh-pages branch and delete old rendered files
           git checkout gh-pages
           # Check if the directory is empty, if not delete everything
@@ -44,5 +45,6 @@ jobs:
           # remove the empty subdirectory
           rm -r docs/_site
           # commit and push the new rendered files to gh-pages
-          git commit -m "Re-build gh-pages" -a || "Nothing to commit"
+          git add . || echo "Nothing to add"
+          git commit -m "Re-build gh-pages"|| "Nothing to commit"
           git push origin gh-pages
