@@ -10,12 +10,12 @@ printMean(x)
 \item{x}{A vector of numeric values of which to calculate the mean}
 }
 \value{
-The output of \code{\link{print}} after calculating the \code{\link{mean}} and pasting it
-into a sentence
+The output of \code{\link{print}} after calculating the \code{\link{mean}}
+    and pasting it into a sentence
 }
 \description{
-This function calculates the mean of its input and prints it into a sentence. The function
-is called in the analysis.Rmd file
+This function calculates the mean of its input and
+    prints it into a sentence. The function is called in analysis.Rmd
 }
 \examples{
 printMean(c(1,2,3))

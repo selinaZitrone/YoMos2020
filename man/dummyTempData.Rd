@@ -15,6 +15,7 @@ A \code{data.frame} with 2 columns, which are:
 dummyTempData
 }
 \description{
-Temperature measurements (2m height) measured on March 21st, 2009 at place x
+Temperature measurements (2m height)
+    measured on March 21st, 2009 at place x
 }
 \keyword{datasets}
