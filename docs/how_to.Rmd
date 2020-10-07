@@ -172,6 +172,8 @@ To document datasets in your compendium open up a new R script with the name of 
 "dummyTempData"
 ```
 
+Unfortunately, here you can't insert a preset roxygen skeleton, because a data set is not a function. However, if you are too lazy to document your dataset by hand, you can use the [`sinew`](https://yonicd.github.io/sinew/index.html) package which is very convenient with package documentation using `roxygen2`. To get a pre-made skeleton for the data set just run `sinew::makeOxygen(obj = dummyTempData)`{.R} and you will get a perfect skeleton printed to the console, that you can copy paste to your `dummyTempData.R`.
+
 If you now run `devtools::document()`{.R} or rebuild your package, you will find an automatically generated read only file `printMean.Rd` and `dummyTempData.Rd` in the `/man` folder of your research compendium. If you call `?printMean`{.R} or `?dummyTempData`{.R} (after installing and restarting) you open the help file just like with any other R function you know. 
 
 Please also have a look at the [conventions and guidelines](https://r-pkgs.org/man.html#roxygen-comments) on roxygen2-documentation the quick reference of the [most common tags](https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html).
