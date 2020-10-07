@@ -5,6 +5,8 @@ on:
   pull_request:
     branches:
       - master
+  paths-ignore:
+      - 'docs/*'
 
 name: R-CMD-check
 
