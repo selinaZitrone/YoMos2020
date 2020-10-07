@@ -24,9 +24,10 @@ jobs:
         run: Rscript -e 'rmarkdown::render_site("docs/")'
       - name: Commit results
         run: |
-          # commit rendered files to render_gh_pages
-          git add . || echo "no files to add"
-          git commit -m "Re-build gh-pages on master"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          # commit rendered files to master
+          git commit -m "Re-build gh-pages on master" -a || echo "Nothing to commit"
           # checkout gh-pages branch and delete old rendered files
           git checkout gh-pages
           # Check if the directory is empty, if not delete everything
@@ -43,6 +44,5 @@ jobs:
           # remove the empty subdirectory
           rm -r docs/_site
           # commit and push the new rendered files to gh-pages
-          git add . || echo "no files to add"
-          git commit -m "Re-build gh-pages"
+          git commit -m "Re-build gh-pages" -a || "Nothing to commit"
           git push origin gh-pages
