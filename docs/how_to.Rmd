@@ -14,7 +14,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## Before we start
 
-Before you start the how-to, please check that you have the following things set up and running:
+Before you start the How-to, please check that you have the following things set up and running:
 
 - [GitHub Account](https://github.com/join)
 - download and install [git](https://git-scm.com/downloads) on your machine
