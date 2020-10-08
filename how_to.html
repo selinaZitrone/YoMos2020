@@ -470,8 +470,7 @@ $(document).ready(function () {
 <li><a href="#step-4-unit-testing">Step 4: Unit testing</a></li>
 <li><a href="#step-5-ci-with-github-actions">Step 5: CI with GitHub Actions</a></li>
 <li><a href="#add-rstudio-server-with-holepunch">Add RStudio server with <code>holepunch</code></a></li>
-<li><a href="#some-more-tips">Some more tips</a></li>
-<li><a href="#li--use-the-goodpractice-package-to-further-test-your-package-for-parts-which-can-be-improved.-running-goodpracticegp.r-will-tell-you-where-your-comment-lines-are-too-long-where-you-should-consider-renaming-variables-if-something-is-wrong-with-your-namespace">Li- Use the <span><code>goodpractice</code></span> package to further test your package for parts which can be improved. Running <code>goodpractice::gp()</code>.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your <code>NAMESPACE</code>, …</a><ul>
+<li><a href="#some-more-tips">Some more tips</a><ul>
 <li><a href="#the-turing-way-a-very-useful-guide-to-reproducible-data-science"><em>The Turing Way</em> a very useful guide to reproducible data science</a></li>
 <li><a href="#ropenscis-reproducibility-guide">Ropensci’s reproducibility guide</a></li>
 <li><a href="#reasearch-compendia">Reasearch compendia</a><ul>
@@ -754,11 +753,9 @@ RoxygenNote: 7.1.0</code></pre>
 <ul>
 <li><p>You can use <code class="sourceCode r">devtools<span class="op">::</span><span class="kw">spell_check</span>()</code> to test your entire package for spelling errors. This is very useful if you have reports or other text intensive files in there. By default, the spell check will be for American English. However, you can change the langauage by adding a <code>Language</code> field to your <code>DESCRIPTION</code> file.</p></li>
 <li><p>If you want to write a new function and generate the corresponding R script in the <code>/R</code> directory, you can conveniently call <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;functionName&quot;</span>)</code>. This will create a file <code>functionName.R</code> ind the <code>/R</code> directory and open it for you.</p></li>
+<li><p>Use the <a href="https://github.com/MangoTheCat/goodpractice"><code>goodpractice</code></a> package to further test your package for parts which can be improved. Running <code>goodpractice::gp()</code>.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your <code>NAMESPACE</code>, …</p></li>
 </ul>
-</div>
-<div id="li--use-the-goodpractice-package-to-further-test-your-package-for-parts-which-can-be-improved.-running-goodpracticegp.r-will-tell-you-where-your-comment-lines-are-too-long-where-you-should-consider-renaming-variables-if-something-is-wrong-with-your-namespace" class="section level1">
-<h1>Li- Use the <a href="https://github.com/MangoTheCat/goodpractice"><code>goodpractice</code></a> package to further test your package for parts which can be improved. Running <code>goodpractice::gp()</code>.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your <code>NAMESPACE</code>, …</h1>
-<p>nks and further reading</p>
+<p>#Links and further reading</p>
 <div id="the-turing-way-a-very-useful-guide-to-reproducible-data-science" class="section level3">
 <h3><em>The Turing Way</em> a very useful guide to reproducible data science</h3>
 <p><a href="https://the-turing-way.netlify.app/introduction/introduction.html" class="uri">https://the-turing-way.netlify.app/introduction/introduction.html</a></p>
