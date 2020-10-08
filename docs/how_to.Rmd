@@ -183,18 +183,23 @@ Please also have a look at the [conventions and guidelines](https://r-pkgs.org/m
 Add an `/analysis` folder with an rmarkdown document `report.Rmd` to your compendium.
 Depending on the type of report you want to share you have to edit the yaml header of your report. It can e.g. look something like this: 
 
-```{r, eval=FALSE}
+```
 ---
 title: "Temperature Analyis"
 author: "Selina Baldauf"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
-knitr::opts_chunk$set(echo = TRUE)
-devtools::load_all(".")
 
+    ```{r setup, include=FALSE}
+    knitr::opts_chunk$set(echo = TRUE)
+    devtools::load_all(".")
+    ```
 # This is the temperature analysis
-printMean(dummyTempData$temp)
+
+    ```{r}
+    printMean(dummyTempData$temp)
+    ```
 ```
 
 ## Step 3: Version control with git and GitHub
