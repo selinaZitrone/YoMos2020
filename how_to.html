@@ -684,65 +684,69 @@ RoxygenNote: 7.1.0</code></pre>
 <p>To use the <code>piggyback</code> package, you first need to install it on your machine with <code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;piggyback&quot;</span>)</code>. To upload our dataset, we first need to create a new release on GitHub. The first release has to be created on GitHub, by clicking on <code>Create a new release</code>, giving it a Tag (e.g. v0.0.1) and a title. You will see that the release contains your source code as zip and as a tarball (.tar.gz).</p>
 <p>With piggyback you can always list your existing releases by running</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>piggyback<span class="op">::</span><span class="kw">pb_list</span>()</span></code></pre></div>
-<p>To piggyback your dataset to your package, you simply have to run</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>piggyback<span class="op">::</span><span class="kw">pb_upload</span>(<span class="st">&quot;data-raw/largeDataSet.txt&quot;</span>)</span></code></pre></div>
+<p>You can also create a new release directly from R by calling</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>piggyback<span class="op">:</span><span class="kw">pb_new_release</span>(<span class="st">&quot;v0.0.2&quot;</span>)</span></code></pre></div>
+<p>To track your dataset (which means that everytime the dataset changes you can create a new release), call</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>piggyback<span class="op">::</span><span class="kw">pb_track</span>(<span class="st">&quot;data-raw/largeDataSet.txt&quot;</span>)</span></code></pre></div>
+<p>To piggyback your dataset to your package, you now simply have to run</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>piggyback<span class="op">::</span><span class="kw">pb_upload</span>(<span class="st">&quot;data-raw/largeDataSet.txt&quot;</span>)</span></code></pre></div>
 <p>Now you can find it attached to your latest release.</p>
 <p>If you want to use the large dataset in your package for the analysis or to generate the report, you can write a function to download the data using <code class="sourceCode r">piggyback<span class="op">::</span>pb_download</code>. Just create a new file <code>loadData.R</code> in your <code>/R</code> directory and add the following function.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>loadData &lt;-<span class="st"> </span><span class="cf">function</span>(){</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  piggyback<span class="op">::</span><span class="kw">pb_download</span>(<span class="dt">repo =</span> <span class="st">&quot;selinaZitrone/YoMos2020&quot;</span>)</span>
-<span id="cb14-3"><a href="#cb14-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>loadData &lt;-<span class="st"> </span><span class="cf">function</span>(){</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  piggyback<span class="op">::</span><span class="kw">pb_download</span>(<span class="dt">repo =</span> <span class="st">&quot;selinaZitrone/YoMos2020&quot;</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>}</span></code></pre></div>
 <p>If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a <code>/data-raw</code> folder. Now the data can be accessed by all the package functions. Have a look at <code class="sourceCode r">?piggyback<span class="op">::</span>pb_download</code> to see which parameters you can specify. You don’t have to download all the assets and you can also chose which version of the release should be used for the download.</p>
-<p>You can also create new releases directly from <code>piggiback</code> and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the <a href="https://docs.ropensci.org/piggyback/articles/intro.html">piggyback documentation</a>.</p>
+<p>You can also create new releases directly from <code>piggyback</code> and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the <a href="https://docs.ropensci.org/piggyback/articles/intro.html">piggyback documentation</a>.</p>
 </div>
 <div id="step-4-unit-testing" class="section level2">
 <h2>Step 4: Unit testing</h2>
 <p>First, create the infrastructure needed by the <code>thestthat</code> package.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
 <p>This creates a <code>/tests</code> folder which contains a <code>/testthat</code> folder and an R-script called <code>testthat.R</code>. You do not need to change anything in the testthat.R script. This is called e.g. by <code class="sourceCode r">rcmdcheck<span class="op">::</span><span class="kw">rcmdcheck</span>()</code> to run all the tests you created in your package. The <code>/testthat</code> folder is the place to store the R-scripts with the actual tests. Also, the <code>testthat</code> package ist now added to the Suggests field in <code>DESCRIPTION</code>.</p>
 <p>Now you can add a test script that tests your simple printer function. To create a test script for a specific function, open the R-script with the function and then initialize a basic test file for the script by calling</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>usethis<span class="op">::</span><span class="kw">use_test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>usethis<span class="op">::</span><span class="kw">use_test</span>()</span></code></pre></div>
 <p>The testfile can be found in <code>/tests/testthat</code>. Testfiles have to be named test-xyz.R in order to be found (<code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_test</span>()</code> does the naming for you - so you don’t have to worry about it).</p>
 <p>We can write a very simple test function for our printMean function that checks if it works correctly</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">test_that</span>(<span class="st">&quot;printer function works&quot;</span>, {</span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">printMean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)), <span class="st">&quot;The mean value is 2!&quot;</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">test_that</span>(<span class="st">&quot;printer function works&quot;</span>, {</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">printMean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)), <span class="st">&quot;The mean value is 2!&quot;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a>})</span></code></pre></div>
 <p>If you run the test and you don’t get any errors in the console, then it means that your test was successful. If not you will get a helpful error message telling you what went wrong.</p>
 <p>If you want to run all the tests from your package at once to see if they pass your can run</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span></code></pre></div>
 </div>
 <div id="step-5-ci-with-github-actions" class="section level2">
 <h2>Step 5: CI with GitHub Actions</h2>
 <p>Before we start, it’s time to commit all the changes to our package. Use the <code>Git</code> panel or run</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">git</span> add .</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">git</span> commit -m <span class="st">&quot;Add unit tests for printMean function&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">git</span> add .</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">git</span> commit -m <span class="st">&quot;Add unit tests for printMean function&quot;</span></span></code></pre></div>
 <p>Then create the basic file structure needed to set up a workflow by calling</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>usethis<span class="op">::</span><span class="kw">use_github_actions</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>usethis<span class="op">::</span><span class="kw">use_github_actions</span>()</span></code></pre></div>
 <p>This creates a <code>.github</code> folder, in which you find a <code>.gitignore</code> file and a <code>/workflows</code> folder. In this folder you can store all your GitHub actions in <code>.yaml</code> file format. The <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_github_actions</span>()</code> function automatically added a first GitHub action called <code>R-CMD-check.yaml</code>. This action is triggered on every push or pull request on the master branch and checks your package to make sure that new code does not break the package.</p>
 <p>If you want to add other actions that already are available (e.g. from the GitHub repository <a href="https://github.com/r-lib/actions">r-lib/actions</a>) you can do the following:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>usethis<span class="op">::</span><span class="kw">use_github_action</span>(<span class="st">&quot;render-readme.yaml&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>usethis<span class="op">::</span><span class="kw">use_github_action</span>(<span class="st">&quot;render-readme.yaml&quot;</span>)</span></code></pre></div>
 <p>This adds the respective yaml-file to <code>./github/workflows</code>. Of course you can also write your own actions and simply add them to the /workflows folder.</p>
 </div>
 <div id="add-rstudio-server-with-holepunch" class="section level1">
 <h1>Add RStudio server with <code>holepunch</code></h1>
 <p>There is a nice intro for holepunch: <a href="https://karthik.github.io/holepunch/articles/getting_started.html">Getting started with holepunch</a>. The code below is copied’n’pasted from the <a href="https://github.com/karthik/holepunch">holepunch repo’s readme</a>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;karthik/holepunch&quot;</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="kw">write_dockerfile</span>(<span class="dt">maintainer =</span> <span class="st">&quot;your_name&quot;</span>) </span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="co"># To write a Dockerfile. It will automatically pick the date of the last </span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="co"># modified file, match it to that version of R and add it here. You can </span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># override this by passing r_date to some arbitrary date</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="co"># (but one for which a R version exists).</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="kw">generate_badge</span>() <span class="co"># This generates a badge for your readme.</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a></span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="co"># ----------------------------------------------</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="co"># At this time 🙌 push the code to GitHub 🙌</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="co"># ----------------------------------------------</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="co"># And click on the badge or use the function below to get the build </span></span>
-<span id="cb22-16"><a href="#cb22-16"></a><span class="co"># ready ahead of time.</span></span>
-<span id="cb22-17"><a href="#cb22-17"></a><span class="kw">build_binder</span>()</span>
-<span id="cb22-18"><a href="#cb22-18"></a><span class="co"># 🤞🚀</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;karthik/holepunch&quot;</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">write_dockerfile</span>(<span class="dt">maintainer =</span> <span class="st">&quot;your_name&quot;</span>) </span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># To write a Dockerfile. It will automatically pick the date of the last </span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="co"># modified file, match it to that version of R and add it here. You can </span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="co"># override this by passing r_date to some arbitrary date</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co"># (but one for which a R version exists).</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="kw">generate_badge</span>() <span class="co"># This generates a badge for your readme.</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="co"># ----------------------------------------------</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co"># At this time 🙌 push the code to GitHub 🙌</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="co"># ----------------------------------------------</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a></span>
+<span id="cb24-15"><a href="#cb24-15"></a><span class="co"># And click on the badge or use the function below to get the build </span></span>
+<span id="cb24-16"><a href="#cb24-16"></a><span class="co"># ready ahead of time.</span></span>
+<span id="cb24-17"><a href="#cb24-17"></a><span class="kw">build_binder</span>()</span>
+<span id="cb24-18"><a href="#cb24-18"></a><span class="co"># 🤞🚀</span></span></code></pre></div>
 <p>[<em>Be carful here: Since October 2020, GitHub has renamed its default branch for repositories from master to main. If you have a repository with main instead of master as default branch, holepunch will throw an error when trying to connect Binder to your GitHub repository. If this happens make sure that your replace <code>master</code> with <code>main</code> in the <code>.binder/Dockerfile</code> URL and in the URL used in the Readme badge</em>]</p>
 </div>
 <div id="some-more-tips" class="section level1">
