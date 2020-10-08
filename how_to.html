@@ -639,17 +639,20 @@ RoxygenNote: 7.1.0</code></pre>
 <div id="add-an-analysis-script" class="section level3">
 <h3>Add an analysis script</h3>
 <p>Add an <code>/analysis</code> folder with an rmarkdown document <code>report.Rmd</code> to your compendium. Depending on the type of report you want to share you have to edit the yaml header of your report. It can e.g. look something like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">---</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>title<span class="op">:</span><span class="st"> &quot;Temperature Analyis&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>author<span class="op">:</span><span class="st"> &quot;Selina Baldauf&quot;</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>date<span class="op">:</span><span class="st"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>output<span class="op">:</span><span class="st"> </span>html_document</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="op">---</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="kw">library</span>(YoMos2020)</span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># This is the temperature analysis</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="kw">printMean</span>(dummyTempData<span class="op">$</span>temp)</span></code></pre></div>
+<pre><code>---
+title: &quot;Temperature Analyis&quot;
+author: &quot;Selina Baldauf&quot;
+date: &quot;08 October, 2020&quot;
+output: html_document
+---
+
+    
+# This is the temperature analysis
+
+    
+    ```r
+    printMean(dummyTempData$temp)
+    ```</code></pre>
 </div>
 </div>
 <div id="step-3-version-control-with-git-and-github" class="section level2">
