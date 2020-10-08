@@ -250,7 +250,20 @@ With piggyback you can always list your existing releases by running
 ```r
 piggyback::pb_list()
 ```
-To piggyback your dataset to your package, you simply have to run
+
+You can also create a new release directly from R by calling
+
+```r
+piggyback:pb_new_release("v0.0.2")
+```
+
+To track your dataset (which means that everytime the dataset changes you can create a new release), call
+
+```r
+piggyback::pb_track("data-raw/largeDataSet.txt")
+```
+
+To piggyback your dataset to your package, you now simply have to run
 
 ```r
 piggyback::pb_upload("data-raw/largeDataSet.txt")
@@ -267,7 +280,7 @@ loadData <- function(){
 
 If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a `/data-raw` folder. Now the data can be accessed by all the package functions. Have a look at `?piggyback::pb_download`{.R} to see which parameters you can specify. You don't have to download all the assets and you can also chose which version of the release should be used for the download.
 
-You can also create new releases directly from `piggiback` and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the [piggyback documentation](https://docs.ropensci.org/piggyback/articles/intro.html).
+You can also create new releases directly from `piggyback` and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the [piggyback documentation](https://docs.ropensci.org/piggyback/articles/intro.html).
 
 ## Step 4: Unit testing
 
