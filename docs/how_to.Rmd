@@ -191,7 +191,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 knitr::opts_chunk$set(echo = TRUE)
-library(YoMos2020)
+devtools::load_all(".")
 
 # This is the temperature analysis
 printMean(dummyTempData$temp)
