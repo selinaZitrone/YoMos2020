@@ -373,9 +373,9 @@ build_binder()
 
 - If you want to write a new function and generate the corresponding R script in the `/R` directory, you can conveniently call `usethis::use_r("functionName")`{.R}. This will create a file `functionName.R` ind the `/R` directory and open it for you. 
 
-# Li- Use the [`goodpractice`](https://github.com/MangoTheCat/goodpractice) package to further test your package for parts which can be improved. Running `goodpractice::gp()`.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your `NAMESPACE`, ...
+- Use the [`goodpractice`](https://github.com/MangoTheCat/goodpractice) package to further test your package for parts which can be improved. Running `goodpractice::gp()`.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your `NAMESPACE`, ...
 
-nks and further reading
+#Links and further reading
 
 ### *The Turing Way* a very useful guide to reproducible data science
 https://the-turing-way.netlify.app/introduction/introduction.html
