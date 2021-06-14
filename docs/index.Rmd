@@ -6,5 +6,7 @@ output:
       in_header: header.html
 ---
 
-If you want to try setting up your own research compendium you can follow the instructions in the How-To.
-If you have questions, difficulties setting up the project or if some parts of the How-To are not explained enough, you can join our [Discord channel](https://discord.gg/x4BraXk) and ask there.
+This workshop is about setting up a research compendium using the R package structure as a blue print.
+If you want to set up your own research compendium, you can follow the instructions in the 
+[How-To section](https://selinazitrone.github.io/YoMos2020/how_to.html).
+If you want to follow the presentation, have a look at the [Presentation section](https://selinazitrone.github.io/YoMos2020/slidy_presentation.html#(1)).

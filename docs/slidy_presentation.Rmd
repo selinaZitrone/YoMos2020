@@ -1,5 +1,5 @@
 ---
-title: "Clear, reproducible and robust R code"
+title: "Reproducible data analyisis - R packages as research compendia"
 author: "Sebastian Hanß and Selina Baldauf"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -14,16 +14,19 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 # Workshop overview
 
-## Three main topics
+## Two main topics
 
 > - research compendia
+> - R packages
 > - version control (Git)
 > - automated testing (CI with GitHub actions)
 > - (holepunch)
-> - code on github. [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
+
+> - code on github [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
 > - slides on [https://selinazitrone.github.io/YoMos2020/index.html](https://selinazitrone.github.io/YoMos2020/index.html)
 
 # Motivations for a better project organization and workflow
+
 > - Reproduciblity 🔃 (for you and others)
 > - Reliablity 🏋 (will it work again?)
 > - Re-usablity ⚙ (don't re-invent the wheel)
@@ -31,10 +34,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # How? Use a research compendium!
 
-![](images/Marwicketal2018.png){width=100%}
+![This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence.](images/ResearchCompendium-ttw.jpg){width=100%}
+
+---
 
 # What *is* a research compendium?
+
+> This is a collection of **all digital parts of a research project** including data, 
+code, texts (protocols, reports, questionnaires, metadata). The collection is created 
+in such a way that reproducing all results is straight forward.
+
+(Definition from [The Turing Way](https://the-turing-way.netlify.app/afterword/glossary.html#term-Research-Compendia))
+
 [Excursion to the TTW website](https://the-turing-way.netlify.app/research_compendia/research_compendia.html)
+[Excursion to Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/3)
 
 ---
 
@@ -49,12 +62,23 @@ knitr::opts_chunk$set(echo = FALSE)
   
 ---
 
+![](images/Marwicketal2018.png){width=100%}
+
+---
+
 ## Advantages of using R Packages
 
-* benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)
-* functions can be easily documented
+* benefit from quality control mechanisms built around R packages (<code>R CMD check</code>)
+* easy documentation
+* additional packages available to make your life easier
+  + [`usethis`](https://usethis.r-lib.org/): workflow package to automate tasks like project setup etc.
+  + [`pkgdown`](https://pkgdown.r-lib.org/): build a quick and easy website for your package
+  + [`goodpractice`](https://github.com/mangothecat/goodpractice): gives you advice about good
+  practices when building R packages
+  + [`testthat`](https://testthat.r-lib.org/): add unit testing to your package
+  + ... and many more
 
-# Hands-on: Create a research compendium
+# Hands-on I: Create a research compendium with the R package structure
 
 # Version control
 
@@ -71,7 +95,7 @@ knitr::opts_chunk$set(echo = FALSE)
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
   
-# Hands-on: initialize a repository on GithHub from R-Studio
+# Hands-on: add version control to the research compendium
 
 # Automated testing
 ## What?
@@ -88,7 +112,7 @@ knitr::opts_chunk$set(echo = FALSE)
 > - better code (needs to be *testable*)
 > - confidence and trust
 
-### How?
+## How?
 
 > - write tests either before or after implementing your code
 > - when you found a bug: before fixing, write a test that would have detected it
@@ -111,7 +135,7 @@ knitr::opts_chunk$set(echo = FALSE)
 > - immediate feedback if something doesn't work anymore
 > - however, can be time consuming and might be overkill for small or solo projects
 
-# Github Actions for CI
+# Github Actions for CI (and other automation tasks)
 
 > - supports mac-OS, windows, linux, docker containers
 > - integration with github, so no separate setup and authentication
@@ -120,8 +144,10 @@ knitr::opts_chunk$set(echo = FALSE)
 > - self host to remove the per job limit
 > - very easy to setup with R using the <code>usethis</code> package
 
-# Hands-on: Github Actions for CI
+# Hands-on: Github Actions for `R CMD check`
 
 # Reproducibility and Accessability
+
+[Another excursion to Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/19)
 
 [Holepunch](https://karthik.github.io/holepunch/)

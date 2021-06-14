@@ -436,6 +436,9 @@ https://www.edwardthomson.com/blog/github_actions_advent_calendar.html
 ## Holepunch package for R and Binder (adds a live, on-demand RStudio server to your R project on GitHub/GitLab)
 https://karthik.github.io/holepunch/
 
+## Introduction to Docker for R
+https://colinfay.me/docker-r-reproducibility/
+
 
 ## Scientific publications
 James, Justin. 2012. “10 Classic Mistakes That Plague Software Development Projects.” 2012. https://www.techrepublic.com/blog/10-things/10-classic-mistakes-that-plague-software-development-projects/.
