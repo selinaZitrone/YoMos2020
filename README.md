@@ -11,11 +11,12 @@ status](https://github.com/selinaZitrone/YoMos2020/workflows/R-CMD-check/badge.s
 Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/selinaZitrone/YoMos2020/master?urlpath=rstudio)
 <!-- badges: end -->
 
-This repository is an example of how to set up a research compendium using the R package structure as a blueprint. It includes unit test and a simple continuous integration pipeline using GitHub Actions.
+This repository is an example of how to set up a research compendium using the R package structure as a blueprint. 
+It includes a simple unit test and continuous integration pipeline using GitHub Actions.
 
-This repository was created for a workshop at the virtual YoMos meeting 2020.
+This repository was created for a workshop at the virtual [YoMos](https://www.yomos.org/) meeting 2020.
 
-You can find the presentation and step by step instructions on how to set up your own project [here](https://selinazitrone.github.io/YoMos2020/index.html)
+You can find the presentation slides and a step by step guide on how to set up your own project with R and RStudio [here](https://selinazitrone.github.io/YoMos2020/index.html)
 
 References
 ==========
