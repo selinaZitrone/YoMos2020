@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Sebastian Hanß and Selina Baldauf" />
-  <title>Clear, reproducible and robust R code</title>
+  <title>Reproducible data analyisis - R packages as research compendia</title>
   <style type="text/css">
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -60,21 +60,24 @@
   </div><!--/.container -->
 </div><!--/.navbar -->
 <div class="slide titlepage">
-  <h1 class="title">Clear, reproducible and robust R code</h1>
+  <h1 class="title">Reproducible data analyisis - R packages as research compendia</h1>
   <p class="author">
 Sebastian Hanß and Selina Baldauf
   </p>
-  <p class="date">08 October, 2020</p>
+  <p class="date">14 June, 2021</p>
 </div>
 <div id="workshop-overview" class="slide section level1">
 <h1>Workshop overview</h1>
-<h2 id="three-main-topics">Three main topics</h2>
+<h2 id="two-main-topics">Two main topics</h2>
 <ul class="incremental">
 <li>research compendia</li>
+<li>R packages</li>
 <li>version control (Git)</li>
 <li>automated testing (CI with GitHub actions)</li>
 <li>(holepunch)</li>
-<li>code on github. <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
+</ul>
+<ul class="incremental">
+<li>code on github <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
 <li>slides on <a href="https://selinazitrone.github.io/YoMos2020/index.html">https://selinazitrone.github.io/YoMos2020/index.html</a></li>
 </ul>
 </div>
@@ -89,11 +92,18 @@ Sebastian Hanß and Selina Baldauf
 </div>
 <div id="how-use-a-research-compendium" class="slide section level1">
 <h1>How? Use a research compendium!</h1>
-<p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
+<div class="figure">
+<img src="images/ResearchCompendium-ttw.jpg" style="width:100.0%" alt="" />
+<p class="caption">This image was created by <a href="http://www.scriberia.co.uk/">Scriberia</a> for The Turing Way community and is used under a CC-BY licence.</p>
+</div>
 </div>
 <div id="what-is-a-research-compendium" class="slide section level1">
 <h1>What <em>is</em> a research compendium?</h1>
-<p><a href="https://the-turing-way.netlify.app/research_compendia/research_compendia.html">Excursion to the TTW website</a></p>
+<blockquote>
+<p>This is a collection of <strong>all digital parts of a research project</strong> including data, code, texts (protocols, reports, questionnaires, metadata). The collection is created in such a way that reproducing all results is straight forward.</p>
+</blockquote>
+<p>(Definition from <a href="https://the-turing-way.netlify.app/afterword/glossary.html#term-Research-Compendia">The Turing Way</a>)</p>
+<p><a href="https://the-turing-way.netlify.app/research_compendia/research_compendia.html">Excursion to the TTW website</a> <a href="https://inundata.org/talks/rstd19/#/0/3">Excursion to Karthik Ram’s talk at RStudio::conf 2019</a></p>
 </div>
 <div class="slide section level1">
 
@@ -114,14 +124,26 @@ Sebastian Hanß and Selina Baldauf
 </div>
 <div class="slide section level1">
 
+<p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
+</div>
+<div class="slide section level1">
+
 <h2 id="advantages-of-using-r-packages">Advantages of using R Packages</h2>
 <ul>
-<li>benefit from quality control mechanisms needed to build your R package (<code>R CMD check</code>)</li>
-<li>functions can be easily documented</li>
+<li>benefit from quality control mechanisms built around R packages (<code>R CMD check</code>)</li>
+<li>easy documentation</li>
+<li>additional packages available to make your life easier
+<ul>
+<li><a href="https://usethis.r-lib.org/"><code>usethis</code></a>: workflow package to automate tasks like project setup etc.</li>
+<li><a href="https://pkgdown.r-lib.org/"><code>pkgdown</code></a>: build a quick and easy website for your package</li>
+<li><a href="https://github.com/mangothecat/goodpractice"><code>goodpractice</code></a>: gives you advice about good practices when building R packages</li>
+<li><a href="https://testthat.r-lib.org/"><code>testthat</code></a>: add unit testing to your package</li>
+<li>… and many more</li>
+</ul></li>
 </ul>
 </div>
-<div id="hands-on-create-a-research-compendium" class="slide section level1">
-<h1>Hands-on: Create a research compendium</h1>
+<div id="hands-on-i-create-a-research-compendium-with-the-r-package-structure" class="slide section level1">
+<h1>Hands-on I: Create a research compendium with the R package structure</h1>
 </div>
 <div id="version-control" class="slide section level1">
 <h1>Version control</h1>
@@ -146,8 +168,8 @@ Sebastian Hanß and Selina Baldauf
 </ul></li>
 </ul>
 </div>
-<div id="hands-on-initialize-a-repository-on-githhub-from-r-studio" class="slide section level1">
-<h1>Hands-on: initialize a repository on GithHub from R-Studio</h1>
+<div id="hands-on-add-version-control-to-the-research-compendium" class="slide section level1">
+<h1>Hands-on: add version control to the research compendium</h1>
 </div>
 <div id="automated-testing" class="slide section level1">
 <h1>Automated testing</h1>
@@ -167,7 +189,7 @@ Sebastian Hanß and Selina Baldauf
 <li>better code (needs to be <em>testable</em>)</li>
 <li>confidence and trust</li>
 </ul>
-<h3 id="how">How?</h3>
+<h2 id="how">How?</h2>
 <ul class="incremental">
 <li>write tests either before or after implementing your code</li>
 <li>when you found a bug: before fixing, write a test that would have detected it</li>
@@ -195,8 +217,8 @@ Sebastian Hanß and Selina Baldauf
 <li>however, can be time consuming and might be overkill for small or solo projects</li>
 </ul>
 </div>
-<div id="github-actions-for-ci" class="slide section level1">
-<h1>Github Actions for CI</h1>
+<div id="github-actions-for-ci-and-other-automation-tasks" class="slide section level1">
+<h1>Github Actions for CI (and other automation tasks)</h1>
 <ul class="incremental">
 <li>supports mac-OS, windows, linux, docker containers</li>
 <li>integration with github, so no separate setup and authentication</li>
@@ -206,11 +228,12 @@ Sebastian Hanß and Selina Baldauf
 <li>very easy to setup with R using the <code>usethis</code> package</li>
 </ul>
 </div>
-<div id="hands-on-github-actions-for-ci" class="slide section level1">
-<h1>Hands-on: Github Actions for CI</h1>
+<div id="hands-on-github-actions-for-r-cmd-check" class="slide section level1">
+<h1>Hands-on: Github Actions for <code>R CMD check</code></h1>
 </div>
 <div id="reproducibility-and-accessability" class="slide section level1">
 <h1>Reproducibility and Accessability</h1>
+<p><a href="https://inundata.org/talks/rstd19/#/0/19">Another excursion to Karthik Ram’s talk at RStudio::conf 2019</a></p>
 <p><a href="https://karthik.github.io/holepunch/">Holepunch</a></p>
 </div>
 
