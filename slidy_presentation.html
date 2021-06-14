@@ -33,7 +33,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Clear, reproducible and robust R code</a>
+      <a class="navbar-brand" href="index.html">R packages as research compendia</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -68,17 +68,19 @@ Sebastian Hanß and Selina Baldauf
 </div>
 <div id="workshop-overview" class="slide section level1">
 <h1>Workshop overview</h1>
+<h2 id="motivation">Motivation</h2>
+<div class="figure">
+<img src="images/reproduciblejourney.jpg" style="width:50.0%" alt="" />
+<p class="caption">This image was created by <a href="http://www.scriberia.co.uk/">Scriberia</a> for The Turing Way community and is used under a CC-BY licence (DOI <a href="10.5281/zenodo.3332807">10.5281/zenodo.3332807</a>).</p>
+</div>
 <h2 id="two-main-topics">Two main topics</h2>
 <ul class="incremental">
-<li>research compendia</li>
+<li>Research compendia</li>
 <li>R packages</li>
-<li>version control (Git)</li>
-<li>automated testing (CI with GitHub actions)</li>
-<li>(holepunch)</li>
 </ul>
 <ul class="incremental">
-<li>code on github <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
-<li>slides on <a href="https://selinazitrone.github.io/YoMos2020/index.html">https://selinazitrone.github.io/YoMos2020/index.html</a></li>
+<li>Code on github <a href="https://github.com/selinaZitrone/YoMos2020">https://github.com/selinaZitrone/YoMos2020</a></li>
+<li>Slides on <a href="https://selinazitrone.github.io/YoMos2020/index.html">https://selinazitrone.github.io/YoMos2020/index.html</a></li>
 </ul>
 </div>
 <div id="motivations-for-a-better-project-organization-and-workflow" class="slide section level1">
@@ -93,17 +95,18 @@ Sebastian Hanß and Selina Baldauf
 <div id="how-use-a-research-compendium" class="slide section level1">
 <h1>How? Use a research compendium!</h1>
 <div class="figure">
-<img src="images/ResearchCompendium-ttw.jpg" style="width:100.0%" alt="" />
-<p class="caption">This image was created by <a href="http://www.scriberia.co.uk/">Scriberia</a> for The Turing Way community and is used under a CC-BY licence.</p>
+<img src="images/ResearchCompendium-ttw.jpg" style="width:50.0%" alt="" />
+<p class="caption">This image was created by <a href="http://www.scriberia.co.uk/">Scriberia</a> for The Turing Way community and is used under a CC-BY licence (DOI <a href="10.5281/zenodo.3332807">10.5281/zenodo.3332807</a>).</p>
 </div>
 </div>
 <div id="what-is-a-research-compendium" class="slide section level1">
 <h1>What <em>is</em> a research compendium?</h1>
 <blockquote>
-<p>This is a collection of <strong>all digital parts of a research project</strong> including data, code, texts (protocols, reports, questionnaires, metadata). The collection is created in such a way that reproducing all results is straight forward.</p>
+<p>This is a collection of <strong>all digital parts of a research project</strong> including <strong>data, code, texts (protocols, reports, questionnaires, metadata)</strong>. The collection is created in such a way that reproducing all results is straight forward.</p>
 </blockquote>
 <p>(Definition from <a href="https://the-turing-way.netlify.app/afterword/glossary.html#term-Research-Compendia">The Turing Way</a>)</p>
-<p><a href="https://the-turing-way.netlify.app/research_compendia/research_compendia.html">Excursion to the TTW website</a> <a href="https://inundata.org/talks/rstd19/#/0/3">Excursion to Karthik Ram’s talk at RStudio::conf 2019</a></p>
+<p><a href="https://the-turing-way.netlify.app/research_compendia/research_compendia.html">Excursion to the TTW website</a></p>
+<p><a href="https://inundata.org/talks/rstd19/#/0/3">Excursion to Karthik Ram’s talk at RStudio::conf 2019</a></p>
 </div>
 <div class="slide section level1">
 
@@ -126,9 +129,8 @@ Sebastian Hanß and Selina Baldauf
 
 <p><img src="images/Marwicketal2018.png" style="width:100.0%" /></p>
 </div>
-<div class="slide section level1">
-
-<h2 id="advantages-of-using-r-packages">Advantages of using R Packages</h2>
+<div id="advantages-of-using-r-packages" class="slide section level1">
+<h1>Advantages of using R Packages</h1>
 <ul>
 <li>benefit from quality control mechanisms built around R packages (<code>R CMD check</code>)</li>
 <li>easy documentation</li>
@@ -142,12 +144,13 @@ Sebastian Hanß and Selina Baldauf
 </ul></li>
 </ul>
 </div>
-<div id="hands-on-i-create-a-research-compendium-with-the-r-package-structure" class="slide section level1">
-<h1>Hands-on I: Create a research compendium with the R package structure</h1>
+<div id="hands-on-i" class="slide section level1">
+<h1>Hands-on I</h1>
+<h2 id="create-a-research-compendium-with-the-r-package-structure">Create a research compendium with the R package structure</h2>
 </div>
 <div id="version-control" class="slide section level1">
 <h1>Version control</h1>
-<p><img src="images/final.jpg" style="width:50.0%" /></p>
+<p><img src="images/final.jpg" style="width:40.0%" /></p>
 </div>
 <div id="git-as-a-distributed-version-control-system-vcs" class="slide section level1">
 <h1>Git as a distributed version control system (VCS)</h1>
@@ -168,21 +171,19 @@ Sebastian Hanß and Selina Baldauf
 </ul></li>
 </ul>
 </div>
-<div id="hands-on-add-version-control-to-the-research-compendium" class="slide section level1">
-<h1>Hands-on: add version control to the research compendium</h1>
+<div id="hands-on-ii" class="slide section level1">
+<h1>Hands-on II</h1>
+<h2 id="add-version-control-to-the-research-compendium">Add version control to the research compendium</h2>
 </div>
 <div id="automated-testing" class="slide section level1">
 <h1>Automated testing</h1>
 <h2 id="what">What?</h2>
 <ul class="incremental">
-<li><em>unit tests</em> functions that run a small amount of code: “units”</li>
+<li><em>unit tests</em>: functions that run a small amount of code: “units”</li>
 <li>input: defined and fixed</li>
 <li>compares output with an expected output</li>
 <li>returns true/false</li>
 </ul>
-</div>
-<div id="automated-testing-1" class="slide section level1">
-<h1>Automated testing</h1>
 <h2 id="why">Why?</h2>
 <ul class="incremental">
 <li>fewer bugs</li>
@@ -193,11 +194,12 @@ Sebastian Hanß and Selina Baldauf
 <ul class="incremental">
 <li>write tests either before or after implementing your code</li>
 <li>when you found a bug: before fixing, write a test that would have detected it</li>
-<li>use a test framework, e.g. in R: <code>testthat</code> package (Hadley Wickham)</li>
+<li>use a test framework, e.g. in R: <a href="https://testthat.r-lib.org/"><code>testthat</code></a> package (Hadley Wickham)</li>
 </ul>
 </div>
-<div id="hands-on-unit-tests" class="slide section level1">
-<h1>Hands-on: Unit tests</h1>
+<div id="hands-on-iii" class="slide section level1">
+<h1>Hands-on III</h1>
+<h2 id="unit-tests">Unit tests</h2>
 </div>
 <div id="continous-integration-ci" class="slide section level1">
 <h1>Continous integration (CI)</h1>
@@ -227,14 +229,23 @@ Sebastian Hanß and Selina Baldauf
 <li>self host to remove the per job limit</li>
 <li>very easy to setup with R using the <code>usethis</code> package</li>
 </ul>
+<div class="figure">
+<img src="images/github-actions-with-text.jpg" style="width:20.0%" alt="" />
+<p class="caption">This image was created by <a href="http://www.scriberia.co.uk/">Scriberia</a> for The Turing Way community and is used under a CC-BY licence (DOI <a href="10.5281/zenodo.3332807">10.5281/zenodo.3332807</a>).</p>
 </div>
-<div id="hands-on-github-actions-for-r-cmd-check" class="slide section level1">
-<h1>Hands-on: Github Actions for <code>R CMD check</code></h1>
+</div>
+<div id="hands-on-iv" class="slide section level1">
+<h1>Hands-on IV</h1>
+<h2 id="github-actions-for-r-cmd-check">Github Actions for <code>R CMD check</code></h2>
 </div>
 <div id="reproducibility-and-accessability" class="slide section level1">
 <h1>Reproducibility and Accessability</h1>
 <p><a href="https://inundata.org/talks/rstd19/#/0/19">Another excursion to Karthik Ram’s talk at RStudio::conf 2019</a></p>
 <p><a href="https://karthik.github.io/holepunch/">Holepunch</a></p>
+</div>
+<div id="hands-on-v" class="slide section level1">
+<h1>Hands-on V</h1>
+<h2 id="publish-your-repository-on-binder-with-a-live-rstudio-server-instance">Publish your repository on Binder with a live RStudio server instance</h2>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
