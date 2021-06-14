@@ -14,16 +14,17 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 # Workshop overview
 
+## Motivation
+
+![This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).](images/reproduciblejourney.jpg){width=50%}
+
 ## Two main topics
 
-> - research compendia
+> - Research compendia
 > - R packages
-> - version control (Git)
-> - automated testing (CI with GitHub actions)
-> - (holepunch)
 
-> - code on github [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
-> - slides on [https://selinazitrone.github.io/YoMos2020/index.html](https://selinazitrone.github.io/YoMos2020/index.html)
+> - Code on github [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
+> - Slides on [https://selinazitrone.github.io/YoMos2020/index.html](https://selinazitrone.github.io/YoMos2020/index.html)
 
 # Motivations for a better project organization and workflow
 
@@ -34,19 +35,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # How? Use a research compendium!
 
-![This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence.](images/ResearchCompendium-ttw.jpg){width=100%}
+![This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).](images/ResearchCompendium-ttw.jpg){width=50%}
 
 ---
 
 # What *is* a research compendium?
 
-> This is a collection of **all digital parts of a research project** including data, 
-code, texts (protocols, reports, questionnaires, metadata). The collection is created 
+> This is a collection of **all digital parts of a research project** including **data, 
+code, texts (protocols, reports, questionnaires, metadata)**. The collection is created 
 in such a way that reproducing all results is straight forward.
 
 (Definition from [The Turing Way](https://the-turing-way.netlify.app/afterword/glossary.html#term-Research-Compendia))
 
 [Excursion to the TTW website](https://the-turing-way.netlify.app/research_compendia/research_compendia.html)
+
 [Excursion to Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/3)
 
 ---
@@ -66,7 +68,7 @@ in such a way that reproducing all results is straight forward.
 
 ---
 
-## Advantages of using R Packages
+# Advantages of using R Packages
 
 * benefit from quality control mechanisms built around R packages (<code>R CMD check</code>)
 * easy documentation
@@ -78,11 +80,13 @@ in such a way that reproducing all results is straight forward.
   + [`testthat`](https://testthat.r-lib.org/): add unit testing to your package
   + ... and many more
 
-# Hands-on I: Create a research compendium with the R package structure
+# Hands-on I 
+
+## Create a research compendium with the R package structure
 
 # Version control
 
-![](images/final.jpg){width=50%}
+![](images/final.jpg){width=40%}
 
 # Git as a distributed version control system (VCS)
 
@@ -95,17 +99,17 @@ in such a way that reproducing all results is straight forward.
   + open-source collaborative development
   + visibility: get new collaborators, feedback, bug reports
   
-# Hands-on: add version control to the research compendium
+# Hands-on II
+
+## Add version control to the research compendium
 
 # Automated testing
 ## What?
-> - 
-*unit tests* functions that run a small amount of code: "units"
+> - *unit tests*: functions that run a small amount of code: "units"
 > - input: defined and fixed
 > - compares output with an expected output
 > - returns true/false
 
-# Automated testing
 ## Why?
 
 > - fewer bugs
@@ -116,9 +120,11 @@ in such a way that reproducing all results is straight forward.
 
 > - write tests either before or after implementing your code
 > - when you found a bug: before fixing, write a test that would have detected it
-> - use a test framework, e.g. in R: <code>testthat</code> package (Hadley Wickham)
+> - use a test framework, e.g. in R: [`testthat`](https://testthat.r-lib.org/) package (Hadley Wickham)
 
-# Hands-on: Unit tests
+# Hands-on III
+
+## Unit tests
 
 # Continous integration (CI)
 
@@ -144,10 +150,18 @@ in such a way that reproducing all results is straight forward.
 > - self host to remove the per job limit
 > - very easy to setup with R using the <code>usethis</code> package
 
-# Hands-on: Github Actions for `R CMD check`
+![This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).](images/github-actions-with-text.jpg){width=20%}
+
+# Hands-on IV
+
+## Github Actions for `R CMD check`
 
 # Reproducibility and Accessability
 
 [Another excursion to Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/19)
 
 [Holepunch](https://karthik.github.io/holepunch/)
+
+# Hands-on V
+
+## Publish your repository on Binder with a live RStudio server instance
