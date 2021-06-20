@@ -28,6 +28,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -300,6 +303,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -307,6 +373,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -354,59 +430,9 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#before-we-start">Before we start</a></li>
-<li><a href="#step-1-create-an-empty-r-package">Step 1: Create an empty R-package</a><ul>
-<li><a href="#option-1-using-the-rstudio-gui">Option 1: Using the RStudio GUI</a></li>
-<li><a href="#option-2-using-usethiscreate_package">Option 2: Using <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>()</code></a></li>
-<li><a href="#during-package-development">During package development</a></li>
-</ul></li>
-<li><a href="#step-2-create-a-research-compendium">Step 2: Create a research compendium</a><ul>
-<li><a href="#fill-out-the-description-file">Fill out the DESCRIPTION file</a></li>
-<li><a href="#add-a-license">Add a license</a></li>
-<li><a href="#add-data">Add data</a></li>
-<li><a href="#add-an-analysis-function">Add an analysis function</a></li>
-<li><a href="#document-function-and-data-with-roxygen2">Document function and data with roxygen2</a></li>
-<li><a href="#add-an-analysis-script">Add an analysis script</a></li>
-</ul></li>
-<li><a href="#step-3-version-control-with-git-and-github">Step 3: Version control with git and GitHub</a><ul>
-<li><a href="#commit-all-changes">Commit all changes</a></li>
-<li><a href="#make-the-compendium-a-github-repository">Make the compendium a GitHub repository</a></li>
-<li><a href="#add-a-readme-to-your-github-project">Add a readme to your github project</a></li>
-</ul></li>
-<li><a href="#brief-digression-include-large-external-data-sets-with-piggyback">Brief digression: Include large external data sets with <code>piggyback</code></a></li>
-<li><a href="#step-4-unit-testing">Step 4: Unit testing</a></li>
-<li><a href="#step-5-ci-with-github-actions">Step 5: CI with GitHub Actions</a></li>
-<li><a href="#add-rstudio-server-with-holepunch">Add RStudio server with <code>holepunch</code></a></li>
-<li><a href="#some-more-tips">Some more tips</a><ul>
-<li><a href="#the-turing-way-a-very-useful-guide-to-reproducible-data-science"><em>The Turing Way</em> a very useful guide to reproducible data science</a></li>
-<li><a href="#ropenscis-reproducibility-guide">Ropensci’s reproducibility guide</a></li>
-<li><a href="#reasearch-compendia">Reasearch compendia</a><ul>
-<li><a href="#a-guide-to-making-your-data-analysis-more-reproducible-nice-talk-and-more-by-karthik-ram"><em>A guide to making your data analysis more reproducible</em> (nice talk and more by Karthik Ram)</a></li>
-<li><a href="#the-turing-way-guides-section-on-reseach-compendia"><em>The Turing Way</em> guide’s section on reseach compendia</a></li>
-<li><a href="#ressources-collection-on-research-compendia">Ressources collection on research compendia</a></li>
-</ul></li>
-<li><a href="#r-packages">R packages</a><ul>
-<li><a href="#comprehensive-book-on-how-to-create-an-r-package">Comprehensive book on how to create an R package</a></li>
-</ul></li>
-<li><a href="#git-and-github">Git and GitHub</a><ul>
-<li><a href="#how-to-use-git-and-github-with-r-and-r-studio">How to use git and github with R and R-Studio</a></li>
-<li><a href="#howto-use-git-branching">Howto use Git branching</a></li>
-<li><a href="#github-actions">Github actions</a></li>
-<li><a href="#ci-with-github-actions">CI with github actions</a></li>
-<li><a href="#how-to-use-an-.rmd-document-as-readme-in-github-and-render-it-automatically">How to use an .Rmd document as Readme in github and render it automatically</a></li>
-</ul></li>
-<li><a href="#unit-testing">Unit testing</a></li>
-<li><a href="#holepunch-package-for-r-and-binder-adds-a-live-on-demand-rstudio-server-to-your-r-project-on-githubgitlab">Holepunch package for R and Binder (adds a live, on-demand RStudio server to your R project on GitHub/GitLab)</a></li>
-<li><a href="#introduction-to-docker-for-r">Introduction to Docker for R</a></li>
-<li><a href="#scientific-publications">Scientific publications</a></li>
-</ul></li>
-</ul>
-</div>
 
-<div id="before-we-start" class="section level2">
-<h2>Before we start</h2>
+<div id="before-we-start" class="section level1">
+<h1>Before we start</h1>
 <p>Before you start the how-to, please check that you have the following things set up and running:</p>
 <ul>
 <li><a href="https://github.com/join">GitHub Account</a></li>
@@ -419,11 +445,11 @@ $(document).ready(function () {
 </ul></li>
 </ul>
 </div>
-<div id="step-1-create-an-empty-r-package" class="section level2">
-<h2>Step 1: Create an empty R-package</h2>
+<div id="step-1-create-an-empty-r-package" class="section level1">
+<h1>Step 1: Create an empty R-package</h1>
 <p>There are different ways to create a package in R. We based this How-To on the second method using the <code>usethis</code> package.</p>
-<div id="option-1-using-the-rstudio-gui" class="section level3">
-<h3>Option 1: Using the RStudio GUI</h3>
+<div id="option-1-using-the-rstudio-gui" class="section level2">
+<h2>Option 1: Using the RStudio GUI</h2>
 <p>Go to <code>File | New Project | New Directory | R Package</code>.</p>
 <p>Give your package a name that is accepted as an R-package name:</p>
 <ul>
@@ -435,13 +461,13 @@ $(document).ready(function () {
 <p>Make sure to check the <code>Create a git repository</code> checkmark to initialize the package with a git repository and a .gitignore file.</p>
 <p>If you accidentally created the package without a git repository you can either use <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_git</span>()</code> or you can initialize an empty git repository from the terminal <code>git init</code>.</p>
 </div>
-<div id="option-2-using-usethiscreate_package" class="section level3">
-<h3>Option 2: Using <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>()</code></h3>
+<div id="option-2-using-usethiscreate_package" class="section level2">
+<h2>Option 2: Using <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>()</code></h2>
 <p>Another possibility is to create a package by running <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="st">&quot;path/to/package/packageName&quot;</span>)</code>. If you leave all the other function parameters at their default value, this command will create a new directory (if it doesn’t already exist) and initialize an R package in that directory. Compared to the GUI method, this R package by default is already configured to using the <code>roxygen2</code> package for package documentation (see later) and will not have any dummy files in it.</p>
 <p>However, with this method you have to seperately initialize a git repository by running <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_git</span>()</code> or <code>git init</code> from the terminal.</p>
 </div>
-<div id="during-package-development" class="section level3">
-<h3>During package development</h3>
+<div id="during-package-development" class="section level2">
+<h2>During package development</h2>
 <p>Checkout the options that you have in the <code>Build</code> tab in RStudio. You can do everything described below via the GUI or by calling R functions.</p>
 <p>During the entire package building process the <code>devtools</code> package is your friend and you can (and should)</p>
 <ul>
@@ -459,10 +485,10 @@ $(document).ready(function () {
 </ul>
 </div>
 </div>
-<div id="step-2-create-a-research-compendium" class="section level2">
-<h2>Step 2: Create a research compendium</h2>
-<div id="fill-out-the-description-file" class="section level3">
-<h3>Fill out the DESCRIPTION file</h3>
+<div id="step-2-create-a-research-compendium" class="section level1">
+<h1>Step 2: Create a research compendium</h1>
+<div id="fill-out-the-description-file" class="section level2">
+<h2>Fill out the DESCRIPTION file</h2>
 <p>The <code>DESCRIPTION</code> file contains important metadata about your package and describes which other packages it needs to run correctly. If an R project contains a <code>DESCRIPTION</code> file, RStudio and devtools will consider it an R package.</p>
 <p>Fill out the fields of the description file, e.g.</p>
 <pre><code>Package: YoMos2020
@@ -483,33 +509,33 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0</code></pre>
 <p>There are a few conventions on how to fill out the fields of the <code>DESCRIPTION</code> file. Please have a look in the <a href="https://r-pkgs.org/description.html">R packages book</a> to find out more about this file. Also have a look at how <code>usethis</code> created the template for you. This will already give you a hint on how to fill out the fields.</p>
 </div>
-<div id="add-a-license" class="section level3">
-<h3>Add a license</h3>
+<div id="add-a-license" class="section level2">
+<h2>Add a license</h2>
 <p>If you want to add a specific license to your project you can use different functions from the <code>usethis</code> package, e.g. for the GNU General Public License 3 (gpl-3) license you can use</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>usethis<span class="op">::</span><span class="kw">use_gpl3_license</span>()</span></code></pre></div>
 <p>This adds LICENSE.md with your name (or the name(s) specified in the DESCRIPTION file) in it to the project and automatically updates the license field in <code>DESCRIPTION</code>.</p>
 </div>
-<div id="add-data" class="section level3">
-<h3>Add data</h3>
+<div id="add-data" class="section level2">
+<h2>Add data</h2>
 <p>A common place for datasets that you want to make available in your research compendium is the <code>/data</code> folder. The convention of R packages is that you should only story <code>.RData</code> files in there. Everything that is not in <code>.RData</code> format can go in the <code>/data-raw</code> folder.</p>
-<div id="create-a-dataset-with-r" class="section level4">
-<h4>Create a dataset with R</h4>
+<div id="create-a-dataset-with-r" class="section level3">
+<h3>Create a dataset with R</h3>
 <p>First create a <code>/data-raw</code> folder by calling <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_data_raw</span>()</code>. This will also create a <code>DATASET.R</code> file in which you can create your data and then add it to the <code>/data</code> folder as an <code>.RData</code> file. By default these files are compressed using <code>bzip2</code> but you can also chose other compressions by changing the <code>compress</code> parameter of the function. Just put the following lines in the <code>DATASET.R</code> file and run them:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># create a dummy dataset for temperature measurements</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>dummyTempData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">temp=</span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">15</span>, <span class="dt">sd =</span> <span class="dv">2</span>))</span>
 <span id="cb3-3"><a href="#cb3-3"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(dummyTempData, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="add-an-analysis-function" class="section level3">
-<h3>Add an analysis function</h3>
+<div id="add-an-analysis-function" class="section level2">
+<h2>Add an analysis function</h2>
 <p>Save all the functions you need for your analysis in the <code>R/</code> folder. You can group related functions together in the same R-script but unrelated functions should go in separate scripts. Here, we create a simple printer function that prints the mean of a vector. We save this function in a new R-Script called printMean.R. To create the script, you can conveniently use <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;printMean&quot;</span>)</code> which will create, save and open the script for you. Add the following simple function:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># a simple printer function for the mean of a vector</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>printMean &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;The mean value is &quot;</span>, <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> T), <span class="st">&quot;!&quot;</span>))</span>
 <span id="cb4-4"><a href="#cb4-4"></a>}</span></code></pre></div>
 </div>
-<div id="document-function-and-data-with-roxygen2" class="section level3">
-<h3>Document function and data with roxygen2</h3>
+<div id="document-function-and-data-with-roxygen2" class="section level2">
+<h2>Document function and data with roxygen2</h2>
 <p>You can document your functions and data using the package <a href="https://roxygen2.r-lib.org/articles/roxygen2.html"><code>roxygen2</code></a>. This allows you to describe your functions in the same place where you define them. Roxygen2 will automatically generate <code>.Rd</code> files in the <code>/man</code> folder, update the <code>NAMESPACE</code> if you import or export functions and update the <code>DESCRIPTION</code> file. The basic workflow is:</p>
 <ul>
 <li>insert a roxygen skeleton above your function
@@ -546,8 +572,8 @@ RoxygenNote: 7.1.0</code></pre>
 <p>If you now run <code class="sourceCode r">devtools<span class="op">::</span><span class="kw">document</span>()</code> or rebuild your package, you will find an automatically generated read only file <code>printMean.Rd</code> and <code>dummyTempData.Rd</code> in the <code>/man</code> folder of your research compendium. If you call <code class="sourceCode r">?printMean</code> or <code class="sourceCode r">?dummyTempData</code> (after installing and restarting) you open the help file just like with any other R function you know.</p>
 <p>Please also have a look at the <a href="https://r-pkgs.org/man.html#roxygen-comments">conventions and guidelines</a> on roxygen2-documentation the quick reference of the <a href="https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html">most common tags</a>.</p>
 </div>
-<div id="add-an-analysis-script" class="section level3">
-<h3>Add an analysis script</h3>
+<div id="add-an-analysis-script" class="section level2">
+<h2>Add an analysis script</h2>
 <p>Add an <code>/analysis</code> folder with an rmarkdown document <code>report.Rmd</code> to your compendium. Depending on the type of report you want to share you have to edit the yaml header of your report. It can e.g. look something like this:</p>
 <pre><code>---
 title: &quot;Temperature Analyis&quot;
@@ -568,30 +594,30 @@ printMean(dummyTempData$temp)
 ```</code></pre>
 </div>
 </div>
-<div id="step-3-version-control-with-git-and-github" class="section level2">
-<h2>Step 3: Version control with git and GitHub</h2>
-<div id="commit-all-changes" class="section level3">
-<h3>Commit all changes</h3>
+<div id="step-3-version-control-with-git-and-github" class="section level1">
+<h1>Step 3: Version control with git and GitHub</h1>
+<div id="commit-all-changes" class="section level2">
+<h2>Commit all changes</h2>
 <p>In the <code>Git</code> tab (next to <code>Build</code>) you can first stage all created files and then commit them or you can do it in the terminal:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">git</span> add .</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="fu">git</span> commit -m <span class="st">&quot;First package version&quot;</span></span></code></pre></div>
 </div>
-<div id="make-the-compendium-a-github-repository" class="section level3">
-<h3>Make the compendium a GitHub repository</h3>
+<div id="make-the-compendium-a-github-repository" class="section level2">
+<h2>Make the compendium a GitHub repository</h2>
 <p>For this, you can conveniently use the <code>usethis</code> package:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>usethis<span class="op">::</span><span class="kw">use_github</span>()</span></code></pre></div>
 <p>This will initialize a new GitHub repository from your compendium and will add the url to <code>DESCRIPTION</code>.</p>
 <p>If you do this for the first time it is possible that you run into some issues because you might not have set up everything correctly, yet. But the <code>usethis</code> package will help you through all the steps with its error messages. One thing you definitely need for this step to work is a <a href="https://happygitwithr.com/github-pat.html#github-pat">PAT (personal acces token)</a> for GitHub added to your .Renviron file. Check if you have one or create one with <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">browse_github_token</span>()</code>.</p>
 </div>
-<div id="add-a-readme-to-your-github-project" class="section level3">
-<h3>Add a readme to your github project</h3>
+<div id="add-a-readme-to-your-github-project" class="section level2">
+<h2>Add a readme to your github project</h2>
 <p>Add a README.md to your package that will be rendered on the webpage of your GitHub repository.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>usethis<span class="op">::</span><span class="kw">use_readme_md</span>()</span></code></pre></div>
 <p>In there, you can describe your package and add some information on how to download it and how to get started with the package. You can also do this on the GitHub webpage of your repository.</p>
 </div>
 </div>
-<div id="brief-digression-include-large-external-data-sets-with-piggyback" class="section level2">
-<h2>Brief digression: Include large external data sets with <code>piggyback</code></h2>
+<div id="brief-digression-include-large-external-data-sets-with-piggyback" class="section level1">
+<h1>Brief digression: Include large external data sets with <code>piggyback</code></h1>
 <p>If you use an R package as a research compendium, you might also want to share large datasets along with it. The problem is, that you cannot manage those large files anymore by tracking them with git and commiting directly to GitHub. However, GitHub allows you to attach up to 2 GB of files to each release of your project. The <a href="https://docs.ropensci.org/piggyback/articles/intro.html"><code>piggyback</code></a> package takes advantage of this and allows you to create GitHub releases, upload and download large datasets associated with your compendium.</p>
 <p>First, we simulate a large datafile by creating a dataset in our <code>data-raw</code> folder (if you have really large file you would not save them as .txt but rather compress them first).</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>largeDataSet &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="fl">1e6</span>, <span class="dt">temp =</span> <span class="kw">rnorm</span>(<span class="fl">1e6</span>,<span class="dv">15</span>,<span class="dv">2</span>))</span>
@@ -613,8 +639,8 @@ printMean(dummyTempData$temp)
 <p>If this function is called, it will automatically download all the assets attached to the latest release of the repository and put them in a <code>/data-raw</code> folder. Now the data can be accessed by all the package functions. Have a look at <code class="sourceCode r">?piggyback<span class="op">::</span>pb_download</code> to see which parameters you can specify. You don’t have to download all the assets and you can also chose which version of the release should be used for the download.</p>
 <p>You can also create new releases directly from <code>piggyback</code> and you can track large datasets by creating new releases if the datasets change. This will not be covered here, but if you are interested have a look at the <a href="https://docs.ropensci.org/piggyback/articles/intro.html">piggyback documentation</a>.</p>
 </div>
-<div id="step-4-unit-testing" class="section level2">
-<h2>Step 4: Unit testing</h2>
+<div id="step-4-unit-testing" class="section level1">
+<h1>Step 4: Unit testing</h1>
 <p>First, create the infrastructure needed by the <code>thestthat</code> package.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
 <p>This creates a <code>/tests</code> folder which contains a <code>/testthat</code> folder and an R-script called <code>testthat.R</code>. You do not need to change anything in the testthat.R script. This is called e.g. by <code class="sourceCode r">rcmdcheck<span class="op">::</span><span class="kw">rcmdcheck</span>()</code> to run all the tests you created in your package. The <code>/testthat</code> folder is the place to store the R-scripts with the actual tests. Also, the <code>testthat</code> package ist now added to the Suggests field in <code>DESCRIPTION</code>.</p>
@@ -629,8 +655,8 @@ printMean(dummyTempData$temp)
 <p>If you want to run all the tests from your package at once to see if they pass your can run</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span></code></pre></div>
 </div>
-<div id="step-5-ci-with-github-actions" class="section level2">
-<h2>Step 5: CI with GitHub Actions</h2>
+<div id="step-5-ci-with-github-actions" class="section level1">
+<h1>Step 5: CI with GitHub Actions</h1>
 <p>Before we start, it’s time to commit all the changes to our package. Use the <code>Git</code> panel or run</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">git</span> add .</span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="fu">git</span> commit -m <span class="st">&quot;Add unit tests for printMean function&quot;</span></span></code></pre></div>
@@ -671,13 +697,15 @@ printMean(dummyTempData$temp)
 <li><p>If you want to write a new function and generate the corresponding R script in the <code>/R</code> directory, you can conveniently call <code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;functionName&quot;</span>)</code>. This will create a file <code>functionName.R</code> ind the <code>/R</code> directory and open it for you.</p></li>
 <li><p>Use the <a href="https://github.com/MangoTheCat/goodpractice"><code>goodpractice</code></a> package to further test your package for parts which can be improved. Running <code>goodpractice::gp()</code>.{R} will tell you where your comment lines are too long, where you should consider renaming variables, if something is wrong with your <code>NAMESPACE</code>, …</p></li>
 </ul>
-<p>#Links and further reading</p>
+</div>
+<div id="links-and-further-reading" class="section level1">
+<h1>Links and further reading</h1>
 <div id="the-turing-way-a-very-useful-guide-to-reproducible-data-science" class="section level3">
 <h3><em>The Turing Way</em> a very useful guide to reproducible data science</h3>
 <p><a href="https://the-turing-way.netlify.app/introduction/introduction.html" class="uri">https://the-turing-way.netlify.app/introduction/introduction.html</a></p>
 </div>
-<div id="ropenscis-reproducibility-guide" class="section level2">
-<h2>Ropensci’s reproducibility guide</h2>
+<div id="ropenscis-reproducibility-guide" class="section level3">
+<h3>Ropensci’s reproducibility guide</h3>
 <p><a href="https://ropensci.github.io/reproducibility-guide/" class="uri">https://ropensci.github.io/reproducibility-guide/</a></p>
 </div>
 <div id="reasearch-compendia" class="section level2">
@@ -758,6 +786,8 @@ printMean(dummyTempData$temp)
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -790,6 +820,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
