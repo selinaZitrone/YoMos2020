@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Reproducible data analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sebastian Hanß and Selina Baldauf" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Reproducible data analysis
+## R packages as research compendia
+### Sebastian Hanß and Selina Baldauf
+### 20 June, 2021
+
+---
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+.large { font-size: 130% }
+.small { font-size: 70% }
+.tiny{font-size: 40%}
+&lt;/style&gt;
+
+
+# Workshop overview
+
+.pull-left[
+
+![:scale 100%](images/reproduciblejourney.jpg)
+.left[.small[This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).]]]
+
+--
+
+.pull-right[
+
+### Two main topics
+
+- Research compendia
+
+- R packages
+
+- Code on github [https://github.com/selinaZitrone/YoMos2020](https://github.com/selinaZitrone/YoMos2020)
+- Slides on [https://selinazitrone.github.io/YoMos2020/index.html](https://selinazitrone.github.io/YoMos2020/index.html)
+
+]
+
+
+---
+
+# Motivations for a better project organization and workflow
+
+--
+
+- Reproduciblity 🔃 (for you and others)
+
+--
+
+- Reliablity 🏋 (will it work again?)
+
+--
+
+- Re-usablity ⚙ (don't re-invent the wheel)
+
+--
+
+- Visiblity 🔍 (let others see and use your work)
+
+---
+
+# How? Use a research compendium!
+
+![:scale 50%](images/ResearchCompendium-ttw.jpg)
+.left[.small[This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).]]
+
+---
+
+# What *is* a research compendium?
+
+&gt; This is a collection of **all digital parts of a research project** including **data, 
+code, texts (protocols, reports, questionnaires, metadata)**. The collection is created 
+in such a way that reproducing all results is straight forward.
+
+(Definition from [The Turing Way](https://the-turing-way.netlify.app/afterword/glossary.html#term-Research-Compendia))&lt;sup&gt;1&lt;/sup&gt;
+
+--
+
+.pull-left[
+
+#### Principles&lt;sup&gt;2&lt;/sup&gt;
+
+
+- stick with the conventions in your field
+
+- Keep **data**, **methods** and **output** separate
+
+- specify the computational environment
+
+]
+
+--
+
+.pull-right[
+
+#### Key components&lt;sup&gt;2&lt;/sup&gt;
+
+- License
+
+- VCS
+
+- Metadata
+
+- Archive
+
+]
+
+.footnote[
+[1] [Excursion to the TTW website](https://the-turing-way.netlify.app/research_compendia/research_compendia.html)
+
+[2] from [Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/3)
+]
+
+---
+
+# It's an 📦 R Package!
+
+.pull-left[
+.center[![:scale 60%](images/research_compendium.PNG)
+]]
+
+--
+
+.pull-right[
+
+- packages generating similar project directory structures: 
+  + `rrtools`
+  + `ProjectTemplate`
+  + `prodigenr`
+  + `workflowr`
+  
+]
+  
+---
+
+![:scale 100%](images/Marwicketal2018.png)
+
+---
+
+# Advantages of using R Packages
+
+--
+
+* benefit from quality control mechanisms built around R packages (&lt;code&gt;R CMD check&lt;/code&gt;)
+
+--
+
+* easy documentation
+
+--
+
+* additional packages available to make your life easier
+  + [`usethis`](https://usethis.r-lib.org/): workflow package to automate tasks like project setup etc.
+  + [`pkgdown`](https://pkgdown.r-lib.org/): build a quick and easy website for your package
+  + [`goodpractice`](https://github.com/mangothecat/goodpractice): gives you advice about good
+  practices when building R packages
+  + [`testthat`](https://testthat.r-lib.org/): add unit testing to your package
+  + ... and many more
+  
+---
+class: inverse
+# Hands-on I 
+
+### Create a research compendium with the R package structure
+
+---
+
+# Version control
+
+.center[![:scale 40%](images/final.jpg)]
+
+---
+
+# Git as a distributed version control system (VCS)
+
+* complete and long-term history of every file in your project
+  + go back to specific versions of your project
+* collaborate in teams
+  + branching and merging
+  + tracability: each change is commented and can be traced back to a developer
+* host your repository on remote server (GitHub, Bitbucket, GitLab, ...)
+  + open-source collaborative development
+  + visibility: get new collaborators, feedback, bug reports
+  
+---
+class: inverse
+# Hands-on II
+
+### Add version control to the research compendium
+
+---
+
+# Automated testing
+
+--
+
+#### What?
+
+- *unit tests*: functions that run a small amount of code: "units"
+- input: defined and fixed
+- compares output with an expected output
+- returns true/false
+
+--
+
+#### Why?
+
+- fewer bugs
+- better code (needs to be *testable*)
+- confidence and trust
+
+--
+
+#### How?
+
+- write tests either before or after implementing your code
+- when you found a bug: before fixing, write a test that would have detected it
+- use a test framework, e.g. in R: [`testthat`](https://testthat.r-lib.org/) package (Hadley Wickham)
+
+---
+class: inverse
+
+# Hands-on III
+
+### Unit tests
+
+---
+
+# Continous integration (CI)
+
+--
+
+.pull-left[
+&gt; "If it hurts, do it more often" 
+.right[(Martin Fowler)]
+
+![](images/pain_vs_time_ci.png)
+]
+--
+.pull-right[
+
+### Ideas
+- shared code repository (e.g. on github)
+
+- push code frequently (every day)
+
+- automated builds and tests after each commit
+
+- immediate feedback if something doesn't work anymore
+
+- however, can be time consuming and might be overkill for small or solo projects
+]
+
+---
+background-image: url('images/github-actions-with-text.jpg')
+background-position: 100% 50%
+background-size: 40%
+
+# Github Actions for CI (and other automation tasks)
+
+
+--
+
+- supports mac-OS, windows, linux, docker containers
+
+--
+
+- integration with github, so no separate setup and authentication
+
+--
+
+- free for open source, academic or educational repos
+
+--
+
+- 20 concurrent jobs (40 with pro), 6 h per job, 72 h per workflow
+
+--
+
+- self host to remove the per job limit
+
+--
+
+- very easy to setup with R using the &lt;code&gt;usethis&lt;/code&gt; package
+
+.right[.footer[.small[This image was created by [Scriberia](http://www.scriberia.co.uk/)for The Turing Way community&lt;br&gt;  and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).]]]
+
+---
+class: inverse
+
+# Hands-on IV
+
+### Github Actions for `R CMD check`
+
+---
+
+# Reproducibility and Accessability
+
+[Another excursion to Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/19)
+
+[Holepunch](https://karthik.github.io/holepunch/)
+
+---
+class: inverse
+
+# Hands-on V
+
+### Publish your repository on Binder with a live RStudio server instance
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -330,11 +330,11 @@ $(document).ready(function () {
   <a href="how_to.html">How-To</a>
 </li>
 <li>
-  <a href="slidy_presentation.html">Presentation</a>
+  <a href="xaringan_presentation.html">Presentation</a>
 </li>
 <li>
   <a href="https://github.com/selinaZitrone/YoMos2020">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -552,17 +552,20 @@ RoxygenNote: 7.1.0</code></pre>
 <pre><code>---
 title: &quot;Temperature Analyis&quot;
 author: &quot;Selina Baldauf&quot;
-date: &quot;14 June, 2021&quot;
+date: &quot;20 June, 2021&quot;
 output: html_document
 ---
 
-    
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+devtools::load_all(&quot;.&quot;)
+```
+
 # This is the temperature analysis
 
-    
-    ```r
-    printMean(dummyTempData$temp)
-    ```</code></pre>
+```{r}
+printMean(dummyTempData$temp)
+```</code></pre>
 </div>
 </div>
 <div id="step-3-version-control-with-git-and-github" class="section level2">
