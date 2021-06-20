@@ -1,5 +1,5 @@
 ---
-title: "Reproducible data analyisis - R packages as research compendia"
+title: "Reproducible data analysis - R packages as research compendia"
 author: "Sebastian Hanß and Selina Baldauf"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
