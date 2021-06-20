@@ -93,24 +93,31 @@ style_mono_accent(
 
 # How? Use a research compendium!
 
-![:scale 50%](images/ResearchCompendium-ttw.jpg)
+.pull-left[
+
+![:scale 100%](images/ResearchCompendium-ttw.jpg)
 .left[.small[This image was created by [Scriberia](http://www.scriberia.co.uk/) for The Turing Way community and is used under a CC-BY licence (DOI [10.5281/zenodo.3332807](10.5281/zenodo.3332807)).]]
+]
 
----
-
-# What *is* a research compendium?
-
+.pull-right[
 > This is a collection of **all digital parts of a research project** including **data, 
 code, texts (protocols, reports, questionnaires, metadata)**. The collection is created 
 in such a way that reproducing all results is straight forward.
 
 (Definition from [The Turing Way](https://the-turing-way.netlify.app/afterword/glossary.html#term-Research-Compendia))<sup>1</sup>
 
---
+.footnote[
+[1] [Excursion to the TTW website](https://the-turing-way.netlify.app/welcome.html)
+
+]
+]
+---
+
+# What *is* a research compendium?
 
 .pull-left[
 
-#### Principles<sup>2</sup>
+### Principles
 
 
 - stick with the conventions in your field
@@ -125,7 +132,7 @@ in such a way that reproducing all results is straight forward.
 
 .pull-right[
 
-#### Key components<sup>2</sup>
+### Key components
 
 - License
 
@@ -138,10 +145,12 @@ in such a way that reproducing all results is straight forward.
 ]
 
 .footnote[
-[1] [Excursion to the TTW website](https://the-turing-way.netlify.app/research_compendia/research_compendia.html)
-
-[2] from [Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/3)
+from [Karthik Ram's talk at RStudio::conf 2019](https://inundata.org/talks/rstd19/#/0/3)
 ]
+
+---
+
+![:scale 100%](images/Marwicketal2018.png)
 
 ---
 
@@ -163,9 +172,6 @@ in such a way that reproducing all results is straight forward.
   
 ]
   
----
-
-![:scale 100%](images/Marwicketal2018.png)
 
 ---
 
