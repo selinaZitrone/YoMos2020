@@ -8,7 +8,7 @@ navbar:
     - text: "How-To"
       href: how_to.html
     - text: "Presentation"
-      href: slidy_presentation.html
+      href: xaringan_presentation.html
     - icon: fa-github
       href: https://github.com/selinaZitrone/YoMos2020
 
