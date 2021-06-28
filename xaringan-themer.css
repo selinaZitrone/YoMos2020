@@ -15,31 +15,31 @@
  *    - xaringan wiki: https://github.com/yihui/xaringan/wiki
  *    - remarkjs wiki: https://github.com/gnab/remark/wiki
  *
- *  Version: 0.3.4
+ *  Version: 0.4.0
  *
  * ------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Montserrat:300,300i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,300i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Playfair&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono&display=swap);
 
 
 :root {
   /* Fonts */
-  --text-font-family: Montserrat;
+  --text-font-family: Roboto;
   --text-font-is-google: 1;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
-  --header-font-family: 'Josefin Sans';
+  --header-font-family: Playfair;
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
   --code-font-family: 'Fira Mono';
   --code-font-is-google: 1;
   --base-font-size: 20px;
-  --text-font-size: 1rem;
+  --text-font-size: 13pt;
   --code-font-size: 0.9rem;
   --code-inline-font-size: 1em;
-  --header-h1-font-size: 2.75rem;
-  --header-h2-font-size: 2.25rem;
+  --header-h1-font-size: 30pt;
+  --header-h2-font-size: 24pt;
   --header-h3-font-size: 1.75rem;
 
   /* Colors */
@@ -78,7 +78,7 @@ h1, h2, h3 {
 }
 .remark-slide-content {
   background-color: var(--background-color);
-  font-size: 1rem;
+  font-size: 13pt;
   padding: 16px 64px 16px 64px;
   width: 100%;
   height: 100%;
@@ -105,9 +105,12 @@ h1, h2, h3 {
 .remark-slide-number {
   color: #2369bd;
   opacity: 1;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
-strong { color: var(--text-bold-color); }
+strong {
+  font-weight: bold;
+  color: var(--text-bold-color);
+}
 a, a > code {
   color: var(--link-color);
   text-decoration: none;
@@ -224,7 +227,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   box-sizing: border-box;
 }
 .remark-slide-content.header_background {
-  padding-top: 7rem;
+  padding-top: 0rem;
 }
 
 @page { margin: 0; }
